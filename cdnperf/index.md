@@ -60,7 +60,11 @@ done
 
 The boxplots and line plots below clearly illustrate that across all aspects of the request cycle the CDN provides an optimised experience.
 
-![Direct vs CDN - US-West Boxplot](uw-boxplot.png "Direct vs CDN - US-West Boxplot")
-![Direct - US-West line plot](uw-origin.png "Direct - US-West line plot")
-![CDN - US-West line plot](uw-cdn.png "CDN - US-West line plot")
+### US West
+![Direct - US-West boxplot](uw-boxplot-origin.png "Direct - US-West boxplot")
+![CDN - US-West boxplot](uw-boxplot-cdn.png "CDN - US-West boxplot")
 
+## US East
+
+![Direct - US-East boxplot](ue-boxplot-origin.png "Direct - US-East boxplot")
+![CDN - US-East boxplot](ue-boxplot-cdn.png "CDN - US-East boxplot")
