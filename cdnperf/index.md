@@ -11,10 +11,12 @@ The aim of this experiment is to identify how much impact a CDN would have on th
 
 Comparing our current solution of direct to origin vs the proposed CDN accelerated SSL termination the following timings (in seconds) were discovered for the completion of a new request;
 
-| Desc   | Median | 75th PCTL | Max  |
-| ------ | ------:| ---------:| ----:|
-| Direct |  0.795 |     0.844 | 1.22 |
-| CDN    |  0.343 |     0.364 | 1.28 |
+| Desc         | Median | 75th PCTL | Max   |
+| ------------ | ------:| ---------:| -----:|
+| USW - Direct |  0.795 |     0.844 |  1.22 |
+| USW - CDN    |  0.343 |     0.364 |  1.28 |
+| USE - Direct |  0.413 |     0.432 | 0.947 |
+| USE - CDN    |  0.212 |     0.265 | 0.902 |
 
 ## Pricing
 
