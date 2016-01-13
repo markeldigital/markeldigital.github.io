@@ -1,0 +1,134 @@
+@mixin insurance-summary($selector) {
+    #{$selector} {
+        flex-grow: 1;
+        border: 1px solid $colour-greyscale-88;
+        border-bottom: none;
+        padding: 0;
+        margin-bottom: 2*$grid-unit;
+        line-height: 1;
+        word-break: break-word;
+        @include respond-to($lap-and-desk) {
+            order: 3;
+            border: none;
+            float: right;
+        }
+        .expander-trigger {
+            display: block;
+            color: $colour-greyscale-24;
+            &:hover, &:focus, &:active {
+                background-color: $colour-greyscale-98;
+            }
+            @include respond-to($lap-and-desk){
+                &:hover, &:focus, &:active {
+                    background-color: inherit;
+                    cursor:text;
+                }
+            }
+        }
+        .applicant {
+            padding:2*$grid-unit;
+            border-bottom: 1px solid $colour-greyscale-88;
+            @include respond-to($lap-and-desk){
+                padding: 2*$grid-unit 0;
+                margin: 0 2*$grid-unit;
+                //to align with h1 :-O
+                margin-top:7*$grid-unit;
+            }
+            h3 {
+                @include set-text-as(gamma, $margins-overrides: zero-both, $strength: strong);
+            }
+            .trigger-title, .trigger-icon {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .trigger-title {
+                @include respond-to($palm-only){
+                    width:80%;
+                }
+            }
+            .trigger-icon {
+                @include respond-to($palm-only){
+                    width:20%;
+                }
+            }
+        }
+        i[class^='icon-caret-down'] {
+            @include set-text-as(gamma, $margins-overrides: zero-both);
+            color: $colour-greyscale-63;
+            margin-top: 0;
+            margin-bottom: 0;
+            float: right;
+            @include respond-to($lap-and-desk){
+                display: none;
+            }
+        }
+        .quote-details ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li {
+                @include span-columns($one-half);
+                float: none;
+                display:inline-block;
+                white-space: nowrap;
+                padding-right: 4*$grid-unit;
+                &:last-child {
+                    padding-right: 0;
+                }
+                @include respond-to($lap-and-desk) {
+                    display: block;
+                }
+            }
+        }
+
+        span.qj-insurance-summary-details-header {
+            @include set-text-as(epsilon, $reduced: true, $margins-overrides: zero-both);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+        }
+        .qj-insurance-summary-details-value {
+            @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+            padding-bottom: $grid-unit;
+            &:last-child {
+                padding-bottom: 0;
+            }
+        }
+
+        .quote-details, .documents {
+            border-bottom: 1px solid $colour-greyscale-88;
+            padding:2*$grid-unit;
+            @include respond-to($lap-and-desk){
+                padding: 2*$grid-unit 0;
+                margin: 0 2*$grid-unit;
+            }
+
+        }
+        .documents {
+            ul {
+                margin-top: 0;
+            }
+            @include respond-to($lap-and-desk){
+                border-bottom: none;
+            }
+        }
+
+        .expander-content {
+            display: none;
+            @include respond-to($lap-and-desk){
+                display: block;
+            }
+        }
+        .open {
+            .expander-content {
+                display: block;
+            }
+            i.icon-caret-down:before {
+                @include icon-content-for-name("caret-up");
+                @include set-text-as(gamma, $margins-overrides: zero-both);
+                color:$colour-greyscale-63;
+            }
+        }
+    }
+}
+@include insurance-summary('.qj-insurance-summary-template .qj-insurance-summary');

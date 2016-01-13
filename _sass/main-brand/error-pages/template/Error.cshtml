@@ -1,0 +1,22 @@
+﻿@using System.Collections.Generic
+@{
+    Layout = "Shared/Layout";
+}
+
+<article class="static-error">
+    <section class="panel-alpha panel--centered">
+        @{
+            int responseCode = ((int)(RenderContext.Context.Response.StatusCode));
+            string languageCode = Url.RenderContext.Context.Culture.TwoLetterISOLanguageName;
+            var iconsForErrors = new Dictionary<int, string>
+            {
+                { 404, "icon-chain-broken"},
+                { 403, "icon-minus-circle"},
+                { 500, "icon-exclamation-triangle"}
+            };
+        }
+
+        <i class="@iconsForErrors[responseCode]"></i>
+        @Html.Partial(string.Format("bower_components/design-system/components/main-brand/error-pages/template/{0}_{1}", responseCode, languageCode))
+    </section>
+</article>

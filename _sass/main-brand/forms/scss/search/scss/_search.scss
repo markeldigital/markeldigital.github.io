@@ -1,0 +1,24 @@
+@mixin search($selector){
+    #{$selector}{
+        position: relative;
+        width: 100%;
+        @include respond-to($desk-only){
+            width: 50%;
+        }
+        input[type='search'], input[type='text'].search {
+            width: 100%;
+            margin-bottom: 2*$grid-unit;
+            @include box-sizing(border-box);
+            &+.icon-search {
+                position: absolute;
+                right: 1.5*$grid-unit;
+                top: 1.5*$grid-unit;
+                background: none;
+                color: $colour-greyscale-51;
+                pointer-events: none;
+            }
+        }
+    }
+}
+
+@include search(".search-form");

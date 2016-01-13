@@ -1,0 +1,104 @@
+@mixin questions-screen($selector){
+    #{$selector}{
+
+        .quote-journey__main{
+
+            background-color: $colour-white;
+
+            @include respond-to($lap-and-desk) {
+                border-radius: $standard-curvature;
+                box-shadow: inset 0px -3px 0px 0px rgba(0, 0, 0, 0.10);
+                border: 1px solid rgba(0, 0, 0, 0.10);
+            }
+
+        }
+
+
+
+
+        .question-container {
+
+
+            .intro-text{
+                padding-bottom: 0;
+            }
+
+            @include respond-to($lap-and-desk) {
+                padding: $grid-unit*3;
+                @include span-columns($two-thirds);
+                margin: 0;
+                border-right: 1px solid $colour-greyscale-88;
+            }
+            @include respond-to($palm-only){
+                border-bottom: 1px solid $colour-greyscale-88;
+                padding-bottom: $grid-unit*2;
+            }
+
+        }
+
+        .marketing-aside {
+            padding: 0;
+            @include respond-to($lap-and-desk) {
+
+                @include span-columns(4, $display: block-collapse);
+                padding: $grid-unit $grid-unit*5;
+
+                }
+                li {
+                    .icon-tick {
+                        color: $colour-greyscale-24;
+                    }
+                }
+        }
+
+        .question {
+            @include clearfix;
+            .question-aside {
+                position: relative;
+                @include span-columns($one-third);
+            }
+        }
+		
+		.breakdown-feedback dt {
+			@include visually-hidden;
+		}
+
+        &.historical-mode {
+            .question-main {
+				border-left-color: $colour-greyscale-88;
+				.option.success input {
+					@include animation(none);
+				}
+			}
+			.actions-panel {
+                background-color: $warning-colour-10; //until the warning-panel styles are done
+            }
+			.input-and-unit .unit {
+                @include standard-option-disabled-style;
+            }
+            .question-percentage-breakdown {
+                .label-selector label {
+                    @include standard-option-disabled-style;
+                }
+                .add-another, .remove {
+                    display: none;
+                }
+				.breakdown-feedback {
+					dt {
+						@include visually-shown;
+					}
+					dd {
+						border-color: $colour-greyscale-88;
+						color: $colour-black;
+						background-color: transparent;
+					}
+				}
+				.question-options {
+					background-image: none;
+				}
+            }
+        }
+    }
+}
+
+@include questions-screen(".question-page");

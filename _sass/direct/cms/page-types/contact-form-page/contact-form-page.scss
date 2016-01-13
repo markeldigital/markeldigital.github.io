@@ -1,0 +1,36 @@
+@mixin contact-form-page($selector){
+    #{$selector}{
+        form {
+            @include respond-to($lap-and-desk){
+				width: 50%;
+			}
+        }
+		.hp {
+			display:none;
+		}
+        label {
+            display: inline-block;
+            width: 100%;
+            margin-top: $grid-unit;
+        }
+
+        input {
+            display: block;
+        }
+
+        @include message(".field-validation-error");
+        .field-validation-error {
+            display: inline-block;
+            padding-left: $grid-unit;
+        }
+    }
+
+    #{$selector} input[type='submit'] {
+
+        padding: 1.5*$grid-unit 2*$grid-unit;
+        margin-top: 3*$grid-unit;
+
+    }
+}
+
+@include contact-form-page(".contact-form-page");

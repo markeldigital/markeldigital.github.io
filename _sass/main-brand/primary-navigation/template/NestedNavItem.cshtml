@@ -1,0 +1,13 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Markel.REMUS.DesignSystem.Contracts.INestLinks>
+<li class="ds-menu nested-nav-item">
+    <a class="ds-menu-trigger" href="">
+        <span >@Model.Name</span>
+        <i class="icon-caret-down"></i>
+     </a>
+    <ul class="ds-menu-items">
+        @foreach (var link in Model.Links)
+        {
+            @Html.Partial(link.PartialPath, link)
+        }
+    </ul>
+</li>

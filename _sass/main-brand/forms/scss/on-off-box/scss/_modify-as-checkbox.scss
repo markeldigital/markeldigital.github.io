@@ -1,0 +1,31 @@
+@mixin modify-as-checkbox($selector){
+    $size: $medium-spacer;
+    $border: $grid-unit/3 solid $colour-greyscale-88;
+
+    #{$selector}{
+        label {
+            .fake-check-box:before {
+                width: $size;
+                height: $size;
+                background-color: $colour-greyscale-88;
+                color:$colour-black;
+                border-radius: $standard-curvature;
+            }
+        }
+
+        input[type=checkbox]{
+            &:checked + label {
+                .fake-check-box:before {
+                    @include icon-content-for-name("tick");
+                    width: $size;
+                    height: $size;
+                    vertical-align: middle;
+                    background-color: $colour-greyscale-88;
+                    color:$colour-black;
+                    line-height: $size+1;
+                }
+            }
+        }
+    }
+}
+

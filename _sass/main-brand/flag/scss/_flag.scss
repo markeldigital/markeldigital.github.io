@@ -1,0 +1,17 @@
+@mixin flag($selector){
+    #{$selector}{
+        padding: $grid-unit/4;
+        margin-bottom: $grid-unit;
+        margin-top: 0;
+        background-color: $colour-white;
+        @include set-text-as(epsilon);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+        @include respond-to-print(){
+            background: transparent;
+        }
+    }
+}
+
+@include flag(".flag");

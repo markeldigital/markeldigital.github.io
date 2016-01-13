@@ -1,0 +1,50 @@
+@mixin sign-in-screen($selector){
+    #{$selector}{
+        @include grid-width();
+
+        // TODO: work with Benny to see where this should be generalised to.
+        h2 {
+            @include set-text-as(gamma);
+        }
+
+        .sign-in {
+            h2 {
+                display: none;
+                @include respond-to($lap-and-desk) {
+                    display: block;
+                }
+            }
+            input {
+                width: 100%;
+            }
+            .option {
+                margin-top: 2*$grid-unit;
+            }
+            .split-actions {
+                vertical-align: middle;
+                .last-action {
+                    display: inline-block;
+                    margin-top: 2*$grid-unit;
+                    @include respond-to($lap-and-desk) {
+                        margin: $grid-unit 0;
+                    }
+                }
+            }
+            .inline-information-message {
+                margin: 2*$grid-unit 0;
+            }
+        }
+
+        .no-account {
+            p {
+                @include set-text-as(body, $margins-overrides: zero-bottom);
+            }
+            .phone-number {
+                @include set-text-as(gamma, $strength: strong, $margins-overrides: zero-both);
+            }
+        }
+    }
+
+}
+
+@include sign-in-screen(".sign-in-screen");

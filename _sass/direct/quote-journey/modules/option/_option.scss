@@ -1,0 +1,39 @@
+@mixin option($selector){
+    #{$selector}{
+        position: relative;
+        margin-bottom: $grid-unit;
+        &.error {
+            margin-bottom: 0;
+        }
+        @include clearfix;
+
+        .additional-content {
+            margin: $grid-unit 2*$grid-unit;
+            h4 {
+                @include set-text-as(delta,$strength:strong,$reduced:true, $margins-overrides: zero-both);
+                display: inline;
+            }
+            ul,ol {
+                display: inline;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                li {
+                    @include set-text-as(delta,$reduced:true, $margins-overrides: zero-both);
+                    display: inline-block;
+                    &:after {
+                        content: ",\a0";
+                    }
+                    &:last-child:after {
+                        content: ".";
+                    }
+                }
+            }
+
+            p {
+                @include set-text-as(delta,$reduced:true, $margins-overrides: zero-both);
+            }
+        }
+    }
+}
+

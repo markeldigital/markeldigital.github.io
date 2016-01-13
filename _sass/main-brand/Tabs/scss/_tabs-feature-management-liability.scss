@@ -1,0 +1,101 @@
+@mixin tabs-feature-management-liability($selector){
+
+    #{$selector}{
+        &:not(.ds-tabs--no-style) {
+            padding-left: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+            > li {
+                display: inline;
+                .ds-tab-trigger {
+                    display: table;
+                    width: 100%;
+                    background-color: $colour-white;
+                    @include respond-to($lap-and-desk){
+                        display: inline-block;
+                        width: auto;
+                        background-color: transparent;
+                    }
+                    padding: 2*$grid-unit 2*$grid-unit;
+                    @include respond-to($lap-and-desk){
+                        padding: $grid-unit 2*$grid-unit;
+                    }
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    color: $colour-greyscale-24;
+                    border-bottom: 1px solid $colour-greyscale-88;
+                    @include respond-to($lap-and-desk){
+                        border-bottom: none;
+                        color: $colour-greyscale-24;
+                        &:hover {
+                            color: $colour-greyscale-24;
+                        }
+                    }
+                    @include respond-to($lap-and-desk){
+                        &.ds-tab-trigger--current {
+                            span {
+                                @include respond-to($lap-and-desk){
+                                    color: $colour-greyscale-24;
+                                    border-bottom: 3px solid $colour-greyscale-24;
+                                }
+                            }
+                        }
+                    }
+                    &:active, &:focus {
+
+                    }
+                    > span {
+                        padding-bottom: $grid-unit/2;
+                        display: table-cell;
+                        @include respond-to($lap-and-desk){
+                            display: block;
+                        }
+                    }
+                    > [class^='icon-'] {
+                        color: $colour-greyscale-76;
+                        display: table-cell;
+                        @include respond-to($lap-and-desk){
+                            display: none;
+                        }
+                    }
+                    &.ds-palm-tabs--open {
+                        > [class^='icon-']:before {
+                            @include get-icon-content-only('caret-up');
+                        }
+                    }
+                }
+                @include respond-to($lap-and-desk){
+                    &:first-of-type .ds-tab-trigger {
+                        padding-left: 0;
+                        margin-left: 0;
+                    }
+                    &:last-of-type .ds-tab-trigger {
+                        padding-right: 0;
+                        margin-right: 0;
+                    }
+                }
+
+                .ds-tab-content {
+                    display: none;
+                    float: left;
+                    overflow: visible;
+                    @include clearfix;
+                    @include respond-to($lap-and-desk){
+                        &.ds-tab-content--current {
+                            display: block;
+                        }
+                    }
+                    @include respond-to($palm-only){
+                        padding: 0 2*$grid-unit 2*$grid-unit 2*$grid-unit;
+                        &.ds-palm-tabs--open {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include tabs-feature-management-liability(".ds-tabs-management-liability");

@@ -1,0 +1,20 @@
+@mixin mobile-trigger-container($selector, $mobile-menu-trigger-options, $options){
+
+    #{$selector} {
+        @include respond-to(map_get($collapsed-menu-breakpoints, "collapsed-menu-breakpoint-lap-and-desk")){
+            display: none;
+        }
+        width: 100%;
+        height: $menu-palm-height;
+        text-align: map_get($mobile-menu-trigger-options, "alignment");
+        a {
+            position: relative;
+            z-index: 1; // To be above search icon on mobile (but below search form when it is opened)
+            display: inline-block;
+            padding-#{map_get($mobile-menu-trigger-options, "alignment")}: 2*$grid-unit;
+            line-height: $menu-palm-height;
+            color: $colour-greyscale-39;
+            text-decoration: none;
+        }
+    }
+}

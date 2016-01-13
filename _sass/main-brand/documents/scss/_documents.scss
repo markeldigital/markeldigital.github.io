@@ -1,0 +1,49 @@
+@mixin ds-documents($selector){
+    #{$selector}{
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+            li {
+                margin-bottom: $grid-unit;
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+                a {
+                    display: inline-block;
+                    width: 100%;
+                    &:hover {
+                        background-color: $colour-interaction-10;
+                        outline: $grid-unit solid $colour-interaction-10;
+                    }
+                    .pdf-icon-download {
+                        float: left;
+                        display: block;
+                        margin-right: $grid-unit;
+                        overflow: hidden;
+						height:auto;
+                        img {
+                            display: block;
+                            @include set-graphic-as(beta);
+                            height: 100%;
+                        }
+                    }
+                    p {
+                        overflow:hidden;
+                        margin-top: $grid-unit;
+                        @include set-text-as(delta, $margins-overrides: zero-bottom);
+                    }
+                }
+                &.loading {
+                    background-color: $colour-interaction-10;
+                    outline: $grid-unit solid $colour-interaction-10;
+                    .pdf-icon-download img {
+                        visibility: hidden;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Include in projects on an as-needed basis (no default inclusion).

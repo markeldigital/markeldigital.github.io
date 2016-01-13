@@ -1,0 +1,10 @@
+body {
+    height: 100%;
+    overflow-x: hidden;
+    background: $colour-white;
+    @include respond-to-print() {
+        * {
+            box-shadow: none !important;
+        }
+    }
+}

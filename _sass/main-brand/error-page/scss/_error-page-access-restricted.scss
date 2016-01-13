@@ -1,0 +1,32 @@
+@mixin error-page-access-restricted($selector){
+    #{$selector}{
+        $icon-size:80px;
+        .panel-beta.panel--wide {
+            padding:8*$grid-unit 0;
+            h2 {
+                @include set-text-as(beta, $margins-overrides:zero-top);
+                display: inline-block;
+                width: 100%;
+                @include respond-to($lap-and-desk){
+                    width: 60%;
+                }
+                margin: $grid-unit 0;
+                text-align: center;
+            }
+            p {
+                margin-bottom: 0;
+            }
+            .icon-padlock {
+                display: block;
+                margin: 0 auto;
+                color: $warning-colour-100;
+                @include set-graphic-as(beta, $type:icon);
+                font-size: $icon-size;
+                height: $icon-size;
+                width: $icon-size;
+                padding-top: 4*$grid-unit;
+                margin-bottom: 2*$grid-unit;
+            }
+        }
+    }
+}

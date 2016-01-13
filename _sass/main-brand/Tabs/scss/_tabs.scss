@@ -1,0 +1,59 @@
+@mixin tabs($selector){
+
+    #{$selector}{
+        overflow: hidden;
+        clear: both;
+
+        .ds-tab-triggers {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            li {
+                float: left;
+                margin: 0;
+                padding: 0;
+                span {
+                    padding-bottom: $grid-unit/2;
+                }
+            }
+        }
+
+        .ds-tab-trigger {
+            display: block;
+            padding: $grid-unit 2*$grid-unit;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: $colour-greyscale-24;
+            &:hover {
+                color: $colour-interaction-100;
+            }
+            &.ds-tab-trigger--current {
+                color: $colour-interaction-100;
+                span {
+                    border-bottom: $grid-unit/2 solid $colour-interaction-100;
+                }
+            }
+            &:active, &:focus {
+
+            }
+        }
+        li:first-of-type .ds-tab-trigger {
+            padding-left: 0;
+            margin-left: 0;
+        }
+        li:last-of-type .ds-tab-trigger {
+            padding-right: 0;
+            margin-right: 0;
+        }
+
+        .ds-tab-content {
+            display: none;
+            clear: both;
+            overflow: visible;
+
+        }
+    }
+}
+
+@include tabs(".ds-tabs");

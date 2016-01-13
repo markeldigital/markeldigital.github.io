@@ -1,0 +1,17 @@
+@mixin quote-summary($selector) {
+    #{$selector} {
+        margin-bottom: $grid-unit*3;
+        background-color: $colour-white;
+
+        @include respond-to($lap-and-desk) {
+            @include span-columns(4);
+            float: right;
+            padding: $grid-unit*3;
+            margin: 0;
+            box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.10);
+            border-radius: $standard-curvature;
+        }
+    }
+}
+
+@include quote-summary('.quote-summary'); 

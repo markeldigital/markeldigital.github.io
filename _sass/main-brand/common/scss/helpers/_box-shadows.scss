@@ -1,0 +1,8 @@
+@mixin box-shadow($x:0, $y:0, $w:2px, $s: 0, $color:rgba(0,0,0,0.5), $pos:false){
+    @if $pos == false{
+        box-shadow: $x $y $w $s $color;
+    } @else {
+        box-shadow: $pos $x $y $w $s $color;
+    }
+}
+

@@ -1,0 +1,67 @@
+@mixin page-top-padding(){
+    //the page top padding is based on the menu height
+    margin-top: 0.75*$menu-palm-height;
+    @include respond-to($lap-and-desk){
+        margin-top: 0.75*$menu-lap-height;
+    }
+    @include respond-to($desk-only){
+        margin-top: $menu-desk-height;
+    }
+}
+
+@mixin responding($property, $value){
+    $palm-scale-factor: 0.85;
+    $lap-scale-factor: 0.9;
+    $desk-scale-factor: 1;
+
+    #{$property}: $palm-scale-factor*$value;
+    @include respond-to($lap-and-desk){
+        #{$property}: $lap-scale-factor*$value;
+    }
+    @include respond-to($desk-only){
+        #{$property}: $desk-scale-factor*$value;
+    }
+}
+
+
+@mixin main-content($selector){
+
+    #{$selector}{
+        width: 100%;
+
+        h1 {
+            word-wrap: break-word;
+            @include page-top-padding();
+        }
+        // When there's a notification, move the spacing onto that instead of H1.
+        .notification, .actions-panel {
+            @include page-top-padding();
+            & + h1 {
+                margin-top: 2*$grid-unit;
+                @include respond-to($lap-and-desk){
+                    margin-top: 3*$grid-unit;
+                }
+                @include respond-to($desk-only){
+                    margin-top: 4*$grid-unit;
+                }
+            }
+        }
+        // First panel is assumed to contain H1's inside panels
+        article > *[class^='panel-']:first-of-type {
+            padding: 0;
+        }
+        @include respond-to-print(){
+            &>div:first-child{
+                border-top: 1px solid $colour-greyscale-39;
+            }
+        }
+    }
+
+    /* Accessibility skiplink requires tabindex=0 on the main but this can cause
+     * 'a blue glow' when clicking on the content of the page for sighted mouse
+     * users hence the compromise below.
+     */
+    main[tabindex="0"]:focus {
+        outline: none;
+    }
+}

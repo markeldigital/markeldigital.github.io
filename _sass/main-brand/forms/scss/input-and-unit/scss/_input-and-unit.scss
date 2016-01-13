@@ -1,0 +1,25 @@
+@mixin input-and-unit($selector){
+    $border-size: 1px;
+    $text-size: body;
+    #{$selector} {
+        display: table;
+        .unit{
+            display: table-cell;
+            background-color: $colour-greyscale-94;
+            border: $border-size solid $colour-greyscale-76;
+            border-left: none;
+            border-radius: 0 $standard-curvature $standard-curvature 0;
+            @include set-text-as($text-size, $responsive-text: false, $margins-overrides: zero-both);
+            @include padding-for-form-element($standard-touch-size, $text-size, $border-size);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+
+        input[type='text']{
+            width: 100%;
+            @include omega();
+            border-radius: $standard-curvature 0 0 $standard-curvature;
+        }
+    }
+}

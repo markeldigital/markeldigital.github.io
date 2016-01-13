@@ -1,0 +1,154 @@
+@mixin our-product-screen($selector){
+    #{$selector}{
+        @include clearfix();
+        background: $colour-white;
+        .primary-navigation-menu a.logo{
+            position: absolute;
+        }
+        .content{
+            background-color: $colour-white;
+        }
+
+        .hero-container {
+            color: $colour-greyscale-24;
+        }
+
+        .panel-delta {
+            border-bottom: 1px solid $colour-greyscale-88;
+            padding: 0;
+            @include display(flex);
+            @include flex-direction(column);
+            @include respond-to($lap-and-desk){
+                display: block;
+            }
+
+            .icon-product-PL, .icon-product-CO {
+                @include set-text-as(jumbo, $margins-overrides: zero-bottom);
+				line-height: 1;
+				margin-top: $grid-unit*3;
+				
+				@include respond-to($lap-and-desk){
+					margin-top: $grid-unit*4;
+				}
+
+                color: $colour-greyscale-24;
+                width: auto;
+                height: auto;
+                //@include page-top-padding();
+            }
+
+
+            h1 {
+                @include set-text-as(alpha, $strength: strong, $margins-overrides: zero-top);
+                padding-top: $grid-unit;
+                @include order(1);
+                margin-bottom: 0;
+            }
+
+            .intro {
+                @include order(2);
+                @include set-text-as(gamma, $reduced: true);
+                text-align: center;
+				margin: $grid-unit*1.5 0 $grid-unit*2 0;
+				
+				@include respond-to($lap-and-desk){
+					margin: $grid-unit*1.5 $grid-unit*2 $grid-unit*2 $grid-unit*2;
+				}
+   
+            }
+
+            form {
+                display: inline-block;
+                margin: $grid-unit 2*$grid-unit 4*$grid-unit 2*$grid-unit;
+                @include order(3);
+            }
+        }
+
+        .more-details {
+            margin-bottom: 3*$grid-unit;
+            section {
+                @include respond-to($lap-and-desk){
+                    @include span-columns($one-third);
+                }
+                h2 {
+                    @include set-text-as(gamma);
+                }
+            }
+            ul {
+                padding-left: 0;
+                li {
+                    list-style: none;
+                    clear: both;
+                    i {
+                        float: left;
+                        background-color: transparent;
+                        margin-right: $grid-unit;
+                    }
+                    span {
+                        display: block;
+                        overflow: hidden;
+                    }
+                }
+            }
+            .included {
+                margin-bottom: $grid-unit*2;
+                @include respond-to($lap-and-desk){
+                    margin-bottom: 0;
+                }
+                i {
+                    color: $success-colour-100;
+                }
+            }
+            .not-included {
+                i {
+                    color: $error-colour-100;
+                }
+                .small-caps {
+                    font-variant: small-caps;
+                }
+            }
+            .its-for {
+                i {
+                    color: $colour-black;
+                }
+            }
+       }
+       .disclaimer {
+           display: inline-block;
+           width: 100%;
+           @include set-text-as(epsilon, $margins-overrides: zero-bottom);
+           margin-top: $grid-unit;
+           text-align: center;
+       }
+        
+        .documents {
+            border-top: 1px solid $colour-greyscale-92;
+            ul {
+                li {
+                    display: inline-block;
+                    padding: 0;
+                    @include respond-to($lap-and-desk){
+                        padding: 0 $grid-unit*2 0 0;
+                    }
+                    &:first-of-type {
+                        padding-right: 2*$grid-unit;
+                    }
+                    img {
+                        vertical-align: middle;
+                        @include set-graphic-as(gamma);
+                        @include respond-to($lap-and-desk){
+                            @include set-graphic-as(beta);
+                            height: 100%;//IE9 fix.
+                        }
+                    }
+                    span {
+                        padding: $grid-unit;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include our-product-screen(".product_screen");

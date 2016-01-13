@@ -1,0 +1,7 @@
+html {
+    height: 100%;
+    &:before {
+        content: $palm-breakpoint; // Share breakpoint with javascript
+        display: none;
+    }
+}

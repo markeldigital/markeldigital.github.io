@@ -1,0 +1,15 @@
+﻿@mixin stacked-questions-block($selector) {
+	#{$selector} {
+        .stacked-questions-title {
+            background-color: $colour-greyscale-88;
+        }
+
+        .stacked-questions-content {
+            .question {
+                margin: 0;
+            }
+        }
+	}
+}
+
+@include stacked-questions-block(".stacked-questions-block");

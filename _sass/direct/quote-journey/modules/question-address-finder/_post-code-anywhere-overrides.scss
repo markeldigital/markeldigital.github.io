@@ -1,0 +1,44 @@
+@mixin post-code-anywhere-overrides($selector){
+    #{$selector}{
+        .pcalist {
+            height: auto!important;
+            overflow:auto;
+            max-height:30vh;
+        }
+
+        .pcaitem {
+            padding: 1.5*$grid-unit;
+            font-family: $standard-fonts;
+            @include set-text-as(body, $reduced: true, $margins-overrides: zero-both);
+            background-color: $colour-white;
+            &.pcaselected {
+                background-color: $colour-interaction-100;
+                color: $colour-white;
+                .pcadescription {
+                    color: $colour-greyscale-96;
+                }
+            }
+            .pcadescription {
+                float: none;
+            }
+        }
+
+
+        .pcaautocomplete .pcamessage {
+            padding: $grid-unit 1.5*$grid-unit;
+            font-family: $standard-fonts;
+            @include set-text-as(body, $reduced: true, $strength: weak, $margins-overrides: zero-both);
+            background-color: $warning-colour-10;
+            span {
+                &.pcamessageicon {
+                }
+            }
+        }
+        .pcaautocomplete {
+            border-top: none;
+        }
+        .pcaautocomplete .pcafooter {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+@mixin components-layout($selector) {
+
+    #{$selector} {
+
+        &__main {
+
+            @include span-columns(9);
+        }
+
+        &__aside {
+
+            @include span-columns(3);
+
+        }
+
+    }
+
+}
+
+@include components-layout('.l-components');

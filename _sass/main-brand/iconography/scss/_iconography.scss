@@ -1,0 +1,135 @@
+@mixin all-icons-helper(){
+    $icon-size: $large-spacer;
+    font-family: 'Iconography';
+    line-height:$icon-size;
+    display: inline-block;
+    width: $icon-size;
+    height: $icon-size;
+    text-align: center;
+    color: $colour-interaction-60;
+    background-color: transparent;
+    border-radius: $standard-curvature;
+	vertical-align: baseline;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin all-icons-helper-mini() {
+    $icon-size: $grid-unit * 1.5;
+    line-height:$icon-size;
+    width: $icon-size;
+    height: $icon-size;
+}
+
+@mixin iconography($icon-map){
+    /*
+    * We use a custom icon set that Benny has drawn using http://icomoon.me
+    * The icon set details are stored in a JSON file that Benny has put on dropbox for now and can be re-uploaded to icomoon to regenerate the icon set.
+    */
+    @font-face {
+        font-family: 'Iconography';
+        src: url($ds-package-location + "Components/main-brand/iconography/font/iconography.woff?v=4.1.0") format('woff'),
+			url($ds-package-location + "Components/main-brand/iconography/font/iconography.ttf?v=4.1.0") format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    // Create the comma separated selector for all the icons.
+    $all-icons-selector: '';
+    @each $icon-name in map-keys($icon-map) {
+        $all-icons-selector: '.icon-' + $icon-name + ',' + $all-icons-selector;
+    }
+
+    // Style all the icons to use the font.
+    #{$all-icons-selector} {
+        @include all-icons-helper;
+        &.mini {
+            @include all-icons-helper-mini;
+        }
+    }
+
+    // Assign the appropriate content to each of the icon classes.
+    @each $icon-name in map-keys($icon-map) {
+        .icon-#{$icon-name}:before {
+            content: map-get($icon-map, $icon-name);
+        }
+    }
+}
+$icon-map:(
+        "reserve-space":           "\2002",
+        "arrow-left":              "\e208",
+        "arrow-right":             "\e209",
+        "arrow-down":              "\e20a",
+        "arrow-up":                "\e201",
+        "angle-left":              "\e110",
+        "angle-right":             "\e111",
+        "angle-down":              "\e10f",
+        "angle-up":                "\e112",
+        "caret-left":              "\e202",
+        "caret-right":             "\e203",
+        "caret-down":              "\e204",
+        "caret-up":                "\e205",
+        "check-square-o":          "\e2fa", // verified-user
+        "tick-circle":             "\e281",
+        "tick":                    "\e206",
+        "times-circle":            "\e207", // cross-circle
+        "cross":                   "\e070",
+        "question-circle":         "\e29b",
+        "info-circle":             "\e2a2",
+        "error":                   "\e002", // exclamation
+        "exclamation-circle":      "\e000",
+        "exclamation-triangle":    "\e2c6",
+        "unlink":                  "\e2c6", // exclamation-triangle
+        "chain-broken":            "\e2c6", // exclamation-triangle
+        "minus-circle":            "\e080",
+        "minus":                   "\e07f",
+        "plus-circle":             "\e06b",
+        "plus":                    "\e069",
+        "phone-circle":            "\e001",
+        "phone":                   "\e03f",
+        "search":                  "\e2ca",
+        "circle-o":                "\e25e",
+        "circle":                  "\e13b",
+        "menu":                    "\e20e",
+        "calendar":                "\e28c",
+        "user":                    "\e253",
+        "tablet":                  "\e0a1", // devices
+        "mobile":                  "\e0a1", // devices
+        "clock":                   "\e08e", // clock-o
+        "clock-o":                 "\e08e",
+        "signal":                  "\e2f7", // trending-up
+        "dashboard":               "\e257", // poll
+        "spinner":                 "\e27f", // refresh
+        "refresh":                 "\e27f",
+        "certificate":             "\e260", // star
+        "padlock":                 "\e2ab",
+        "life-ring":               "\e10d", // headset-mic
+        "umbrella":                "\e1ae", // style
+        "product-PL":              "\e1b0",
+        "product-ML":              "\e1af",
+        "product-CO":              "\e900",
+        "not-available":           "\e017"
+);
+
+@include iconography($icon-map);
+
+@mixin icon-content-for-name($icon-name){
+    content: map-get($icon-map, $icon-name);
+    @include all-icons-helper;
+}
+
+@mixin get-icon-content-only($icon-name){
+    content: map-get($icon-map, $icon-name);
+}
+
+//TODO: find a better home for this.
+// Fix issue with underline of icons in links
+a i[class^='icon-']:before {
+    text-decoration: none;
+}
+

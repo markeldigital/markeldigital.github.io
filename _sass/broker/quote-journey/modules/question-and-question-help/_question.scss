@@ -1,0 +1,76 @@
+@import "../option/_option";
+
+@mixin question($selector){
+    $question-state-border-size: $grid-unit/2;
+
+    #{$selector} {
+        margin: $medium-spacer 0 0 0;
+        @include respond-to($lap-and-desk){
+            &.active {
+                .question-main {
+                    background-color: $colour-interaction-10;
+                }
+            }
+			.question-aside .help-message-text {
+                    display: block;
+            }
+        }
+        .question-main {
+            border-left: $question-state-border-size solid $colour-greyscale-88;
+            background-color: $colour-greyscale-97;
+            padding: $medium-spacer $medium-spacer $medium-spacer $medium-spacer;
+            @include clearfix();
+        }
+
+        &.question-error .question-main {
+            border-color: $error-colour-100;
+        }
+
+        &.question-success .question-main {
+            border-color: $success-colour-100;
+        }
+
+        &.active {
+            .question-main {
+                border-color: $colour-interaction-100;
+                background-color: $colour-interaction-10;
+            }
+            .error{
+                border-color: $colour-interaction-10;
+            }
+        }
+        .important-introduction {
+            margin-bottom: $grid-unit;
+            display: inline-block;
+        }
+        .intro-area {
+            ul {
+                padding-left: 3*$grid-unit;
+
+            }
+        }
+        &.monetary, &.multi-numeric{
+            .input-and-unit{
+                input[type='text']{
+                    padding-right: 70px;
+                    width: 200px;
+                }
+                span.unit{
+                    margin-left: -66px;
+                    font-weight: bold;
+                }
+            }
+        }
+        &.multi-numeric{
+            .input-and-unit{
+                input[type='text']{
+                    padding-right:30px;
+                }
+                span.unit{
+                    margin-left: -20px;
+                }
+            }
+        }
+    }
+    @include option($selector);
+}

@@ -1,0 +1,15 @@
+﻿@mixin skip-navigation($selector) {
+    #{$selector} {
+        @include visually-hidden;
+        &:focus {
+            @include visually-shown;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: $grid-unit;
+            color: blue;
+        }
+    }
+}
+
+@include skip-navigation(".ds-skip-navigation");

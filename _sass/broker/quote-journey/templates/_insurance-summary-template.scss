@@ -1,0 +1,45 @@
+@mixin qj-insurance-summary-template($selector){
+    #{$selector}{
+//        @include row();
+        >.row {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            @include respond-to($lap-and-desk) {
+                flex-wrap: nowrap;
+            }
+        }
+
+        .title {
+            @include respond-to($lap-and-desk){
+                @include span-columns($two-thirds);
+            }
+        }
+        .qj-insurance-summary {
+            overflow: auto;
+
+            @include respond-to($lap-and-desk){
+                @include span-columns($one-third);
+                float: right;
+            }
+            @include respond-to-print(){
+                overflow: hidden;
+            }
+        }
+        .qj-primary-content {
+            order:2;
+            @include respond-to($lap-and-desk){
+                order:1;
+                @include span-columns($two-thirds);
+            }
+        }
+        .title, .qj-primary-content, .qj-insurance-summary {
+            @include respond-to($lap-and-desk){
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+@include qj-insurance-summary-template(".qj-insurance-summary-template");

@@ -1,0 +1,26 @@
+@mixin home-page($selector){
+    #{$selector}{
+        .featured-products {
+            @include respond-to($lap-and-desk){
+                @include display(flex);
+            }
+            .card {
+                &:first-of-type {
+                    margin-bottom: 2*$grid-unit;
+                    @include respond-to($lap-and-desk){
+                        margin-bottom: 0;
+                    }
+                }
+                @include respond-to($lap-and-desk){
+                    @include flex(1);
+                    @include span-columns($one-half);
+                }
+                h3 {
+                    @include set-text-as(gamma, $strength: strong, $margins-overrides: zero-top);
+                }
+            }
+        }
+    }
+}
+
+@include home-page(".home-page");

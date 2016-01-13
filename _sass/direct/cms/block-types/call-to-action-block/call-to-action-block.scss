@@ -1,0 +1,28 @@
+﻿@mixin call-to-action-block($selector) {
+    #{$selector} {
+        @include clearfix();
+        overflow: visible;
+        #{$selector}__teaser {
+            @include set-text-as(gamma, $margins-overrides: zero-both);
+            display: inline-block;
+            vertical-align: middle;
+            width: 100%;
+            text-align: center;
+            @include respond-to($lap-and-desk){
+                width: auto;
+                text-align: left;
+                margin-top: $grid-unit;
+                margin-left: 2*$grid-unit;
+                margin-bottom: $grid-unit;
+            }
+        }
+        @include respond-to($lap-and-desk) {
+            .grid-width div {
+                display: inline-block;
+            }
+        }
+
+    }
+}
+ 
+@include call-to-action-block(".call-to-action-block");

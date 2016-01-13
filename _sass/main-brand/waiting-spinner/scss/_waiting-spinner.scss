@@ -1,0 +1,12 @@
+@mixin waiting-spinner($selector, $background-colour: transparent, $icon-size: 24px){
+    html.no-smil #{$selector} {
+        background: url($ds-package-location + "Components/main-brand/waiting-spinner/img/loading-fallback.gif") center center $background-colour no-repeat;
+        background-size: $icon-size;
+    }
+    html.smil #{$selector}{
+        background: url($ds-package-location + "Components/main-brand/waiting-spinner/img/loading.svg") center center $background-colour no-repeat;
+        background-size: $icon-size;
+    }
+}
+
+@include waiting-spinner(".ds-waiting-spinner");

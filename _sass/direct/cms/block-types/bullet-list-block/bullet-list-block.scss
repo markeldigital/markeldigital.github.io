@@ -1,0 +1,34 @@
+﻿@mixin bullet-list-block($selector) {
+    #{$selector} {
+        @include clearfix;
+        padding-top: 2*$grid-unit;
+
+        ul li {
+            @include clearfix;
+            .tick-icon {
+                float: left;
+                display: block;
+                margin-right: 2*$grid-unit;
+                overflow: hidden;
+                height: auto;
+                img[src$='.svg'] {
+                    height: 100% \0/IE9; // IE9 Fix - TODO: remove when IE9 support is dropped
+                }
+            }
+
+            img {
+                width: 3*$grid-unit;
+                height: inherit;
+            }
+
+            p {
+                @include set-text-as(body, $margins-overrides: zero-both);
+                vertical-align: top;
+                font-weight: 600;
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+@include bullet-list-block(".bullet-list");

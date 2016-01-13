@@ -1,0 +1,34 @@
+@mixin cover-details-trigger($selector) {
+
+    #{$selector} {
+
+        a {
+            color: inherit;
+            display: inline-block;
+            white-space: nowrap;
+
+            i {
+                color: inherit;
+                border: none;
+                display: inline-block;
+                @include transition(all 500ms ease-in-out);
+
+            }
+
+            &:hover, &:focus {
+                color: $colour-interaction-100;
+            }
+
+        }
+
+        &.active {
+            a {
+                i {
+
+                    @include transform(rotate(180deg));
+                }
+            }
+        }
+    }
+}
+

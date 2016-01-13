@@ -1,0 +1,38 @@
+// TODO: find a better structure / place for this to live.
+/* States helpers
+*/
+$half-standard-active-size: 1px;
+@mixin standard-option-active-style($outside-box: false){
+    @if($outside-box){
+        box-shadow: 0 0 0 (2*$half-standard-active-size) $colour-interaction-100;
+    } @else {
+        box-shadow: inset 0 0 0 $half-standard-active-size $colour-interaction-100;
+        border: $half-standard-active-size solid $colour-interaction-100;
+    }
+}
+@mixin standard-option-inactive-style($set-border: true){
+    box-shadow: inset 0 0 0 ($half-standard-active-size - 1px) $colour-greyscale-76;
+    @if($set-border == true){
+        border: $half-standard-active-size solid $colour-greyscale-76;
+    }
+}
+@mixin standard-option-disabled-style($set-border: true){
+    @include standard-option-inactive-style($set-border);
+    background-color: $colour-greyscale-88;
+    @if($set-border == true) {
+        border-color: $colour-greyscale-88;
+    }
+    cursor: not-allowed;
+}
+@mixin standard-option-success-style($add-extra-thickness: 0, $outside-box: false){
+    @if($outside-box == true){
+        box-shadow: 0 0 0 (2*$half-standard-active-size) $success-colour-100;
+    }@else {
+        box-shadow: inset 0 0 0 ($half-standard-active-size - 1px + $add-extra-thickness) $success-colour-100;
+        border: $half-standard-active-size solid $success-colour-100;
+    }
+}
+@mixin standard-option-error-style(){
+    box-shadow: inset 0 0 0 ($half-standard-active-size - 1px) $error-colour-100;
+    border: $half-standard-active-size solid $error-colour-100;
+}

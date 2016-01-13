@@ -1,0 +1,57 @@
+@mixin cover-breakdown($selector){
+
+    #{$selector}{
+
+        padding-bottom: $grid-unit;
+        border-bottom: 1px solid $colour-greyscale-88;
+
+        &__list{
+            list-style-type: none;
+            padding: $grid-unit*2 0 0 0;
+            margin: 0;
+            @include respond-to($lap-and-desk) {
+                border-top: 1px solid $colour-greyscale-88;
+            }
+
+            li{
+                display: table;
+                width: 100%;
+                margin-bottom: $grid-unit;
+            }
+        }
+
+        i{
+            @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+            line-height: 1;
+            color: $colour-greyscale-24;
+            display: table-cell;
+            vertical-align: top;
+            width: $grid-unit*2.5;
+            height: $grid-unit*2.5;
+        }
+
+        &__list__name{
+            @include set-text-as(delta, $responsive-text: false, $reduced: true, $margins-overrides: zero-both);
+            display: table-cell;
+            padding: 0 $grid-unit/2;
+            vertical-align: top;
+
+        }
+
+        &__list__premium{
+            @include set-text-as(delta, $responsive-text: false, $reduced: true, $margins-overrides: zero-both);
+            display: table-cell;
+            text-align: right;
+            vertical-align: top;
+        }
+
+
+
+
+
+
+    }
+
+}
+
+@include cover-breakdown('.cover-breakdown');

@@ -1,0 +1,26 @@
+@mixin global-banner($selector, $options) {
+    $border-top-height: $grid-unit/2;
+
+    #{$selector} {
+        width: 100%;
+        background-color: white;
+        position: relative;
+        box-shadow: map_get($options, "first-box-shadow"), map_get($options, "second-box-shadow");
+        border-bottom: map_get($options, "border-bottom");
+        z-index: map_get($options, "z-index");
+        min-height: map_get($options, "mobile-height");
+        @include respond-to(map_get($options, "collapsed-menu-breakpoint-lap-and-desk")) {
+            min-height: map_get($options, "tablet-height");
+        }
+        @include respond-to($desk-only){
+            min-height: map_get($options, "desktop-height");
+        }
+        
+        .logo-and-primary-navigation-and-utility-navigation {
+            position: relative;
+            @include respond-to(map_get($options, "collapsed-menu-breakpoint-lap-and-desk")) {
+                @include grid-width;
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+﻿@mixin form-fragment($selector) {
+	#{$selector} {
+        .form-fragment {
+            .form-fragment-title {
+            }
+
+            .form-fragment-content {
+            }
+        }
+	}
+}
+
+@include form-fragment(".question-group");

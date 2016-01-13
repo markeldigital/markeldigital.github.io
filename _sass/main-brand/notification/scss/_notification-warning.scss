@@ -1,0 +1,9 @@
+@mixin notification-warning($selector){
+    #{$selector}{
+        border: 1px solid $warning-colour-100;
+        background-color: $warning-colour-10;
+        i {
+            color: $warning-colour-100;
+        }
+    }
+}

@@ -1,0 +1,117 @@
+@mixin header-hero-block($selector){
+    #{$selector}{
+        $larger-than-burger-menu-breakpoint: new-breakpoint(min-width map_get($global-banner-options, "collapsed-menu-breakpoint") $grid-columns);
+        position: absolute;
+        @include respond-to($larger-than-burger-menu-breakpoint){
+            position: static;
+            float: right;
+            min-width: 30*$grid-unit;
+            margin-top: $grid-unit/2;
+        }
+        top: $grid-unit/2;
+        right: 0;
+        width: 100%;
+        z-index: map_get($logo-options, "z-index") - 1;
+        text-align: right;
+        .ds-menu {
+            z-index: map_get($logo-options, "z-index") - 1;
+            .ds-menu-trigger {
+                display: inline-block;
+                @include respond-to($larger-than-burger-menu-breakpoint){
+                    display: none;
+                }
+                width: auto;
+                padding: 1.75*$grid-unit $grid-unit 1.75*$grid-unit 1.5*$grid-unit;
+                text-decoration: none;
+                color: $colour-greyscale-51;
+                i {
+                    margin-left: -$grid-unit/2;
+                    color: $colour-greyscale-51;
+                }
+            }
+            .ds-menu-items {
+                text-align: left;
+                @include respond-to($larger-than-burger-menu-breakpoint){
+                    display: block;
+                    position: static;
+                    border: none;
+                    text-align: right;
+                    background-color: transparent;
+                }
+                right: 0;
+                z-index: map_get($mobile-menu-trigger-options, "z-index") + 1;
+                .ds-menu-item {
+                    clear: both;
+                    overflow: hidden;
+                    @include respond-to($larger-than-burger-menu-breakpoint) {
+                        &:last-of-type {
+                            display: none;
+                        }
+                        border: none;
+                        a {
+                            &:hover, &:active, &:focus {
+                                background-color: transparent;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .phone-number-and-hours {
+            display: block;
+            padding: 2*$grid-unit;
+            @include respond-to($larger-than-burger-menu-breakpoint){
+                padding: 1.5*$grid-unit 0;
+            }
+            @include respond-to($desk-only){
+                padding: 2.5*$grid-unit 0;
+            }
+            .phone-number {
+                @include set-text-as(gamma, $strength: strong, $margins-overrides: zero-both);
+                @include respond-to($larger-than-burger-menu-breakpoint){
+                    line-height: 0.9;
+                }
+                .help-hero-title {
+                    display: none;
+                    @include respond-to($larger-than-burger-menu-breakpoint){
+                        display: inline;
+                        @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+                        line-height: 0.9;
+                        margin-right: $grid-unit;
+                    }
+                }
+            }
+            .opening-hours {
+                clear: right;
+                @include set-text-as(epsilon, $responsive-text: false, $strength: weak, $margins-overrides: zero-both);
+                white-space: normal;
+                @include respond-to($larger-than-burger-menu-breakpoint){
+                    line-height: 0.9;
+                    display: inline;
+                    text-align: right;
+                }
+            }
+            .request-a-callback {
+                display: none;
+                @include respond-to($larger-than-burger-menu-breakpoint){
+                    display: block;
+                }
+            }
+        }
+
+        .ds-menu .ds-menu-items .ds-menu-item .request-a-callback {
+            text-decoration: underline;
+            @include respond-to($larger-than-burger-menu-breakpoint){
+                padding: 0;
+                margin-left: $grid-unit;
+                display: block;
+                @include set-text-as(delta, $reduced: true, $margins-overrides: zero-both);
+                color: $colour-greyscale-24;
+            }
+        }
+    }
+}
+
+@include header-hero-block(".header-hero-block");

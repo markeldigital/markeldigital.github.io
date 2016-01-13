@@ -1,0 +1,132 @@
+@import "modify-as-icon-button";
+@import "modify-as-button-size";
+
+@mixin button($selector, $style){
+    $background-color: $colour-interaction-100;
+    $color: $colour-white;
+    $box-shadow: none;
+    $outline-button: null;
+    $text-transform: uppercase;
+    $hover-background-color: null;
+    $hover-color: null;
+
+    // Main buttons
+    @if($style == button-style-primary) {
+        $background-color: $colour-brand-primary;
+        $hover-background-color: darken($background-color, 10);
+        $box-shadow: inset 0 -3px 0 0 rgba($colour-black, 0.16);
+    }
+
+    @if($style == button-style-secondary) {
+        $background-color: $colour-interaction-100;
+        $hover-background-color: darken($background-color, 10);
+        $box-shadow: inset 0 -3px 0 0 rgba($colour-black, 0.16);
+    }
+
+    // Outline buttons
+    @if($style == button-style-primary-subtle) {
+        $color: $colour-brand-primary;
+        $hover-color: $colour-white;
+    }
+    @if($style == button-style-secondary-subtle) {
+        $color: $colour-interaction-100;
+        $hover-color: $colour-white;
+    }
+    @if($style == button-style-subtle) {
+        $color: $colour-white;
+        $hover-color: $colour-black;
+    }
+    @if($style == button-style-primary-subtle or $style == button-style-secondary-subtle or $style == button-style-subtle) { // Common bits for outline buttons
+        $box-shadow: 0 0 0 2px $color inset;
+        $hover-background-color: $color;
+        $background-color: transparent;
+        $outline-button: true;
+    }
+
+    //Button style success
+    @if($style == button-style-success) {
+        $background-color: $success-colour-100;
+        $hover-background-color: darken($background-color, 10);
+        $box-shadow: inset 0 -3px 0 0 rgba($colour-black, 0.16);
+    }
+
+
+    // Non-conformist buttons
+    @if($style == button-style-subtle-2) { // Not quite like an outline button
+        $color: $colour-greyscale-24;
+        $background-color: transparent;
+        $hover-background-color: $colour-greyscale-88;
+        $box-shadow: 0 0 0 1px $colour-greyscale-88 inset;
+    }
+    @if($style == button-style-link) { // Very subtle button (eg. for < back actions in forms)
+        $background-color: transparent;
+        $color: map_get($links-options, "colour");
+        $hover-background-color: rgba($color, 0.1);
+        $text-transform: none;
+    }
+
+    #{$selector}{
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        min-width: 8*$grid-unit;
+        background-color: $background-color;
+        color: $color;
+        border: none;
+        text-decoration: none;
+        text-align: center;
+        border-radius: $standard-curvature;
+        text-transform: $text-transform;
+        letter-spacing: 1px;
+        box-shadow: $box-shadow;
+        width: 100%;
+        @include respond-to($lap-and-desk){
+            width: auto;
+        }
+
+        &.hover, &:hover {
+            background-color: $hover-background-color;
+            @if($outline-button){
+                color: $hover-color;
+            }
+            @include transition($standard-transition-animation);
+        }
+
+        &.active, &:active, &.focus, &:focus {
+            $active-background-color: darken($hover-background-color, 10);
+            background-color: $active-background-color;
+            box-shadow: none;
+            @if($outline-button){
+                color: $hover-color;
+            }
+            @include transition(none);
+        }
+
+        .disabled, &[disabled]{
+            @include standard-option-disabled-style($set-border: false);
+            color: $colour-white;
+            &.hover, &:hover {
+                @include standard-option-disabled-style($set-border: false);
+            }
+        }
+
+        // 100% width button
+
+        &--block{
+
+            width: 100%;
+        }
+    }
+
+    @include modify-as-button-size($selector);
+    @include modify-as-icon-button($selector);
+}
+
+@include button(".button-style-primary", button-style-primary);
+@include button(".button-style-primary-subtle", button-style-primary-subtle);
+@include button(".button-style-secondary", button-style-secondary);
+@include button(".button-style-secondary-subtle", button-style-secondary-subtle);
+@include button(".button-style-subtle", button-style-subtle);
+@include button(".button-style-subtle-2", button-style-subtle-2);
+@include button(".button-style-link", button-style-link);
+@include button(".button-style-success", button-style-success);

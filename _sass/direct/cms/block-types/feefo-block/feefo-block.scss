@@ -1,0 +1,9 @@
+@mixin feefo-block($selector){
+    #{$selector} {
+         img{
+            width:auto;
+        }
+    }
+}
+
+@include feefo-block('.feefo-block');

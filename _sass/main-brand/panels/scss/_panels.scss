@@ -1,0 +1,76 @@
+@import "modify-as-panel-wide";
+
+@mixin panel($selector, $level){
+    $background: $colour-greyscale-97;
+    $background-size: auto;
+	$text-align: inherit;
+    $border: none;
+    $border-top: none;
+    $color: inherit;
+
+    @if($level == alpha){
+        $border-top: 1px solid $colour-black;
+    }
+    @if($level == beta){
+
+    }
+    @if($level == gamma){
+        $beta-border: 1px solid $colour-greyscale-88;
+        $border-top: $beta-border;
+        $border: $beta-border;
+        $background: transparent;
+    }
+    @if($level == delta){
+        $background: $brand-image-1;
+        $color: $colour-white;
+        $background-size: cover;
+    }
+    @if($level == epsilon){
+        $background: $colour-interaction-100;
+        $color: $colour-white;
+    }
+
+    @if($level == panel-inverse){
+        $background: $colour-white;
+    }
+    @if($level == panel-warning) {
+        $background: $warning-colour-10;
+    }
+
+    #{$selector}{
+        text-align: $text-align;
+		background: $background;
+        background-size: $background-size;
+        padding: $grid-unit;
+        @include respond-to($lap-and-desk){
+            padding: 3*$grid-unit;
+        }
+        border: $border;
+        border-top: $border-top;
+        color: $color;
+        &.panel--centered {
+            text-align: center;
+        }
+        .panel-first {
+            margin-top: 0;
+        }
+        .panel-last {
+            margin-bottom: 0;
+        }
+    }
+    // TODO: temporary hack for go-live. Find another way to do this.
+    @if($level == delta) {
+        #{$selector} {
+            background-size: cover;
+        }
+    }
+    @include modify-as-panel-wide($selector);
+}
+
+@include panel(".panel-alpha", alpha);
+@include panel(".panel-beta", beta);
+@include panel(".panel-gamma", gamma);
+@include panel(".panel-delta", delta);
+@include panel(".panel-epsilon", epsilon);
+@include panel(".panel-inverse", panel-inverse);
+@include panel(".panel-warning", panel-warning);

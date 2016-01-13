@@ -1,0 +1,36 @@
+﻿@include ds-documents(".documents-block");
+.documents-block {
+	@include clearfix;
+	ul li {
+        margin-bottom: 0px;
+        a {
+            padding: 0.5*$grid-unit 0;
+            text-decoration: underline;
+            &:hover {
+                background-color: transparent;
+                outline-width: 0px;
+            }
+            p {
+                @include set-text-as(body, $reduced: true, $responsive-text: false, $margins-overrides: ("bottom": 0, "top": $grid-unit/4));
+            }
+            .pdf-icon-download {
+                img {
+                    height: 3*$grid-unit;
+                    width: 2.5*$grid-unit;
+                }
+            }
+        }
+	}
+	.documents-block-info-area{
+        p {
+            @include set-text-as(body, $reduced: true, $responsive-text: false, $margins-overrides: ("bottom": 0, "top": $grid-unit/4));
+            margin-left: 3.5*$grid-unit;
+        }
+        .icon-info-circle {
+            @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+            color: $colour-black;
+            line-height: 1;
+			float: left;
+		}
+	}
+}

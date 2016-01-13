@@ -1,0 +1,9 @@
+@mixin notification-error($selector){
+    #{$selector}{
+        border: 1px solid $error-colour-100;
+        background-color: $error-colour-10;
+        i {
+            color: $error-colour-100;
+        }
+    }
+}

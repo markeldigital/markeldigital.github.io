@@ -1,0 +1,64 @@
+@import "error-page-access-restricted";
+@mixin error-page($selector){
+    $icon-size:80px;
+
+    #{$selector} { //CLASS FOR ALL ERROR-PAGES
+        .panel {
+            padding: $grid-unit*4;
+            h1 {
+                padding: $grid-unit*1;
+            }
+        }
+        //ERROR - 404/NOT FOUND
+        .error-not-found {
+            i {
+            &:before {
+                @include icon-content-for-name("exclamation-triangle"); 
+                color: $error-colour-100;
+                background-color: transparent;
+                width:  $icon-size;
+                height: $icon-size;
+                line-height: $icon-size;
+                font-size: $icon-size;
+                    @include respond-to($lap-and-desk) {   
+                        font-size: $icon-size;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+/* ===
+ERROR - 401/UNAUTHORISED
+.error-unauthorised {
+    i {
+        &:before {
+        @include icon-content-for-name("...");
+        }
+    }
+}
+    
+//ERROR - 403/FORBIDDEN
+.error-unauthorised {
+    i {
+        &:before {
+        @include icon-content-for-name("...");
+        }
+    }
+}
+    
+//ERROR - 500/ERROR
+.error-unauthorised {
+        i {
+        &:before {
+        @include icon-content-for-name("...");
+        }
+    }
+}
+=== */
+
+@include error-page(".error-not-found");
+@include error-page(".error-page");
+@include error-page-access-restricted(".error-page-access-restricted");

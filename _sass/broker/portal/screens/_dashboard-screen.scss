@@ -1,0 +1,98 @@
+@mixin broker-dashboard($selector){
+    #{$selector}{
+        > .panel-beta {
+            border-bottom: 2px solid $colour-greyscale-92;
+        }
+
+        .in-page-actions {
+            display: inline-block;
+            width: 100%;
+            @include respond-to($lap-and-desk){
+                width: auto;
+                float: right;
+            }
+        }
+
+        .search-form {
+            input {
+                padding-right: 4*$grid-unit;
+                @include placeholder {
+                    text-overflow:ellipsis!important; // placeholder shadow dom is overriding without important flag.
+                }
+            }
+            width: 100%;
+        }
+
+        .simple-table {
+            margin-left: 0;
+            th {
+                &.sort {
+                    @include respond-to($lap-and-desk){
+                        position: relative;
+                    }
+                    vertical-align: middle;
+                    &:hover {
+                        text-decoration: underline;
+                        cursor: pointer;
+                        &:after {
+                            position: absolute;
+                            @include icon-content-for-name('caret-down');
+                            color: $colour-greyscale-92;
+                            vertical-align: middle;
+                            margin-top: -3px;
+                            @include respond-to($lap-and-desk) {
+                                margin-top: -3px;
+                            }
+                            @include respond-to($desk-only) {
+                                margin-top: -3px;
+                            }
+                        }
+                    }
+                    &.asc {
+                        &:after {
+                            position: absolute;
+                            @include icon-content-for-name('caret-up');
+                            color: $colour-greyscale-63;
+                            vertical-align: middle;
+                            margin-top: -3px;
+                            @include respond-to($lap-and-desk){
+                                margin-top: -3px;
+                            }
+                            @include respond-to($desk-only){
+                                margin-top: -3px;
+                            }
+                        }
+                    }
+                    &.desc {
+                        &:after {
+                            position: absolute;
+                            @include icon-content-for-name('caret-down');
+                            color: $colour-greyscale-63;
+                            vertical-align: middle;
+                            margin-top: -3px;
+                            @include respond-to($lap-and-desk){
+                                margin-top: -3px;
+                            }
+                            @include respond-to($desk-only){
+                                margin-top: -3px;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            .insured-name .data {
+                word-break: break-all;
+            }
+        }
+
+        .sidekick {
+            section {
+                margin-bottom: $grid-unit;
+            }
+        }
+    }
+}
+
+@include broker-dashboard(".dashboard-page");

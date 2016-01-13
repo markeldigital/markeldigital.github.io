@@ -1,0 +1,39 @@
+@mixin modal($selector, $shadow-selector, $level){
+    #{$selector}{
+        position: relative;
+        width: 90%;
+        max-width: 35*$grid-unit;
+        padding: 2*$grid-unit;
+        background: $colour-greyscale-97;
+        text-align: center;
+
+        .icon-exclamation-triangle {
+            display: inline-block;
+            width: 100%;
+            height: auto;
+            line-height: 1;
+            color: $error-colour-100 !important;
+            padding:0;
+            margin-bottom: $grid-unit;
+            background-color: $colour-greyscale-97 !important;
+            @include set-graphic-as(delta, $type: icon);
+            @include respond-to($lap-and-desk) {
+                @include set-graphic-as(gamma, $type: icon);
+            }
+        }
+        h1 {
+            @include set-text-as(beta);
+            border-bottom: none;
+            padding:0;
+        }
+        p {
+            margin-bottom: $grid-unit*2;
+        }
+    }
+
+    #{$shadow-selector} {
+        background: rgba($colour-black, 0.8)!important;
+    }
+}
+
+@include modal(".error-popup", ".custom-shadow", error-modal);

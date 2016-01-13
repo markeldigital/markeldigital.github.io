@@ -1,0 +1,27 @@
+@mixin registration-success-screen($selector){
+    #{$selector}{
+        @include grid-width();
+
+        .marketing-info h2 {
+            margin-top: $grid-unit;
+        }
+        .registration-success {
+            h2 {
+              margin-top: $grid-unit;
+            }
+            ul {
+              list-style: none;
+              padding-left: 0;
+              margin-bottom: 2*$grid-unit;
+              li {
+                margin-bottom: $grid-unit;
+              }
+            }
+            .button-style-secondary {
+                margin-top: $grid-unit;
+            }
+        }
+    }
+}
+
+@include registration-success-screen(".registration-confirmation-screen");

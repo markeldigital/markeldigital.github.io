@@ -1,0 +1,163 @@
+/*
+* Markel styles for the Select2 Javscript component (
+*/
+@mixin select2-overrides() {
+    $fake-dropdown-selector: ".select2-container";
+    $mask-selector: ".select2-drop-mask";
+    $results-container-selector: ".select2-drop";
+    $things-to-visually-hide-selector: ".select2-offscreen, .select2-offscreen:focus, .select2-hidden-accessible";
+
+    $form-element-selector: ".select2-chosen";
+    @include form-element($form-element-selector, basic-input);
+
+    #{$things-to-visually-hide-selector} {
+        @include visually-hidden;
+    }
+
+    #{$fake-dropdown-selector} {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        line-height: 0.8;
+        background-color: $colour-white;
+        &.select2-container-active #{$form-element-selector}{
+            @include standard-option-active-style();
+        }
+        &.select2-dropdown-open {
+            #{$form-element-selector} {
+                @include standard-option-inactive-style();
+            }
+        }
+        .select2-choice {
+            $icon-width: 3*$grid-unit;
+            display: inline-block;
+            width: 100%;
+            line-height: 0.8;
+            white-space: nowrap;
+            background-color: transparent;
+            #{$form-element-selector}{
+                display: inline-block;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-right: $icon-width;
+                background-color: $colour-white;
+            }
+            .select2-arrow {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: $icon-width;
+                margin-top: 1.5*$grid-unit;
+                margin-right: $grid-unit;
+                &:before {
+                    @include icon-content-for-name("caret-down");
+                    color: $colour-greyscale-63;
+                    @include transform(rotate(0deg));
+                    @include transition($standard-transition-animation);
+                }
+            }
+            .select2-search-choice-close {
+                display: none;
+            }
+        }
+        .select2-offscreen {
+            position: absolute; //make more specific (was getting overridden)
+        }
+    }
+
+    #{$results-container-selector} {
+        display: none;
+        width: 100%;
+        @include standard-option-inactive-style();
+        background-color: $colour-white;
+        position: absolute;
+        z-index: 9999;
+        .select2-search {
+            padding: $grid-unit;
+            &:after {
+                @include icon-content-for-name("search");
+                position: absolute;
+                right: 2.5*$grid-unit;
+                top: 2.5*$grid-unit;
+                background: $colour-white;
+                color: $colour-greyscale-51;
+                pointer-events: none;
+            }
+            input {
+                width: 100%;
+            }
+        }
+        .select2-results {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            max-height: 240px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            li {
+                margin: 0;
+                padding: 1.5*$grid-unit 2*$grid-unit;
+                display: list-item;
+                @include set-text-as(body, $reduced: true, $margins-overrides: zero-both);
+                cursor: pointer;
+                border-bottom: 1px solid $colour-greyscale-88;
+                &.select2-highlighted, &:hover, &:focus, &:active {
+                    background-color: $colour-interaction-100;
+                    color: $colour-white;
+                    .result-count {
+                        color: $colour-greyscale-94;
+                    }
+                }
+                .select2-match {
+                    font-weight: bold;
+                }
+                &.select2-no-results {
+                    padding: $grid-unit 1.5*$grid-unit;
+                    @include set-text-as(body, $reduced: true, $strength: weak, $margins-overrides: zero-both);
+                    cursor: default;
+                    background-color: $warning-colour-10;
+                    border-top: 1px solid $colour-greyscale-88;
+                }
+                .result-count {
+                    float: right;
+                    color: $colour-greyscale-63;
+                }
+                &:last-of-type {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+
+    .select2-dropdown-open {
+        .select2-choice {
+            background-color: transparent;
+            #{$form-element-selector}{
+                background-color: transparent;
+            }
+            .select2-arrow {
+                &:before {
+                    @include transform(rotate(180deg));
+                }
+            }
+        }
+        .select2-drop {
+            display: block;
+        }
+    }
+
+    #{$mask-selector} {
+        position: fixed;
+        left: 0;
+        top: 0;
+        min-height: 100%;
+        min-width: 100%;
+        height: auto;
+        width: auto;
+        opacity: 0;
+        z-index: 9998;
+    }
+}

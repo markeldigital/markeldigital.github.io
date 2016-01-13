@@ -1,0 +1,39 @@
+﻿@mixin breadcrumbs($selector) {
+    #{$selector} {
+        $link-colour: $colour-greyscale-24;
+        overflow: hidden;
+        background-color: $colour-greyscale-97;
+        border-top: 1px solid $colour-greyscale-88;
+        @include set-text-as(epsilon, $responsive-text: false, $margins-overrides: zero-both);
+        @include respond-to($lap-and-desk){
+            @include set-text-as(delta, $margins-overrides: zero-both);
+        }
+        li {
+            list-style-type: none;
+            display: inline;
+            a {
+                font-size: 0; // Fix inline-block spacing issue
+                color: $link-colour;
+                &:hover, &:focus, &:active {
+                    color: lighten($link-colour, 30);
+                }
+
+                span {
+                    @include set-text-as(epsilon, $responsive-text: false, $margins-overrides: zero-both);
+                    @include respond-to($lap-and-desk){
+                        @include set-text-as(delta, $margins-overrides: zero-both);
+                    }
+                }
+
+                :after {
+                    @include icon-content-for-name("angle-right");
+                    color: $colour-greyscale-24;
+                }
+
+            }
+
+        }
+    }
+}
+
+@include breadcrumbs('#breadcrumbs');

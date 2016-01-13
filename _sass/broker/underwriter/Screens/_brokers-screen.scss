@@ -1,0 +1,268 @@
+@mixin brokers-screen($selector) {
+    #{$selector} {
+
+        .panel-gamma{
+            border-top:0;
+
+			.grid-width{
+				padding: 2*$grid-unit 3*$grid-unit;
+			}
+        }
+
+        .panel-beta {
+            padding-bottom: 0;
+            padding-top: 0;
+            border-bottom: $grid-unit/2 solid $colour-greyscale-92;
+        }
+
+        .brokers {
+            table {
+                table-layout: fixed;
+
+                .broker-name-header {
+                    width: 30%;
+                }
+
+                .broker-office-header {
+                    width: 40%;
+                }
+
+                .broker-state-header {
+                    width: 20%;
+                }
+
+                .broker-actions-header {
+                    width: 10%;
+                }
+            }
+
+            table tbody {
+                tr {
+
+                    td {
+                        .data {
+                            display: inline;
+
+                            i {
+                                font-size: 1.5*$grid-unit;
+                                margin-left: -$grid-unit;
+                                margin-right: $grid-unit/2;
+                            }
+                        }
+
+                        &.invited {
+                            .data i:before {
+                                color: $warning-colour-100;
+                            }
+                        }
+
+                        &.activated {
+                            .data i:before {
+                                color: $success-colour-100;
+                            }
+                        }
+
+                        &.invite-expired {
+                            .data i:before {
+                                color: $error-colour-100;
+                            }
+                        }
+
+                        &.not-invited {
+                            .data i:before {
+                                color: $colour-greyscale-63;
+                            }
+                        }
+                    }
+
+
+
+                    &.in-progress, &.success {
+                        .action-cell {
+                            a {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    &.success {
+                        td {
+                            background-color: $success-colour-10;
+                        }
+
+                        .action-cell {
+                            text-align: center;
+
+                            &:before {
+                                @include icon-content-for-name('tick-circle');
+                                color: $success-colour-100;
+                                font-size: 24px;
+
+                                @include respond-to($lap-and-desk) {
+                                    font-size: 24px;
+                                }
+
+                                @include respond-to($desk-only) {
+                                    font-size: 24px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .filter-header {
+
+            .brokers-count{
+                display: inline-block;
+                width: 100%;
+                padding-left: 16px;
+
+                @include respond-to($lap-and-desk) {
+                    width: 22%;
+                }
+                .ds-waiting-spinner {
+                    display: inline-block;
+                    min-width: 3*$grid-unit;
+                    min-height: 3*$grid-unit;
+                    vertical-align: middle;
+                }
+            }
+            
+            .broker-filter{
+                display: inline-block;
+                text-align: right;
+                width: 100%;
+                
+                @include respond-to($lap-and-desk) {
+                    width: 78%;
+                }
+
+                brokers-filter, div {
+                    display: inline-block;
+                }
+
+                .filter-menu {
+                    width: 100%;
+                    padding-right:16px;
+                    @include respond-to($lap-and-desk) {
+                        width: auto;
+                        padding-right:0px;
+                    }
+                }
+
+                .broker-search {
+                    padding-right:16px;
+                    width: 100%;
+                    padding-bottom:6px;
+                    @include respond-to($lap-and-desk) {
+                        width: auto;
+                        padding-bottom:0;
+                    }
+            
+                    a {
+                        min-width: 0px;
+                        padding: 10px 21px 10px 4px;
+                        font-size: 18px;
+                        width: 14%;
+                        @include respond-to($lap-and-desk) {
+                            width: auto;
+                        }
+                    }
+
+                    .clear-search.icon-cross {
+                        position:absolute;
+                        display:inline;
+                    }
+                    .clear-search.icon-cross:before{
+                        position:absolute;
+                        right:36px;
+                        top:13px;
+                        cursor:pointer;
+                        color:$colour-greyscale-63;
+                    }
+
+                    input{
+                        vertical-align:middle;
+                        min-width: 200px;
+                        width: 85%;
+                        @include respond-to($lap-and-desk) {
+                            width: auto;
+                        }
+
+                    }
+                }
+
+            }
+
+            .ds-menu .ds-menu-items{
+                min-width: inherit;
+                position: absolute;
+                right: 0;
+
+                &.menu {
+                   .ds-menu-item {
+                        text-align: left;
+                    }
+
+                    i {
+                        font-size: 1.5*$grid-unit;
+                        margin-left: -$grid-unit;
+                        margin-right: $grid-unit/2;
+                    }
+
+
+                    .invited {
+                        i:before {
+                            color: $warning-colour-100;
+                        }
+                    }
+
+                    .activated {
+                        i:before {
+                            color: $success-colour-100;
+                        }
+                    }
+
+                    .invite-expired {
+                        i:before {
+                            color: $error-colour-100;
+                        }
+                    }
+
+                    .not-invited {
+                        i:before {
+                            color: $colour-greyscale-63;
+                        }
+                    }
+                }
+            }
+
+            .button-style-secondary-subtle.button--icon-right > [class^='icon-']{
+                color: inherit;
+            }
+
+//            padding-left: 0px;
+//
+//            .brokers-count {
+//                margin-left: $logo-palm-width + 2*$logo-palm-clearance;
+//
+//                @include respond-to($lap-and-desk) {
+//                    margin-left: $logo-lap-width + 2*$logo-lap-clearance;
+//                }
+//
+//                @include respond-to($desk-only) {
+//                    margin-left: $logo-desk-width + 2*$logo-desk-clearance;
+//                }
+//            }
+        }
+    }
+
+    
+
+
+    @include waiting-spinner('.in-progress .action-cell');
+}
+
+@include brokers-screen(".brokers-screen");

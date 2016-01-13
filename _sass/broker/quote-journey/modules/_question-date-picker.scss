@@ -1,0 +1,43 @@
+@mixin question-date-picker($selector){
+    #{$selector} {
+        position: relative;
+
+        i {
+            top: $grid-unit - 1px;
+        }
+
+        img {
+            @include visually-hidden;
+        }
+
+        .option {
+            // TODO: Find a better way to get the error message to go underneath for the fallback datepicker.
+            datepicker {
+                display: inline-block;
+                width: 100%;
+            }
+        }
+        .date-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            @include respond-to($lap-and-desk){
+                width: auto;
+            }
+            input {
+                padding-right: $standard-touch-size;
+            }
+            .icon-calendar {
+                position: absolute;
+                top: $standard-touch-size / 4;
+                right: $standard-touch-size / 6;
+                @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+                background-color: transparent;
+                color: $colour-interaction-60;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@include question-date-picker(".date-picker-question");

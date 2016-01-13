@@ -1,0 +1,54 @@
+/*
+Design System (main-brand & sub-brand)
+*/
+@import "../../main-brand/common/scss/common-third-party-libraries";
+@import "../../main-brand/common/scss/vars/global-vars"; // Overrides for component vars
+@import "component-vars-overrides";
+@import "../../main-brand/common/scss/vars/component-vars";
+@import "../../main-brand/common/scss/common-markel";
+@import '../../main-brand/iconography/scss/_iconography';
+@import '../../main-brand/menu/scss/_menu';
+@import '../../main-brand/chrome-and-content/scss/_chrome-and-content';
+@import '../../main-brand/scroll-area/scss/_scroll-area';
+@import '../../main-brand/panels/scss/_panels';
+@import '../../main-brand/buttons/scss/_buttons';
+@import '../../main-brand/forms/scss/on-off-box/scss/_on-off-box';
+@import '../../main-brand/forms/scss/search/scss/_search';
+@import '../../main-brand/forms/scss/_forms';
+@import '../../main-brand/tables/scss/_tables';
+@import '../../main-brand/forms/scss/error-message/scss/_error-message';
+@import '../../main-brand/flag/scss/_flag';
+@import '../../main-brand/forms/scss/input-and-unit/scss/_input-and-unit';
+@import '../../main-brand/forms/scss/basic-checkbox/scss/_basic-checkbox';
+@import '../../main-brand/modal-popups/pico-modal/scss/error-popup';
+@import '../../main-brand/static-error/scss/_static-error';
+@import '../../main-brand/forms/scss/autosuggest/scss/_select2';
+@import '../../main-brand/hero/scss/_hero';
+@import '../../main-brand/error-page/scss/_error-page';
+@import '../../main-brand/notification/scss/_notification';
+@import '../../main-brand/twins-template/scss/_twins-template';
+@import '../../main-brand/sidekick-template/scss/_sidekick-template';
+@import '../../main-brand/focused-template/scss/_focused-template';
+@import '../../main-brand/expander/scss/_expander.scss';
+@import '../../main-brand/waiting-spinner/scss/_waiting-spinner.scss';
+@import '../../main-brand/cookies-disabled/scss/_cookies-disabled.scss';
+@import '../../main-brand/javascript-disabled/scss/_javascript-disabled.scss';
+@import '../../main-brand/split-actions/scss/split-actions';
+@import '../../main-brand/marketing-info/scss/_marketing-info';
+@import '../../main-brand/card/scss/card.scss';
+
+// TODO: make into more generic tabs component
+@import '../../main-brand/tabs/scss/tabs-feature-management-liability.scss';
+/* Sub-brand specific components */
+@import '../../main-brand/documents/scss/documents.scss';
+@import '../../main-brand/expander-list/scss/_expander-list.scss';
+
+//Screens
+
+// Screens
+@import 'screens/home-screen';
+@import 'screens/_product-screen'; // eg. Professional liability
+@import 'screens/_product-line-screen'; // eg. Management liability
+@import 'screens/_welcome-screen';
+@import 'screens/_activities-that-we-cover-screen';
+@import 'screens/_help-screen';

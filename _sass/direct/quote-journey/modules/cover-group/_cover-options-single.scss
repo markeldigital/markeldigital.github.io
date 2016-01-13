@@ -1,0 +1,81 @@
+@mixin cover-options-single($selector) {
+
+    #{$selector} {
+
+        &__row {
+            display: block;
+            border-collapse: collapse;
+            @include respond-to($lap-and-desk) {
+                display: table;
+            }
+            width: 100%;
+            overflow: hidden;
+
+        }
+
+        &__limit {
+            display: table;
+            margin-bottom: $grid-unit;
+            float: left;
+            position: relative;
+            top: $grid-unit/2;
+
+            @include respond-to($lap-and-desk) {
+                margin-bottom: 0;
+                float: none;
+                position: static;
+            }
+
+
+        }
+
+
+        &__title{
+
+            display: table-cell;
+            @include set-text-as(delta, $margins-overrides: zero-both);
+            font-weight: 600;
+            padding-right: $grid-unit;
+            white-space: nowrap;
+
+            @include respond-to($lap-and-desk) {
+                padding-right: $grid-unit*2;
+            }
+
+
+        }
+
+
+        &__value{
+
+            display: table-cell;
+            padding-right: $grid-unit*2;
+
+            p {
+                margin: 0;
+            }
+
+        }
+
+        .cover-details-trigger{
+
+            padding: 0;
+            text-align: right;
+            display: inline-block;
+            float: right;
+
+
+            @include respond-to($lap-and-desk) {
+                display: table-cell;
+                float: none;
+
+            }
+
+        }
+
+
+
+    }
+}
+
+@include cover-options-single('.cover-options-single');

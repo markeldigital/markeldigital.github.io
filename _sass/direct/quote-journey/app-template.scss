@@ -1,0 +1,46 @@
+//Quote journey
+
+// Layout
+@import 'layout/_quote-summary';
+@import 'layout/_quote-main';
+@import 'layout/footer';
+@import 'layout/_quote-journey';
+
+// Modules
+@import 'modules/_actions-panel';
+@import 'modules/insurance-summary/_insurance-summary-marketing';
+@import 'modules/disclaimer-message/_disclaimer-message';
+@import 'modules/question-message/_question-message';
+@import 'modules/_premium';
+@import 'modules/_premium-option';
+@import 'modules/_question-date-picker';
+@import 'modules/_question-declaration-message';
+@import 'modules/_quote-header';
+@import 'modules/_stacked-questions-block';
+@import 'modules/_total-premium';
+@import 'modules/cover-group/_cover-group';
+@import 'modules/option/_option';
+@import 'modules/question-multi-numeric/_question-multi-numeric';
+@import 'modules/question-monetary/_question-monetary';
+@import 'modules/question-percentage-breakdown/_question-percentage-breakdown';
+@import 'modules/question-address-finder/_question-address-finder';
+@import 'modules/question-single-checkbox/_question-single-checkbox';
+@import 'modules/question-and-question-help/_question-and-question-help';
+@import 'modules/date-picker/pikaday';
+@import 'modules/call-to-action-sticky/_call-to-action-sticky';
+@import 'modules/quote-summary/_summary-header';
+@import 'modules/quote-summary/_cover-breakdown';
+@import 'modules/quote-summary/_summary-total-premium';
+@import 'modules/quote-summary/_summary-cta';
+@import 'modules/quote-summary/_documents';
+@import 'modules/intro-text/_intro-text';
+@import 'modules/single-action/_single-action';
+@import 'modules/forms/_forms';
+@import 'modules/_form-fragment';
+@import 'modules/split-actions/_split-actions';
+
+
+// Screens
+
+@import "screens/_questions-screen";
+@import "screens/_quote-screen";

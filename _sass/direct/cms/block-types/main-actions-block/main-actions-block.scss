@@ -1,0 +1,22 @@
+@mixin main-actions-block($selector){
+    #{$selector} {
+        #{$selector}__action {
+            display: inline-block;
+            width: 100%;
+            vertical-align: middle;
+            margin-bottom: $grid-unit;
+            @include respond-to($lap-and-desk){
+                width: auto;
+                margin-bottom: 0;
+                margin-right: 2*$grid-unit;
+                .icon-caret-down {
+                    height: 18px; // TODO: This needs moving up into design system
+                    line-height: 18px;
+                }
+            }
+
+        }
+    }
+}
+
+@include main-actions-block(".main-actions-block");

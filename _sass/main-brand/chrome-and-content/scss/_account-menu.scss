@@ -1,0 +1,10 @@
+@mixin account-menu($selector, $options){
+    #{$selector} {
+        .ds-menu-items {
+            @include respond-to(map_get($options, "collapsed-menu-breakpoint-lap-and-desk")) {
+                right: 0;
+            }
+        }
+    }
+}
+

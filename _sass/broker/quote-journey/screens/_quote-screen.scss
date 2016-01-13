@@ -1,0 +1,152 @@
+@mixin quote-screen($selector) {
+
+    #{$selector} {
+        h1 .edit-disclosure {
+            @include set-text-as(body);
+        }
+        // Overrides for default stacked radio to allow non-standard content
+        .radio-option {
+            display: block;
+            label {
+                display: block;
+                overflow: hidden;
+                padding: 0;
+                .radio-option-content {
+                    @include span-columns($one-half);
+                    line-height: 3*$grid-unit;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        .limit-header, .premium-header {
+            @include set-text-as(delta);
+        }
+
+        .limit-header, .premium-header, .limit-value, .premium-value {
+            @include span-columns($one-half);
+        }
+
+        .limit-header {
+            margin-bottom: $grid-unit;
+            margin-top: 0;
+        }
+
+        .limit-value {
+            @include set-text-as(body, $margins-overrides: zero-both);
+            padding: $grid-unit;
+            @include respond-to($lap-and-desk) {
+                padding: 1.5*$grid-unit;
+            }
+        }
+
+        .premium-header {
+            text-align: right;
+            margin-bottom: $grid-unit;
+            margin-top: 0;
+        }
+
+        .premium-value {
+            @include set-text-as(gamma, $margins-overrides: zero-both);
+            text-align: right;
+            padding: $grid-unit;
+            @include respond-to($lap-and-desk) {
+                padding: 1.5*$grid-unit;
+            }
+        }
+        .single-option {
+            border: 1px solid $colour-greyscale-92;
+            border-radius: $standard-curvature;
+            background-color: $colour-white;
+            margin-bottom: 3*$grid-unit;
+            .limit-value, .premium-value {
+                line-height: $grid-unit*3;
+            }
+        }
+        .limit-header-container,.single-option{
+            margin-bottom: 0;
+        }
+
+        .referred-message {
+            .referred-message-content {
+                overflow: hidden;
+                h2 {
+                    @include set-text-as(beta, $margins-overrides: zero-top);
+                    margin-bottom: $grid-unit;
+                }
+            }
+            i.icon-exclamation-circle{
+                @include set-text-as(beta, $margins-overrides: zero-both);
+                float: left;
+                margin-right: $grid-unit*2;
+                width: auto;
+            }
+            .reasons{
+                font-weight: 600;
+                margin-top: $grid-unit;
+            }
+            ul {
+                margin:$grid-unit 0 0;
+                li:last-child {
+                    margin-bottom: 0;
+                } 
+            }
+            background-color: $warning-colour-10;
+            i.icon-exclamation-circle{
+                color: $warning-colour-100;
+            }
+        } 
+        
+        .declined-message {
+            .declined-message-content {
+                overflow: hidden;
+                h2 {
+                    @include set-text-as(beta, $margins-overrides: zero-top);
+                    margin-bottom: $grid-unit;
+                }
+            }
+            i.icon-times-circle{
+                @include set-text-as(beta, $margins-overrides: zero-both);
+                float: left;
+                margin-right: $grid-unit*2;
+                width: auto;
+            }
+            .reasons{
+                font-weight: 600;
+                margin-top: $grid-unit;
+            }
+            ul {
+                margin:$grid-unit 0 0;
+                li:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            background-color: $error-colour-10;
+            i.icon-times-circle{
+               color: $error-colour-100;
+            }
+        }
+
+        @include respond-to-print(){
+            .single-option{
+                padding:0 $grid-unit/2;
+            }
+            .limit-value, .premium-value {
+                @include set-text-as(gamma, $margins-overrides: zero-both);
+                font-weight: 700;
+            }
+        }
+
+        &.referred-mode {
+            .name-and-quote-number {
+                @include fill-parent();
+            }
+            .referred-text {
+                margin-bottom: 5*$grid-unit;
+            }
+        }
+    }
+}
+
+@include quote-screen(".quote-screen");

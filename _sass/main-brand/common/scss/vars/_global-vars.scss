@@ -1,0 +1,95 @@
+/* Breakpoints
+*/
+
+// Because each app can have it's own location to publish app.css to, we assume a location which can be overridden.
+$ds-package-location: '../../bower_components/design-system/' !default;
+
+// Note: for palm-sized devices use a mobile first strategy (the first breakpoint is to have no breakpoint)
+$palm-breakpoint: "569"; // Gets put onto the html:before element for JS.
+$lap-only: new-breakpoint(min-width 569px max-width 1280px, $grid-columns);
+$lap-and-desk: new-breakpoint(min-width 569px $grid-columns);
+$desk-only: new-breakpoint(min-width 1280px $grid-columns);
+$palm-only: new-breakpoint(max-width 568px $grid-columns); // Use sparingly.
+
+//Print media query
+$print: print;
+/* Grid syntactic sugar
+*/
+$one-half: $grid-columns / 2;
+$one-third: $grid-columns / 3;
+$two-thirds: 2*$one-third;
+$one-quarter: $grid-columns / 4;
+$three-quarters: $one-quarter * 3;
+$one-twelfth: $grid-columns / 12;
+$four-twelfths: 4*$one-twelfth;
+$five-twelfths: 5*$one-twelfth;
+$eight-twelfths: 8*$one-twelfth;
+$one-sixth: $grid-columns / 6;
+$five-sixths: 5*$one-sixth;
+$one-eighth: $grid-columns / 8;
+$three-eighths: 3*$one-eighth;
+$five-eighths: 5*$one-eighth;
+$one-fifth: $grid-columns / 5;
+$two-fifths: 2*$one-fifth;
+$three-fifths: 3*$one-fifth;
+$four-fifths: 4*$one-fifth;
+
+/* Our variables
+*/
+
+$grid-unit: $gutter/3;
+$small-spacer: $grid-unit;
+$medium-spacer: $grid-unit*2;
+$large-spacer: $grid-unit*3;
+$standard-touch-size: 6*$grid-unit;
+
+/* Fonts
+*/
+$fallback-fonts: Tahoma, sans-serif !default;
+$standard-fonts: "Titillium Web", $fallback-fonts !default;
+
+//$standard-fonts: 'Sentico Sans DT Regular';
+
+/* Colour Palette
+*/
+// Colour names are based on opacity against a white background.
+// Brand colours
+$colour-brand-primary: #b71234 !default;
+
+
+// Semantic colours
+$error-colour-100: #f27300 !default;
+$error-colour-10: #fef1e5 !default;
+$warning-colour-10: #fffce2 !default;
+$warning-colour-100:#ffcc00 !default;
+$success-colour-100: #7ab800 !default;
+$success-colour-10: #f1f8e5 !default;
+$colour-interaction-100: #009aa6 !default;
+$colour-interaction-60: #66c2ca !default;
+$colour-interaction-10: #e5f5f6 !default;
+// Greyscale colours names are based on HSB with brightness defining the name of the variable.
+$colour-black: #000 !default;
+$colour-greyscale-24: #3c3c3c !default;
+$colour-greyscale-39: #636363 !default;
+$colour-greyscale-51: #818181 !default;
+$colour-greyscale-63: #a1a1a1 !default;
+$colour-greyscale-76: #c1c1c1 !default;
+$colour-greyscale-88: #e0e0e0 !default;
+$colour-greyscale-92: #eaeaea !default;
+$colour-greyscale-94: #efefef !default;
+$colour-greyscale-96: #f6f6f6 !default;
+$colour-greyscale-97: #f7f7f7 !default;
+$colour-greyscale-98: #fafafa !default;
+$colour-white: #fff !default;
+$colour-selected-tab: #fff !default;
+$colour-unselected-tab: rgba(255, 255, 255, 0.8);
+
+$brand-image-1: $colour-greyscale-98 !default;
+
+/* Global styles for consistency of wells, drop-shadows, borders, etc.
+*/
+$standard-transparent-overlay-colour: transparentize($colour-black, 0.5) !default;
+$standard-drop-shadow: 0 2px 2px rgba($colour-black, 0.5) !default;
+$standard-curvature: 4px !default;
+$standard-transition-animation: all 0.2s ease-in-out !default; // Use with @include transition ();
+

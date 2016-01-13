@@ -1,0 +1,40 @@
+@mixin card($bem-module-name){
+    // block
+    #{$bem-module-name} {
+        // elements
+        #{$bem-module-name}__first {
+            margin-top: 0;
+        }
+        #{$bem-module-name}__last {
+            margin-bottom: 0;
+        }
+        // modifiers
+        &#{$bem-module-name}--centered {
+            text-align: center;
+        }
+
+        &#{$bem-module-name}--size-m {
+            padding: 2*$grid-unit;
+            @include respond-to($lap-and-desk){
+                padding: 3*$grid-unit;
+            }
+        }
+
+        &#{$bem-module-name}--size-s {
+            padding: 2*$grid-unit;
+            @include respond-to($lap-only){
+                padding: 2*$grid-unit;
+            }
+            @include respond-to($desk-only){
+                padding: 3*$grid-unit;
+            }
+        }
+
+        &#{$bem-module-name}--style-1 {
+            background-color: $colour-white;
+            border: 1px solid $colour-greyscale-88;
+            border-bottom: 3px solid $colour-greyscale-88;
+            border-radius: $standard-curvature;
+        }
+    }
+}

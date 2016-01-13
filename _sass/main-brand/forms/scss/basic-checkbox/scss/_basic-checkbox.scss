@@ -1,0 +1,69 @@
+@mixin basic-checkbox($selector) {
+    #{$selector} {
+        display: inline-block;
+        cursor: pointer;
+
+        // TODO: get-base-text-properties-for()
+        $size: 20px;
+
+        input[type=checkbox] {
+            & + label {
+                display: inline-block;
+                line-height: 1;
+                vertical-align: middle;
+                position: relative;
+                z-index: 1;
+                .fake-check-box {
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-top: -2px;
+                    line-height: 1;
+                    width: $size;
+                    height: $size;
+                    margin-right: $grid-unit/2;
+                    &:before {
+                        content: '';
+                        display: inline-block;
+                        width: $size;
+                        height: $size;
+                        background-color: $colour-white;
+                        color: $colour-black;
+                        border-radius: $standard-curvature;
+                        vertical-align: middle;
+                        @include box-shadow(0, 0, 1px, 0, $colour-black);
+                    }
+                }
+            }
+            &:hover + label, &:focus + label, &:active + label {
+                .fake-check-box:before {
+                    @include standard-option-active-style($outside-box: true);
+                }
+            }
+            &:checked + label {
+                .fake-check-box:before {
+                    @include standard-option-success-style($outside-box: true);
+                }
+            }
+            &[disabled] {
+                // TODO: define this.
+            }
+        }
+
+        input[type=checkbox]:checked {
+            & + label {
+                .fake-check-box:before {
+                    display: inline-block;
+                    @include icon-content-for-name("tick");
+                    width: $size;
+                    height: $size;
+                    vertical-align: middle;
+                    background-color: $colour-white;
+                    color:$colour-black;
+                    line-height: $size+1;
+                }
+            }
+        }
+    }
+}
+
+@include basic-checkbox(".basic-checkbox");

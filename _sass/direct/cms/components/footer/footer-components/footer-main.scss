@@ -1,0 +1,20 @@
+﻿@mixin footer-main($selector){
+	#{$selector}{
+		background-color: $colour-greyscale-24;
+		color: $colour-white;
+         p {
+            @include set-text-as(delta, $reduced: true);
+        }
+		a {
+			color: $colour-white;
+			&:hover, &:focus, &:active {
+				color: $colour-greyscale-94;
+			}
+		}
+		p:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+}
+
+@include footer-main('.footer-main');

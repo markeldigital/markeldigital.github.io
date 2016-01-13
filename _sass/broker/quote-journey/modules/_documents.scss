@@ -1,0 +1,60 @@
+@mixin documents($selector){
+    #{$selector}{
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+            li {
+                margin-bottom: $grid-unit;
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+                a {
+                    display: inline-block;
+                    width: 100%;
+                    &:hover {
+                        background-color: $colour-interaction-10;
+                        outline: $grid-unit solid $colour-interaction-10;
+                    }
+                    .pdf-icon-download {
+                        float: left;
+                        display: block;
+                        margin-right: $grid-unit;
+                        height: 100%;
+                        overflow: hidden;
+                        img {
+                            display: block;
+                            @include set-graphic-as(beta);
+                        }
+                    }
+                    p {
+                        overflow:hidden;
+                        margin-top: $grid-unit;
+                        @include set-text-as(delta, $margins-overrides: zero-bottom);
+                    }
+                }
+                &.loading {
+                    background-color: $colour-interaction-10;
+                    outline: $grid-unit solid $colour-interaction-10;
+                    .pdf-icon-download img {
+                        visibility: hidden;
+                    }
+                }
+            }
+        }
+        .invoice-text {
+            margin-top: 1.5*$grid-unit;
+            @include set-text-as(body, $margins-overrides: zero-bottom);
+        }
+
+        @include respond-to-print(){
+            display: none;
+        }
+    }
+
+    .no-smil #{$selector} ul li a .pdf-icon-download img {
+        height: inherit; // TODO: Ideally find a better way of providing this only to IE 9-11. This causes a small icon problem in Chrome etc if included.
+    }
+}
+
+@include documents(".documents");

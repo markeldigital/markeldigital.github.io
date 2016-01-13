@@ -1,0 +1,61 @@
+@mixin contact-us($selector){
+    #{$selector}{
+        .contact-us-header {
+            border: 1px solid $colour-greyscale-88;
+            border-bottom: none;
+            h3 {
+                @include set-text-as(gamma, $margins-overrides: ("top": 0, "bottom": 2*$grid-unit));
+                @include respond-to($lap-and-desk){
+                   @include set-text-as(gamma, $margins-overrides: ("top": 0, "bottom": $grid-unit));
+                }
+            }
+        }
+        .contact-us-phone {
+            padding: $grid-unit;
+            margin: 0 auto;
+            margin-bottom: $grid-unit;
+            margin-top: -4*$grid-unit;
+            width: 5*$grid-unit;
+            height: 5*$grid-unit;
+            @include respond-to($lap-and-desk){
+                margin-top: -6*$grid-unit;
+                margin-bottom: 2*$grid-unit;
+                height: 6*$grid-unit;
+                width: 6*$grid-unit;
+            }
+            border: 1px solid $colour-greyscale-76;
+            border-radius: 50%;
+            background: white;
+            *[class^='icon-'] {
+                @include set-graphic-as(gamma,$type:icon);
+                @include respond-to($lap-and-desk){
+                    @include set-graphic-as(beta, $type:icon);
+                }
+                width: 3*$grid-unit;
+                height: 3*$grid-unit;
+                @include respond-to($lap-and-desk) {
+                    width: 4*$grid-unit;
+                    height: 4*$grid-unit;
+                }
+                line-height: 0.95; // TODO: Find a more elegant way to do this, maybe?
+                color: $colour-interaction-100;
+                &:before {
+                    display: inline-block;
+                }
+            }
+        }
+        .contact-details {
+            @include set-text-as(delta);
+            margin-bottom: 0;
+            font-weight: normal;
+            a[href^="mailto:"] {
+                @include set-text-as(delta, $reduced: true);
+            }
+            .email {
+                word-break: break-all;
+            }
+        }
+    }
+}
+
+@include contact-us(".contact-us");

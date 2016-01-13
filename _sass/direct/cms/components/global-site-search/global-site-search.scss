@@ -1,0 +1,126 @@
+@mixin global-site-search-visually-hidden(){
+    position: absolute;
+    left: -9999999px;
+}
+@mixin global-site-search-visually-shown(){
+    position: static;
+    left: 9999px;
+}
+
+@mixin global-site-search($selector) {
+    $background-color: $colour-white;
+
+    #{$selector} {
+        border-left: 1px solid $colour-greyscale-88;
+        border-right: 1px solid $colour-greyscale-88;
+
+        // Pull search out of drop-down on mobile and show in menu bar
+        & > label, & > form {
+            @include global-site-search-visually-shown(); // Combat visually hidden parent (drop-down burger menu content).
+            position: absolute;
+            top: -$menu-desk-height + 3px;
+        }
+
+        // TODO: Ugh :-( constructing new breakpoints from global vars in here is baaad (shouldn't be available outside global nav)...
+        // TODO: Dependency on custom breakpoint may mean this component should be moved to Design System and the breakpoints better encapsulated / dependency injected.
+        $larger-than-burger-menu-breakpoint: new-breakpoint(min-width map_get($global-banner-options, "collapsed-menu-breakpoint") $grid-columns);
+        $smaller-than-burger-menu-breakpoint: new-breakpoint(max-width map_get($global-banner-options, "collapsed-menu-breakpoint")-1px $grid-columns);
+        > label {
+            @include respond-to($larger-than-burger-menu-breakpoint){
+                @include global-site-search-visually-shown();
+            }
+            display: inline-block;
+            text-align: right;
+            width: 100%;
+            padding: 0 2.25*$grid-unit;
+            line-height: $menu-palm-height;
+            @include respond-to($larger-than-burger-menu-breakpoint){
+                line-height: $menu-lap-height;
+            }
+            @include respond-to($desk-only){
+                line-height: $menu-desk-height;
+            }
+            cursor: pointer;
+            .visually-hidden {
+                @include global-site-search-visually-hidden();
+            }
+        }
+
+        input[type="checkbox"] {
+            @include global-site-search-visually-hidden;
+            &:not(:checked) ~ form {
+                @include global-site-search-visually-hidden;
+            }
+            &:checked ~ form {
+                width: 100%;
+                min-width: 25*$grid-unit;
+                right: 0;
+                z-index: 2; // Above mobile menu icon when open
+                @include respond-to($larger-than-burger-menu-breakpoint){
+                    top: 0;
+                    left: 0;
+                }
+                input[type="text"].search{
+                    @include padding-for-form-element($form-element-height: $menu-palm-height+1px, $text-size: gamma, $border-size: 0, $adjust-right: 0, $adjust-left: 0);
+                    @include respond-to($larger-than-burger-menu-breakpoint){
+                        @include padding-for-form-element($form-element-height: $menu-lap-height+1px, $text-size: gamma, $border-size: 0, $adjust-right: 0, $adjust-left: 0);
+                    }
+                    @include respond-to($desk-only) {
+                        @include padding-for-form-element($form-element-height: $menu-desk-height+1px, $text-size: gamma, $border-size: 0, $adjust-right: 0, $adjust-left: 0);
+                    }
+                    border-radius: 0;
+                    -webkit-appearance: none;
+                }
+                .search-button {
+                    position: absolute;
+                    top: 0;
+                    right: 1px;
+                    min-width: 0;
+                    @include padding-for-form-element($form-element-height: $menu-palm-height, $text-size: gamma, $border-size: 0, $adjust-right: 0, $adjust-left: 0);
+                    @include respond-to($larger-than-burger-menu-breakpoint){
+                        top: -1px;
+                        right: 3px;
+                        @include padding-for-form-element($form-element-height: $menu-lap-height, $text-size: gamma, $border-size: 0, $adjust-right: 0, $adjust-left: 0);
+                    }
+                    @include respond-to($desk-only) {
+                        top: -1px;
+                        right: 2px;
+                        @include padding-for-form-element($form-element-height: $menu-desk-height, $text-size: gamma, $border-size: 0, $adjust-right: 0, $adjust-left: 0);
+                    }
+                    width: auto;
+                    &:hover, &:focus {
+                        background-color: transparent;
+                    }
+                    i[class^='icon-'] {
+                        color: $colour-greyscale-39;
+                        @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+                        vertical-align: middle;
+                        line-height: 1.25;
+                    }
+                }
+            }
+            &:checked + label {
+                width: 100%;
+                @include respond-to($larger-than-burger-menu-breakpoint){
+                    width: auto;
+                }
+            }
+            &:hover, &:active, &:focus {
+                & + label {
+                    background-color: $colour-greyscale-97;
+                    @include transition($standard-transition-animation);
+                }
+            }
+        }
+
+        i[class^='icon-'] {
+            color: $colour-greyscale-39;
+            @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+            vertical-align: middle;
+            line-height: 1;
+        }
+    }
+}
+
+@include global-site-search("li.global-site-search");
+

@@ -1,0 +1,32 @@
+﻿@mixin list-item-expander-block($selector) {
+    #{$selector} .call-to-action-block__teaser {
+        p {
+            @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+            vertical-align: middle;
+            overflow: hidden;
+        }
+    }
+
+    #{$selector}.ds-expander-style-bullet .call-to-action-block__teaser {
+        img {
+            width: 3*$grid-unit;
+            margin-right: 1.5*$grid-unit;
+            height: inherit;
+            float: left;
+
+            @include respond-to($lap-and-desk) {
+                width: 4*$grid-unit;
+                margin-right: 2*$grid-unit;
+            }
+        }
+    }
+
+    #{$selector}.ds-expander-style-bullet #{$selector}__content {
+        margin-left: 4.5*$grid-unit;
+        @include respond-to($lap-and-desk) {
+            margin-left: 6*$grid-unit;
+        }
+    }
+}
+ 
+@include list-item-expander-block(".ds-expander");

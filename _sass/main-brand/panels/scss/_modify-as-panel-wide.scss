@@ -1,0 +1,12 @@
+@mixin modify-as-panel-wide($selector){
+    #{$selector}{
+        &.panel--wide {
+            border-left: none;
+            border-right: none;
+            padding: 2*$grid-unit;
+            @include respond-to($lap-and-desk){
+                padding: 2*$grid-unit 3*$grid-unit;
+            }
+        }
+    }
+}

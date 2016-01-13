@@ -1,0 +1,89 @@
+@import "notification-warning";
+@import "notification-success";
+@import "notification-error";
+@mixin notification($selector){
+    #{$selector}{
+        overflow: hidden;
+        width: 100%;
+        margin-top: 4*$grid-unit;
+        border-radius: $standard-curvature;
+        padding: $grid-unit*1.5;
+            @include respond-to($lap-and-desk) {
+                padding: $grid-unit*2;
+                margin-top: 6*$grid-unit;
+            }
+
+        .notification-content {
+            display: table-cell;
+            vertical-align: middle;
+            word-break: break-word;
+
+            p:last-of-type{
+
+                margin-bottom: 0;
+
+            }
+        }
+        i{
+            vertical-align: top;
+            width: auto;
+            height: auto;
+            display: table-cell;
+            padding-right: $grid-unit;
+            @include set-text-as(gamma, $margins-overrides: zero-both);
+            line-height: 1;
+        }
+
+
+
+    // Modifiers
+
+       &--l{
+
+           .notification-content p {
+
+             @include set-text-as(gamma, $margins-overrides: zero-top);
+
+           }
+
+           i{
+              @include set-text-as(beta, $margins-overrides: zero-both);
+               padding-right: $grid-unit*1.5;
+           }
+
+       }
+
+        &--xl{
+
+            .notification-content p {
+
+                @include set-text-as(gamma, $margins-overrides: zero-top);
+
+            }
+
+            i{
+                @include set-text-as(jumbo, $reduced: true, $margins-overrides: zero-both);
+                line-height: 1;
+                padding-right: $grid-unit*1.5;
+            }
+
+        }
+
+
+    // Inline notifications
+
+        &--inline{
+
+            border: none !important;
+            margin: 0 !important;
+
+        }
+
+    }
+
+}
+
+@include notification(".notification");
+@include notification-warning(".notification-warning");
+@include notification-success(".notification-success");
+@include notification-error(".notification-error");

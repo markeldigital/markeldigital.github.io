@@ -1,0 +1,125 @@
+@mixin info-popup($selector, $shadow-selector, $close-button-selector){
+    #{$selector}{
+        position: relative;
+        .content{
+            margin: 0px;
+        }
+
+        .modal-body {
+            padding: 0px;
+
+            .grid-width {
+                padding: 0px;
+            }
+
+            .error-page {
+                padding-bottom: $grid-unit*2;
+            }
+        }
+        h1 {
+            @include set-text-as(gamma, $margins-overrides:zero-both, $strength: strong);
+        }
+
+        p {
+            margin-bottom: 0;
+            padding: $grid-unit*2 $grid-unit*2 0 $grid-unit*2;
+        }
+
+        p.error-message {
+            padding: 4px 8px 4px 32px;
+            margin: 4px 0;
+        }
+
+        form{
+            padding: 0 $grid-unit*2 $grid-unit*2 $grid-unit*2;
+            select{
+                width: 100%;
+            }
+
+            .hp{
+                @include visually-hidden();
+            }
+        }
+
+        #{$shadow-selector} {
+            background: rgba($colour-black, 0.6)!important;
+            opacity: 1 !important;
+        }
+
+        #{$close-button-selector} {
+            background: transparent !important;
+            border: none;
+            border-radius: 0px !important;
+            color: $colour-black;
+            box-shadow: none!important;
+            top: 2.5*$grid-unit!important;
+            right: 3*$grid-unit!important;
+
+            @include respond-to($palm-only){
+                top: 2*$grid-unit!important;
+                right: 2*$grid-unit!important;
+
+            }
+
+            font-size: 24px !important;
+            width: 28px !important;
+            height: 28px !important;
+
+            &:before{
+                font-family: 'Iconography';
+                @include get-icon-content-only("cross");
+                display: inline-block;
+            }
+
+            &:hover, &:focus, &:active{
+
+                color: lighten($colour-black, 50);
+                @include transition($standard-transition-animation);
+                outline: none !important;
+            }
+        }
+
+        .editorial-page div.panel--style-1{
+
+            padding: $grid-unit*2;
+        }
+
+        .ds-expander-style-b{
+
+            border: none;
+        }
+
+        .ds-expander-style-b:last-of-type{
+
+            border: none;
+        }
+
+        .editorial {
+
+            padding: $grid-unit*2;
+            border: 1px solid $success-colour-100;
+            background-color: $success-colour-10;
+            overflow: hidden;
+
+            &:before {
+                float: left;
+                font-family: 'Iconography';
+                @include get-icon-content-only("tick-circle");
+                display: inline-block;
+                @include set-text-as(gamma, $margins-overrides:zero-both);
+                width: 9%;
+                color: $success-colour-100;
+                line-height: 1;
+            }
+
+            p {
+                padding: 0;
+                float: left;
+                width: 90%;
+
+            }
+        }
+    }
+}
+
+@include info-popup(".info-popup", ".custom-shadow", ".custom-close");

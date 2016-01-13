@@ -1,0 +1,27 @@
+@mixin insurance-summary-totals($selector) {
+    #{$selector} {
+        padding: 2*$grid-unit;
+        @include respond-to($lap-and-desk){
+            margin: 0 2*$grid-unit;
+            padding: 2*$grid-unit 0;
+
+        }
+        overflow: hidden;
+        border-bottom: 1px solid $colour-greyscale-88;
+        ul {
+            li {
+                margin-bottom: 0;
+                @include span-columns($one-half);
+                h3 {
+                    @include set-text-as(epsilon, $reduced: true, $margins-overrides: zero-both);
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                }
+                p {
+                    @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+                }
+            }
+        }
+    }
+}
+@include insurance-summary-totals('.qj-quote-info__totals');

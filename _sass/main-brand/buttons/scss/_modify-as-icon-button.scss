@@ -1,0 +1,45 @@
+@include keyframes( Rotate) {
+    from {@include transform(rotate(0deg));}
+    to {@include transform(rotate(360deg));}
+}
+
+@mixin modify-as-icon-button($selector){
+    #{$selector}{
+        &.button--icon-right, &.button--icon-left {
+            > [class^='icon-'] {
+                $adjust-to-baseline: 1px;
+                position: relative;
+                top: $adjust-to-baseline;
+                font-size: inherit;
+                color:inherit;
+                height: auto;
+                line-height: 1;
+            }
+        }
+        &.button--icon-right {
+            padding-right: $grid-unit*3;
+            > [class^='icon-'] {
+                margin-left: $grid-unit/2;
+                margin-right: -2*$grid-unit;
+            }
+        }
+        &.button--icon-left {
+            padding-left: $grid-unit*3;
+            > [class^='icon-'] {
+                margin-left: -2*$grid-unit;
+                margin-right: $grid-unit/2;
+            }
+        }
+
+        &.button--icon-loading {
+            > [class^='icon-'] {
+                &:before{
+                    @include get-icon-content-only(refresh);
+                }
+                display: inline-block;
+                transform-origin: 50% 48%;
+                @include animation(Rotate 700ms infinite linear);
+            }
+        }
+    }
+}

@@ -1,0 +1,62 @@
+@mixin split-actions($selector, $alignment-style) {
+    #{$selector} {
+        clear: both;
+        width: 100%;
+        margin-bottom: $grid-unit;
+        margin-top: $grid-unit*3;
+        @include clearfix;
+
+        @include respond-to($palm-only) {
+            &--no-margin {
+                margin: 0;
+            }
+        }
+
+        @include respond-to-print() {
+            display: none;
+        }
+
+        .split-actions-btn-container {
+
+            @include respond-to($palm-only) {
+                button, a{
+                    i {
+                        line-height: 1;
+                        height: auto;
+                    }
+                    float: right;
+                    width: 54%;
+                    &:first-of-type {
+                        float: left;
+                        width: 44%;
+                    }
+                }
+            }
+
+            $btnMargin: $grid-unit*2;
+
+            @include respond-to($lap-and-desk) {
+                &--right {
+
+                    float: right;
+
+                    button, a {
+                        margin-left: $btnMargin;
+                    }
+                }
+
+                &--left {
+                    float: left;
+
+                    button, a {
+                        margin-right: $btnMargin;
+                    }
+
+                }
+            }
+        }
+
+    }
+}
+
+@include split-actions(".split-actions", far-edges);

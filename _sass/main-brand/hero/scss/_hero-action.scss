@@ -1,0 +1,33 @@
+﻿@mixin hero-action($selector){
+    #{$selector}{
+        position: relative;
+        left:0;
+        bottom: 0;
+        width: 100%;
+        padding: 2*$grid-unit;
+        margin-bottom: 0;
+        background-color: transparentize($colour-black, 0.75);
+        text-align: center;
+        form{
+            text-align: center;
+            @include clearfix;
+            @include outer-container();
+            margin: 0 auto;
+            .button-style-subtle {
+                margin-bottom: 2*$grid-unit;
+                @include respond-to($lap-and-desk){
+                    margin-right: 2*$grid-unit;
+                    margin-bottom: 0;
+                }
+            }
+        }
+        a,button {
+            display: block;
+            width: 100%;
+            @include respond-to($lap-and-desk){
+                display: inline-block;
+                width: auto;
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+@mixin cover-cannot-offer($selector){
+    #{$selector}{
+        background-color: $colour-greyscale-97;
+        padding: $grid-unit*2;
+        margin: 2px 0 0 0;
+        @include respond-to($lap-and-desk){
+            padding: $grid-unit*2 $grid-unit*3;
+        }
+
+        p {
+            @include set-text-as(body, $margins-overrides: zero-both);
+        }
+    }
+}

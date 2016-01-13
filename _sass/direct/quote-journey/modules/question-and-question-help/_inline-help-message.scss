@@ -1,0 +1,7 @@
+@mixin inline-help-message($selector){
+    #{$selector}{
+        @include set-text-as(epsilon);
+        padding-top: 2*$grid-unit;
+    }
+}
+

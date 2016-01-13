@@ -1,0 +1,119 @@
+@mixin table($selector){
+    #{$selector}{
+        width: 100%;
+        margin-bottom: 2*$grid-unit; 
+
+        th, td {
+            text-align: left;
+            padding: $grid-unit;
+            @include respond-to($lap-and-desk){
+                padding: 2*$grid-unit;
+            }
+            @include respond-to($lap-and-desk) {
+                &:first-child {
+                    @include respond-to($lap-and-desk){
+                        padding-left: 2*$grid-unit;
+                    }
+                    padding-left: 0;
+                }
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+        }
+        thead {
+            th {
+                @include set-text-as(epsilon, $strength: weak);
+                text-transform: uppercase;
+                @include visually-hidden;
+                @include respond-to($lap-and-desk){
+                    @include visually-shown;
+                }
+                vertical-align: top;
+                white-space: nowrap;
+            }
+            th.sort {
+                font-weight: 600;
+                color: $colour-greyscale-24;
+                > [class^='icon-'] {
+                    color: $colour-greyscale-24;
+                }
+            }
+        }
+        tbody {
+            td {
+                overflow: hidden;
+                display: block;
+                width: 100%;
+                float: left;
+                clear: left;
+                vertical-align: top;
+                @include respond-to($lap-and-desk){
+                    display: table-cell;
+                    width: auto;
+                    float: none;
+                }
+                .data-label {
+                    display: inline-block;
+                    float: left;
+                    width: 30%;
+                    margin-right: $grid-unit/2;
+                    @include respond-to($lap-and-desk){
+                        display: none;
+                    }
+                    @include set-text-as(epsilon, $strength: weak);
+                    margin-bottom: 0;
+                    margin-top:1px;
+                    margin-right: 2*$grid-unit;
+                    text-transform: uppercase;
+                }
+                .data {
+                    overflow: hidden;
+                }
+                .data-nowrap {
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+                .data-reduced {
+                    overflow: hidden;
+                    @include set-text-as(body, $reduced: true);
+                }
+                .table-actions {
+                    display: inline-block;
+                    vertical-align: top;
+                    margin: 0;
+                    padding: 0;
+                }
+                @include respond-to($lap-and-desk){
+                    border-bottom: 1px solid $colour-greyscale-88;
+                }
+                border: none;
+                &.main-index {
+                    background-color: $colour-white;
+                }
+                @include respond-to($lap-and-desk){
+                    background-color: transparent;
+                }
+            }
+
+            tr:first-of-type td {
+                @include respond-to($lap-and-desk){
+                    border-top: 1px solid $colour-greyscale-88;
+                }
+            }
+            tr {
+                border-bottom: 1px solid $colour-greyscale-88;
+                @include respond-to($lap-and-desk){
+                    border: none;
+                    background: $colour-white;
+                }
+            }
+            tr:hover {
+                background-color: $colour-greyscale-96;
+            }
+
+        }
+    }
+}
+
+@include table(".simple-table");

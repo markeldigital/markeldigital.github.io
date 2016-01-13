@@ -1,0 +1,55 @@
+﻿@mixin questions-screen($selector){
+    #{$selector}{
+        .question {
+            @include clearfix;
+            .question-main {
+                @include respond-to($lap-and-desk){
+                    @include span-columns($three-fifths);
+                }
+            }
+            .question-aside {
+                position: relative;
+                @include span-columns($two-fifths);
+            }
+        }
+		
+		.breakdown-feedback dt {
+			@include visually-hidden;
+		}
+
+        &.historical-mode {
+            .question-main {
+				border-left-color: $colour-greyscale-88;
+				.option.success input {
+					@include animation(none);
+				}
+			}
+			.input-and-unit .unit {
+                @include standard-option-disabled-style;
+            }
+            .question-percentage-breakdown {
+                .label-selector label {
+                    @include standard-option-disabled-style;
+                }
+                .add-another, .remove {
+                    display: none;
+                }
+				.breakdown-feedback {
+					dt {
+						@include visually-shown;
+					}
+					dd {
+						border-color: $colour-greyscale-88;
+						color: $colour-black;
+						background-color: transparent;
+					}
+				}
+				.question-options {
+					background-image: none;
+				}
+            }
+        }
+    }
+}
+
+@include questions-screen(".question-page");

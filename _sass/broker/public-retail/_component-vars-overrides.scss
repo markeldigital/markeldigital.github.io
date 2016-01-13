@@ -1,0 +1,73 @@
+/*--=============================================================
+=================================================================
+
+Sub-brand-1 = Broker portal and CMS header / navigation
+
+This file overrides the styles from main
+
+=================================================================
+=============================================================--*/
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Header components
+
+$global-banner-z-index: 99999;
+$menu-palm-height: $grid-unit *7 !default; // Used in global banner, main-content (margin), mobile-trigger-container, mobile-trigger, site-section.
+$menu-lap-height: $grid-unit *8 !default;
+$menu-desk-height: $grid-unit *7.5 !default;
+$block-style: block;
+$global-banner-options: (
+        "mobile-height": $menu-palm-height,
+        "tablet-height": $menu-lap-height,
+        "desktop-height": $menu-desk-height,
+        "z-index": $global-banner-z-index,
+        "first-box-shadow": inset 0 -1px 0 0 $colour-greyscale-88,
+        "second-box-shadow": inset 0 4px 0 0 $colour-brand-primary,
+        "border-bottom": none,
+        "needs-clearance-from-red-bar": true,
+        "collapsed-menu-breakpoint": 750px
+);
+$logo-options: (
+        "mobile-width": $menu-palm-height,
+        "mobile-height": $menu-palm-height,
+        "mobile-padding": $grid-unit+1px,
+        "tablet-width": $menu-lap-height,
+        "tablet-height": $menu-lap-height,
+        "tablet-padding": $grid-unit*1.5,
+        "desktop-width": 14*$grid-unit,
+        "desktop-height": 14*$grid-unit,
+        "desktop-padding": $grid-unit*3-2px,
+        "mobile-clearance": 2*$grid-unit,
+        "tablet-clearance": 3*$grid-unit,
+        "desktop-clearance": $grid-unit,
+        "desktop-left": -(14*$grid-unit + $grid-unit),
+        "z-index": $global-banner-z-index,
+        "mobile-position": absolute,
+        "background-color": $colour-brand-primary,
+        "hover-background-color": darken($colour-brand-primary, 10),
+        "block-style" : $block-style
+);
+$primary-navigation-and-utility-navigation-options: (
+        "height": 100%,
+        "open-mobile-menu-position": fixed,
+        "clear": none,
+        "mobile-border-top": none
+);
+$mobile-menu-trigger-options: (
+        "z-index": $global-banner-z-index+1,
+        "open-position": fixed,
+        "open-box-shadow": inset 0 4px 0 0 $colour-brand-primary,
+        "alignment": right
+);
+$navigation-items-options: (
+        "lap-and-desk-hover-box-shadow": "inset 1px 0 0 #e0e0e0, inset -1px 0 0 #e0e0e0, inset 0 -1px 0 #e0e0e0"
+);
+
+// Below overrides the img width in logo for public, Broker and underwriter
+.logo img.white-logo{
+
+        width: 100%;
+
+}

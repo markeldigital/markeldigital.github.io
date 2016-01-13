@@ -1,0 +1,70 @@
+﻿@mixin professions-list($selector) {
+    #{$selector} {
+        margin-bottom: 3%;
+
+        ul {
+            margin-left: 2*$grid-unit;
+            list-style: none;
+
+            li {
+                a {
+                    color: $colour-black;
+                }
+            }
+        }
+
+        .search-form {
+            width: 100%;
+            margin-top: 2*$grid-unit;
+            display: none;
+        }
+
+        input[type="text"].search {
+            padding-right: 5*$grid-unit;
+        }
+
+        .call-to-action-block__teaser {
+            text-align: center;
+            border: none;
+        }
+
+        .ds-expander {
+            border: none;
+        }
+
+        .ds-expander__trigger {
+            padding: 0;
+            text-align: center;
+            @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+            display:none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }        
+    }
+
+    .js #{$selector} {
+        .search-form {
+            display: block;
+        }
+        .ds-expander__trigger{
+            display:block;
+            .show-closed {
+                display: block;
+            }
+            .show-open {
+                display: none;
+            }
+        }
+        .ds-expander--open {
+            .show-open {
+                display: block;
+            }
+            .show-closed {
+                display: none;
+            }
+        }
+    }
+}
+
+@include professions-list('.professions-list');

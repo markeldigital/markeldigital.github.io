@@ -1,0 +1,14 @@
+@mixin scroll-area($selector){
+    #{$selector}{
+        margin-bottom: $grid-unit;
+        @include respond-to($desk-only) {
+            max-height: 30 * $grid-unit;
+            overflow-y: auto;
+            border: 1px solid $colour-greyscale-76;
+            background-color: $colour-greyscale-97;
+            padding: $grid-unit;
+        }
+    }
+}
+
+@include scroll-area(".scroll-area");

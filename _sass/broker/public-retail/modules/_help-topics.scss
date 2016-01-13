@@ -1,0 +1,55 @@
+@mixin help-topics($selector){
+    $content-color: $colour-greyscale-24;
+    $borders-color: $colour-greyscale-88;
+    $background-color: $colour-white;
+    $hover-color: $colour-greyscale-98;
+
+    #{$selector}{
+		@include clearfix;
+		margin: 3*$grid-unit 0px;
+		
+		li {
+			background-color: $colour-white;
+			border: 1px solid $colour-greyscale-88;
+			border-bottom: 0;
+			text-align: left;
+			margin: 0px;
+
+			&:last-of-type{
+				border-bottom: 1px solid $colour-greyscale-88;
+			}
+
+			@include respond-to($lap-and-desk) {
+				@include span-columns($one-third);
+				@include omega(3n);
+
+				border: 1px solid $colour-greyscale-88;
+				border-radius: $grid-unit/2;
+				border-bottom: 2px solid $borders-color;
+				margin-bottom: 2*$grid-unit;
+				text-align: center;
+			}
+			
+			display: block;
+            width: 100%;
+            list-style-type: none;
+
+            & > a {
+				@include set-text-as(gamma, $margins-overrides: zero-both, $reduced: true);
+                display: block;
+                padding: 2*$grid-unit;
+                text-decoration: none;
+                color: $content-color;
+                &:hover, &:focus, &:active {
+                    background-color: $hover-color;
+                }
+
+				border-radius: $grid-unit/2;
+            }
+			
+
+			
+
+		}
+    }
+}

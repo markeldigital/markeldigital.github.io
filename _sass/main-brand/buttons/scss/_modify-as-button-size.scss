@@ -1,0 +1,25 @@
+@mixin modify-as-button-size($selector){
+    #{$selector}{
+        &.button--size-jumbo {
+            $desired-button-height: map_get(get-base-text-properties-for(jumbo), "font-size");
+            $button-text-size: map_get(get-base-text-properties-for(gamma), "font-size");
+            $button-text-line-height: map_get(get-base-text-properties-for(gamma), "line-height");
+            $content-box-size: $button-text-size*$button-text-line-height;
+            @include set-text-as(gamma, $reduced: true, $strength: strong, $margins-overrides: zero-both);
+            $padding-top-and-bottom: (($desired-button-height - $content-box-size)/2);
+            $padding-left-and-right: 1.5*$padding-top-and-bottom;
+            padding: $padding-top-and-bottom $padding-left-and-right $padding-top-and-bottom $padding-left-and-right;
+        }
+
+        &.button--size-alpha {
+            $desired-button-height: map_get(get-base-text-properties-for(alpha), "font-size");
+            $button-text-size: map_get(get-base-text-properties-for(delta), "font-size");
+            $button-text-line-height: map_get(get-base-text-properties-for(delta), "line-height");
+            $content-box-size: $button-text-size*$button-text-line-height;
+            @include set-text-as(delta, $reduced: true, $strength: strong, $margins-overrides: zero-both);
+            $padding-top-and-bottom: (($desired-button-height - $content-box-size)/2);
+            $padding-left-and-right: 1.5*$padding-top-and-bottom;
+            padding: $padding-top-and-bottom $padding-left-and-right $padding-top-and-bottom $padding-left-and-right;
+        }
+    }
+}

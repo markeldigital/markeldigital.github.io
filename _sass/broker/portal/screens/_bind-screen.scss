@@ -1,0 +1,42 @@
+@mixin bind-screen($selector) {
+    #{$selector} {
+        fieldset {
+            .question-main{
+                margin-top: $grid-unit;
+                input[type="date"]{
+                    display: block;
+                }
+            }
+        }
+
+        .effective-date {
+            @include set-text-as(gamma);
+        }
+
+        .terms-and-conditions-screen {
+            input[type="checkbox"] {
+                margin-top: $grid-unit;
+                margin-right: $grid-unit;
+            }
+            .expander{
+                .expander-trigger {
+                    margin-top: 0;
+                    margin-bottom:2*$grid-unit;
+                    i{
+                        vertical-align: bottom;
+                    }
+                }
+            }
+            .checkbox-stacked {
+                margin-top: 0;
+            }
+        }
+        .endorsement:last-child a {
+            margin-bottom: 0;
+        }
+
+
+    }
+}
+
+@include bind-screen(".bind-screen");

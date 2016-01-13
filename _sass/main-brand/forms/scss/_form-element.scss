@@ -1,0 +1,100 @@
+@mixin form-element($selector, $level){
+    #{$selector}{
+        $text-size: body;
+        $border-size: 1px;
+        width: 100%;
+        @include set-text-as($text-size, $responsive-text: false);
+        @include padding-for-form-element($standard-touch-size, $text-size, $border-size);
+        @include respond-to($lap-and-desk){
+            width: auto;
+        }
+        margin: 0;
+        @include standard-option-inactive-style();
+        border-radius: $standard-curvature;
+        color: $colour-greyscale-24;
+        &[disabled] {
+            @include standard-option-disabled-style();
+        }
+        &:hover, &:focus, &:active {
+            @include standard-option-active-style();
+            outline: none;
+        }
+        &[disabled] {
+            &:hover, &:focus, &:active {
+                @include standard-option-disabled-style();
+            }
+        }
+
+        &.read-only{
+            background: none;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            padding-left: 0;
+            padding-right: 0;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+    }
+
+    .error {
+        #{$selector} {
+            @include standard-option-error-style();
+            &[disabled] {
+                @include standard-option-disabled-style();
+            }
+            &:hover, &:focus, &:active {
+                @include standard-option-active-style();
+            }
+            &[disabled] {
+                &:hover, &:focus, &:active {
+                    @include standard-option-disabled-style();
+                }
+            }
+        }
+    }
+
+    @include keyframes(success) {
+        from {
+            @include standard-option-success-style();
+        }
+        to {
+        }
+    }
+
+    .success {
+        #{$selector} {
+            @include standard-option-success-style();
+            @include animation(success 5.0s ease-in);
+            &:hover, &:focus, &:active {
+                @include standard-option-active-style();
+            }
+            &[disabled] {
+                @include standard-option-disabled-style();
+            }
+            &[disabled] {
+                &:hover, &:focus, &:active {
+                    @include standard-option-disabled-style();
+                }
+            }
+        }
+    }
+
+
+}
+
+@include form-element('input[type="text"],
+                input[type="password"],
+                input[type="date"],
+                input[type="datetime"],
+                input[type="datetime-local"],
+                input[type="month"],
+                input[type="week"],
+                input[type="email"],
+                input[type="number"],
+                input[type="search"],
+                input[type="tel"],
+                input[type="time"],
+                input[type="url"],
+                textarea,
+                select', basic-input);

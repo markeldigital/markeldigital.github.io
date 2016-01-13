@@ -1,0 +1,47 @@
+﻿@mixin breakdown-feedback($selector, $options){
+	$border-size: 4px;
+
+    #{$selector} {
+        @include span-columns(map_get($options, "percentages-palm-size"));
+        float: right;
+        @include respond-to($lap-and-desk) {
+            @include span-columns(map_get($options, "percentages-lap-size"));
+            float: right;
+        }
+        @include respond-to($desk-only) {
+            @include span-columns(map_get($options, "percentages-desk-size"));
+            float: right;
+        }
+        position: relative;
+        z-index: 2;
+        margin: 0;
+         dd {
+            display: block;
+            width: 100%;
+            margin: 0;
+            border: $border-size solid $colour-greyscale-88;
+            border-radius: $standard-curvature;
+            background-color: $colour-white;
+            $text-size: body;
+            @include set-text-as($text-size, $margins-overrides: zero-both);
+            @include padding-for-form-element($standard-touch-size, $text-size, $border-size);
+            @include respond-to($lap-and-desk) {
+                @include padding-for-form-element($standard-touch-size, $text-size, $border-size);
+            }
+            .unit {
+                float: right;
+            }
+         }
+
+        &.error dd {
+            color: $error-colour-100;
+            font-weight: bold;
+            border: $border-size solid $error-colour-100;
+        }
+        &.success dd {
+            color: $success-colour-100;
+            font-weight: bold;
+            border: $border-size solid $success-colour-100;
+        }
+    }
+}

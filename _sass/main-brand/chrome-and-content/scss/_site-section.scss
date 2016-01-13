@@ -1,0 +1,84 @@
+@mixin site-section($selector, $options){
+    #{$selector} {
+        width: 100%;
+        position: relative;
+        @include respond-to(map_get($options, "collapsed-menu-breakpoint-palm-only")) {
+            z-index: -1;
+        }
+        @include clearfix();
+        padding: 0;
+        @include respond-to(map_get($options, "collapsed-menu-breakpoint-lap-and-desk")) {
+            padding: $grid-unit*1.5 0;
+        }
+        @include respond-to($desk-only) {
+            padding: $grid-unit*2.5 0;
+        }
+        @include respond-to-print() {
+            display: none;
+        }
+        &.product-section {
+            background-color: $colour-greyscale-98;
+            border-bottom: 1px solid $colour-greyscale-88;
+            h2 {
+                color: $colour-greyscale-24 !important;
+            }
+        }
+        &.neutral-section {
+            background: $colour-greyscale-97;
+            border-bottom: 1px solid $colour-greyscale-88;
+        }
+
+        #{$selector}__content {
+            @include grid-width;
+            $site-section-mobile-line-height: $menu-palm-height;
+            $site-section-lap-line-height: 48px;
+            $site-section-desk-line-height: 44px;
+            h2 {
+                float: left;
+                position: relative;
+                z-index: auto;
+                @include set-text-as(gamma, $margins-overrides: zero-both);
+                margin: 0;
+                margin-left: 0;
+                padding: $site-section-mobile-line-height/3 0;
+                @include respond-to(map_get($options, "collapsed-menu-breakpoint-lap-and-desk")) {
+                    @include set-text-as(gamma, $margins-overrides: zero-both);
+                    line-height: $site-section-lap-line-height;
+                    margin-left: 0;
+                    padding: 0;
+                }
+                @include respond-to($desk-only) {
+                    @include set-text-as(beta, $reduced: true, $margins-overrides: zero-both);
+                    line-height: $site-section-desk-line-height;
+                    margin-left: 0;
+                }
+            }
+
+            > ul {
+                display: none;
+                @include respond-to(map_get($options, "collapsed-menu-breakpoint-lap-and-desk")) {
+                    display: block;
+                }
+                margin: 0;
+                float: right;
+                padding: 0;
+                li {
+                    float: right;
+                    margin-bottom: 0;
+                    list-style: none;
+                    margin-right: $grid-unit*0.5;
+                    @include respond-to(map_get($options, "collapsed-menu-breakpoint-lap-and-desk")) {
+                        margin-right: $grid-unit*1.5;
+                        &:last-of-type {
+                            margin-right: 0;
+                        }
+                    }
+                }
+
+                .ds-menu-items {
+                    right: 0;
+                }
+            }
+        }
+    }
+}

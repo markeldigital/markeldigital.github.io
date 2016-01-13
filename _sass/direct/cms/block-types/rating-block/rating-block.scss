@@ -1,0 +1,73 @@
+﻿@mixin stars($bem-module-name){
+    $star-size: 3*$grid-unit;
+    $five-stars-container-size: 5*$star-size;
+
+    .rating {
+        padding-top: 0;
+    }
+
+    #{$bem-module-name} {
+        position: relative;
+        font-size: 0; // Remove spaces - see: https://css-tricks.com/fighting-the-space-between-inline-block-elements/
+        width: $five-stars-container-size;
+        @include respond-to($lap-and-desk){
+            width: $five-stars-container-size;
+        }
+        margin: 0 auto;
+        overflow: hidden;
+        text-align: left;
+        padding-bottom: 1*$grid-unit;
+        .stars__foreground, .stars__background {
+            width: $five-stars-container-size;
+            height: $star-size;
+            @include respond-to($lap-and-desk){
+                width: $five-stars-container-size;
+                height: $star-size;
+            }
+            white-space: nowrap;
+        }
+        .stars__background .star {
+            position: relative;
+            display: inline-block;
+            width: $star-size;
+            height: $star-size;
+            @include respond-to($lap-and-desk){
+                width: $star-size;
+                height: $star-size;
+            }
+            letter-spacing: 0;
+            background: no-repeat url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+            background-size: contain;
+        }
+        .stars__foreground {
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            background: repeat-x url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+            background-size: contain;
+        }
+    }
+}
+
+@include stars('.stars');
+
+@mixin rating($selector) {
+    #{$selector} {
+        #{$selector}__summary {
+            padding-top: 2*$grid-unit;
+            @include radial-gradient(circle at 50% 50%, $colour-greyscale-96 18%, transparent 18%);
+            @include respond-to($lap-and-desk){
+                @include radial-gradient(circle at 50% 50%, $colour-greyscale-96 35%, transparent 35%);
+            }
+            #{$selector}__summary__fraction {
+                @include set-text-as(gamma, $margins-overrides: zero-both);
+            }
+            #{$selector}__summary__numerator {
+                @include set-text-as(alpha, $reduced: true, $margins-overrides: zero-both);
+            }
+        }
+    }
+}
+
+@include rating(".rating");

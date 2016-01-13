@@ -1,0 +1,10 @@
+@mixin icon-interaction($icon-colour, $background-colour) {
+    background-color: $background-colour;
+    color: $icon-colour;
+    &.hover, &:hover {
+        background-color: darken($background-colour, 10);
+        @include transition($standard-transition-animation);
+    }
+}
+
+

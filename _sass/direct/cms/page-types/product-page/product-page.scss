@@ -1,0 +1,9 @@
+﻿@import 'page-components/unique-selling-points';
+
+@mixin product-page-type($selected){
+    #{$selected}{
+
+    }
+}
+
+@include product-page-type('.product-page');

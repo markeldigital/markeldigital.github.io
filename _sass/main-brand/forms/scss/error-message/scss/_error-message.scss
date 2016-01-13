@@ -1,0 +1,31 @@
+@mixin message($selector){
+    $icon-size: 3px;
+
+    #{$selector}{
+        position: relative;
+        display: inline-block;
+        padding: $grid-unit/2 $grid-unit $grid-unit/2 4*$grid-unit;
+        @include set-text-as(body, $margins-overrides: ("top": $grid-unit/2, "bottom": $grid-unit/2));
+        color: $colour-white;
+        background-color: $error-colour-100;
+        border-radius: $standard-curvature;
+        &:before {
+            position: absolute;
+            @include icon-content-for-name("arrow-up");
+            width: $icon-size;
+            height: $icon-size;
+            top: -$icon-size;
+            left: $grid-unit + $icon-size / 2;
+            line-height: $icon-size;
+            background-color: transparent;
+            color: $error-colour-100;
+        }
+        .icon-error {
+            background-color: transparent;
+            color: $colour-white;
+            margin-left: -$grid-unit*3.5;
+        }
+    }
+}
+
+@include message(".error-message");

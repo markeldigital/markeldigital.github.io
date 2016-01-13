@@ -1,0 +1,7 @@
+@mixin grid-width(){
+    @include outer-container();
+    @include pad(0 (2/3)*$clearance 0 (2/3)*$clearance);
+    @include respond-to($lap-and-desk){
+        @include pad(0 $clearance 0 $clearance);
+    }
+}

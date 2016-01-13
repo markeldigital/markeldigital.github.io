@@ -1,0 +1,66 @@
+@mixin on-off-box-common($selector) {
+    #{$selector} {
+        display: inline-block;
+
+        label {
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            .fake-radio-button, .fake-check-box {
+                line-height: 1;
+            }
+            .fake-radio-button:before, .fake-check-box:before {
+                content: '';
+                vertical-align: middle;
+                @include box-shadow(0, 0, 1px, 0, $colour-black);
+            }
+
+            background-color: $colour-white;
+            cursor: pointer;
+            @include standard-option-inactive-style();
+            border-radius: $standard-curvature;
+        }
+        input[type=radio], input[type=checkbox] {
+            &:hover + label, &:focus + label, &:active + label {
+                @include standard-option-active-style();
+            }
+            &[disabled] {
+                & + label {
+                    @include standard-option-disabled-style();
+                }
+                &:hover + label, &:focus + label, &:active + label {
+                    @include standard-option-disabled-style();
+                }
+                &:checked + label {
+                    @include standard-option-disabled-style();
+                }
+            }
+            &:checked + label {
+                @include standard-option-success-style($add-extra-thickness: 1px);
+            }
+        }
+        @include respond-to-print() {
+            position: relative;
+            input[type=radio], input[type=checkbox] {
+                left: 10px;
+                top: 0;
+                position: absolute;
+                z-index: 2;
+                display: inline-block;
+                margin: $grid-unit 10px;
+                height: 2*$grid-unit;
+
+                & + label {
+                    outline: none !important;
+                    border-width: 1px !important;
+                    border-color: $colour-greyscale-92 !important;
+                    padding-left: 40px;
+                    margin-bottom: $grid-unit/2.5;
+                    .fake-radio-button, .fake-check-box {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

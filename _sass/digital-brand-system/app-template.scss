@@ -1,0 +1,85 @@
+/*
+Styles for the digital brand system
+*/
+@import "../main-brand/common/scss/common-third-party-libraries";
+//@imports/sub-brand-1/common/scss/global-vars-overrides"; // Sub-brand overrides for global vars if needed.
+@import "../main-brand/common/scss/vars/global-vars"; // Overrides for component vars
+@import "../broker/portal/component-vars-overrides";
+@import "../main-brand/common/scss/vars/component-vars";
+@import "../main-brand/common/scss/common-markel";
+@import '../main-brand/iconography/scss/_iconography';
+@import '../main-brand/menu/scss/_menu';
+@import '../main-brand/chrome-and-content/scss/_chrome-and-content';
+@import '../main-brand/scroll-area/scss/_scroll-area';
+@import '../main-brand/panels/scss/_panels';
+@import '../main-brand/buttons/scss/_buttons';
+@import '../main-brand/forms/scss/on-off-box/scss/_on-off-box';
+@import '../main-brand/forms/scss/search/scss/_search';
+@import '../main-brand/forms/scss/_forms';
+@import '../main-brand/tables/scss/_tables';
+@import '../main-brand/forms/scss/error-message/scss/_error-message';
+@import '../main-brand/flag/scss/_flag';
+@import '../main-brand/forms/scss/input-and-unit/scss/_input-and-unit';
+@import '../main-brand/forms/scss/basic-checkbox/scss/_basic-checkbox';
+@import '../main-brand/modal-popups/scss/modal-popup';
+@import '../main-brand/modal-popups/modal/scss/_modal';
+@import '../main-brand/static-error/scss/_static-error';
+@import '../main-brand/forms/scss/autosuggest/scss/_select2';
+@import '../main-brand/hero/scss/_hero';
+@import '../main-brand/error-page/scss/_error-page';
+@import '../main-brand/notification/scss/_notification';
+@import '../main-brand/twins-template/scss/_twins-template';
+@import '../main-brand/sidekick-template/scss/_sidekick-template';
+@import '../main-brand/focused-template/scss/_focused-template';
+@import '../main-brand/expander/scss/_expander.scss';
+@import '../main-brand/split-actions/scss/split-actions';
+@import '../main-brand/waiting-spinner/scss/_waiting-spinner.scss';
+@import '../main-brand/cookies-disabled/scss/_cookies-disabled.scss';
+@import '../main-brand/javascript-disabled/scss/_javascript-disabled.scss';
+@import '../main-brand/marketing-info/scss/_marketing-info';
+@import '../main-brand/Tabs/scss/tabs';
+@import '../main-brand/popovers/scss/_popovers'; 
+
+//Quote journey
+
+// Layout
+@import '../direct/quote-journey/layout/quote-main.scss';
+@import '../direct/quote-journey/layout/quote-summary.scss';
+@import '../direct/quote-journey/layout/footer.scss';
+@import '../direct/quote-journey/layout/quote-journey.scss';
+
+// Modules
+@import '../direct/quote-journey/modules/_actions-panel';
+@import '../direct/quote-journey/modules/insurance-summary/_insurance-summary-marketing';
+@import '../direct/quote-journey/modules/disclaimer-message/_disclaimer-message';
+@import '../direct/quote-journey/modules/question-message/_question-message';
+@import '../direct/quote-journey/modules/_premium';
+@import '../direct/quote-journey/modules/_premium-option';
+@import '../direct/quote-journey/modules/_question-date-picker';
+@import '../direct/quote-journey/modules/_question-declaration-message';
+@import '../direct/quote-journey/modules/_quote-header';
+@import '../direct/quote-journey/modules/stacked-questions-block.scss';
+@import '../direct/quote-journey/modules/_total-premium';
+@import '../direct/quote-journey/modules/cover-group/_cover-group';
+@import '../direct/quote-journey/modules/option/_option';
+@import '../direct/quote-journey/modules/question-multi-numeric/_question-multi-numeric';
+@import '../direct/quote-journey/modules/question-monetary/_question-monetary';
+@import '../direct/quote-journey/modules/question-percentage-breakdown/_question-percentage-breakdown';
+@import '../direct/quote-journey/modules/question-address-finder/_question-address-finder';
+@import '../direct/quote-journey/modules/question-single-checkbox/_question-single-checkbox';
+@import '../direct/quote-journey/modules/question-and-question-help/_question-and-question-help';
+@import '../direct/quote-journey/modules/date-picker/pikaday';
+@import '../direct/quote-journey/modules/quote-summary/summary-header';
+@import '../direct/quote-journey/modules/quote-summary/cover-breakdown';
+@import '../direct/quote-journey/modules/quote-summary/summary-total-premium';
+@import '../direct/quote-journey/modules/quote-summary/summary-cta';
+@import '../direct/quote-journey/modules/quote-summary/documents';
+@import '../direct/quote-journey/modules/single-action/_single-action';
+@import '../direct/quote-journey/modules/forms/_forms';
+// Screens
+
+@import "../direct/quote-journey/screens/_questions-screen.scss";
+@import "../direct/quote-journey/screens/_quote-screen.scss";
+
+//layouts
+@import "../digital-brand-system/layout/quote-page";

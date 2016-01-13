@@ -1,0 +1,15 @@
+@mixin question-single-checkbox($selector){
+    #{$selector}{
+
+
+
+
+//        label {
+//            background: transparent;
+//            border: none;
+//        }
+
+    }
+}
+
+@include question-single-checkbox(".question-checkbox");

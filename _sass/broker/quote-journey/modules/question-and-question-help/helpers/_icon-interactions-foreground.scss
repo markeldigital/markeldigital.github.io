@@ -1,0 +1,14 @@
+﻿@mixin icon-interaction-foreground() {
+	$inactive-color: $colour-greyscale-76;
+	$active-colour: $colour-interaction-100;
+
+	color: $inactive-color;
+
+    &.hover, &:hover {
+        color: $active-colour;
+        @include transition($standard-transition-animation);
+    }
+	&.active, &:active {
+        color: $active-colour;
+    }
+}

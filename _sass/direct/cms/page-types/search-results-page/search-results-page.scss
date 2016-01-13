@@ -1,0 +1,29 @@
+@mixin search-results-page($selector){
+    #{$selector}{
+
+        .search-form input[type='text'] + .icon-search {
+            pointer-events: auto;
+        }
+        button {
+            border: none;
+            @include icon-content-for-name("icon-search");
+        }
+
+        ol {
+            li {
+                h3 {
+                    @include set-text-as(gamma, $margins-overrides: zero-bottom);
+                    line-height: 1.4rem;
+                    a {
+                        text-decoration: none;
+                        &:hover, &:active, &:focus {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include search-results-page('.search-results-screen');

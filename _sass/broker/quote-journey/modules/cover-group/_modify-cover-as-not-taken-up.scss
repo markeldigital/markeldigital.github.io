@@ -1,0 +1,10 @@
+﻿@mixin modify-cover-as-not-taken-up($selector, $modifying-selector){
+    #{$selector} {
+		&#{$modifying-selector}{
+            .selected-premium-value {
+                text-decoration: line-through;
+                color: $colour-greyscale-76;
+            }
+		}
+	}
+}

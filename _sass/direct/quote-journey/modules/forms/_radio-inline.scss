@@ -1,0 +1,41 @@
+@mixin radio-inline($selector) {
+
+    #{$selector}{
+
+        label{
+
+            padding: $grid-unit*1.5 $grid-unit*2;
+            text-align: left;
+            display: table;
+            @include respond-to($palm-only){
+                margin-top: $grid-unit;
+            }
+
+
+            span.fake-radio-button{
+
+                &:before{
+
+                    margin: 0;
+
+
+                }
+
+                display: table-cell;
+                padding-right: $grid-unit;
+                margin: 0 $grid-unit 0 0;
+                vertical-align: middle;
+
+
+            }
+
+
+        }
+
+
+
+
+    }
+}
+
+@include radio-inline('.question-multiple-choice-exclusive .radio-option');

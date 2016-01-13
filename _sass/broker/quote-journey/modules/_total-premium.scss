@@ -1,0 +1,57 @@
+@mixin total-premium($selector){
+    #{$selector}{
+        @include clearfix;
+        padding: $grid-unit/2 0;
+        @include respond-to($lap-and-desk) {
+            padding: 2*$grid-unit 0;
+        }
+        border-top: 1px solid $colour-greyscale-63;
+        border-bottom: 1px solid $colour-greyscale-63;
+
+        dl {
+            dt {
+                float: left;
+            }
+            dd {
+                float: right;
+            }
+        }
+        .premium {
+            dt, dd {
+                @include span-columns($one-half);
+                @include set-text-as(beta);
+                color: $colour-greyscale-24;
+                font-weight: bold;
+            }
+            dt {
+                @include set-text-as(beta, $margins-overrides: zero-both);
+            }
+            dd {
+                float: right;
+                @include set-text-as(alpha, $margins-overrides: zero-both);
+                text-align: right;
+
+            }
+        }
+        .retained-premium {
+            color: $colour-greyscale-63;
+            dt, dd {
+                display: inline;
+            }
+            dd {
+                margin-left: $grid-unit/2;
+                float: left;
+            }
+        }
+        @include respond-to-print(){
+            border-bottom: none;
+            padding: $grid-unit*2 0;
+            .retained-premium dd {
+                margin-left: $grid-unit/4;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+@include total-premium(".total-premium");

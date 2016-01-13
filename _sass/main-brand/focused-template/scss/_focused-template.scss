@@ -1,0 +1,10 @@
+@mixin focused-template($selector){
+  #{$selector}{
+    @include respond-to($lap-and-desk){
+      width:50%;
+      margin: 0 auto;
+
+    }
+  }
+}
+@include focused-template(".focused-template");

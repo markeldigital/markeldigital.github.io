@@ -1,0 +1,135 @@
+@mixin expander-styles-a($selector){
+    #{$selector}{
+        #{$selector}__trigger {
+            display: block;
+            margin-right: 1.5*$grid-unit;
+            i {
+                margin-right: $grid-unit;
+                @include icon-interaction($colour-white,$colour-interaction-100);
+            }
+        }
+
+        &.ds-expander--open #{$selector}__trigger {
+            i {
+                &.hover, &:hover {
+                    background-color: darken($colour-interaction-100, 10);
+                    @include transition($standard-transition-animation);
+                }
+                &:before {
+                    @include icon-content-for-name("angle-down");
+                    color: $colour-white;
+                }
+            }
+        }
+    }
+}
+
+@mixin expander-styles-b($selector){
+    #{$selector}{
+
+        border-top: 1px solid $colour-greyscale-88;
+        &:last-of-type {
+            border-bottom: 1px solid $colour-greyscale-88;
+        }
+        #{$selector}__trigger {
+            padding: 2*$grid-unit 0;
+            display: block;
+            text-decoration: none;
+            color: $colour-greyscale-24;
+            h3 {
+                @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+                display: table;
+                width: 100%;
+                span {
+                    display: table-cell;
+                }
+                i {
+                    display: table-cell;
+                    vertical-align: middle;
+                    line-height: 1;
+                    &:before {
+                        @include set-text-as(gamma, $responsive-text: false, $margins-overrides: zero-both);
+                        @include transition(transform 0.25s ease-in-out);
+                        color: $colour-greyscale-24;
+                        line-height: 1;
+                    }
+                }
+            }
+        }
+        &.ds-expander--open #{$selector}__trigger {
+            h3 {
+                color: $colour-greyscale-24;
+                i:before {
+                    @include icon-content-for-name("plus");
+                    @include set-text-as(gamma, $responsive-text: false, $margins-overrides: zero-both);
+                    @include transition(transform 0.25s ease-in-out);
+                    @include transform(rotate(45deg));
+                    color: $colour-greyscale-24;
+                    line-height: 1;
+                }
+            }
+        }
+    }
+}
+
+@mixin expander-styles($selector, $style-variant){
+    .js #{$selector} {
+        #{$selector}__content {
+            display: none;
+        }
+        &.ds-expander--open #{$selector}__content {
+            display: block;
+        }
+    }
+
+    @if($style-variant == style-a){
+        @include expander-styles-a($selector);
+    } @else if($style-variant == style-b){
+        @include expander-styles-b($selector);
+    }
+}
+
+
+// TODO: deprecated. Need to gradually replace cases that use this with the version above where the styles classes are not connected to the JS classes.
+@mixin expander($selector){
+    #{$selector}{
+        i {
+            margin-right: $grid-unit;
+           @include icon-interaction($colour-white,$colour-interaction-100);
+        }
+        &.open > a i {
+            &.hover, &:hover {
+                background-color: darken($colour-interaction-100, 10);
+                @include transition($standard-transition-animation);
+            }
+        }
+        &.open > a i:before {
+            @include icon-content-for-name("angle-down");
+            color: $colour-white;
+        }
+
+        a.expander-trigger {
+          display: block;
+          margin-right: 1.5*$grid-unit;
+        }
+
+        @include respond-to-print(){
+            a.expander-trigger {
+                display: none;
+            }
+                & > a i:before {
+                @include icon-content-for-name("angle-down");
+                color: $colour-white;
+            }
+            .expander-content {
+                display: block !important;
+            }
+        }
+    }
+}
+
+// TODO: deprecated. Use expander-styles mixin instead.
+@include expander(".expander");
+
+@include expander-styles(".ds-expander-style-a", $style-variant: style-a);
+@include expander-styles(".ds-expander-style-b", $style-variant: style-b);

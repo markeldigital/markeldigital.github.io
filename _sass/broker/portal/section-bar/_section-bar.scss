@@ -1,0 +1,14 @@
+@mixin section-bar($selector){
+    #{$selector} {
+        h1 {
+            display:inline;
+            float:left;
+
+        }
+        button {
+            display:inline;
+            float: right;
+            margin-top: 7*$grid-unit;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+@mixin respond-to($human-factor){
+    @include media($human-factor){
+        @content;
+    }
+}
+
+@mixin respond-to-print(){
+    @media print{
+        @content;
+    }
+}

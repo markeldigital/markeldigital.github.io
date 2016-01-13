@@ -1,0 +1,10 @@
+@mixin cover-options-radio($selector) {
+
+    #{$selector} {
+
+
+
+    }
+}
+
+@include cover-options-radio('.cover-options-radio');

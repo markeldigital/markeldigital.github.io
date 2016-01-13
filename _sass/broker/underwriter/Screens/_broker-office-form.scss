@@ -1,0 +1,9 @@
+@mixin addBroker($selector){
+	@include form-element($selector, basic-input);
+    #{$selector}{
+		width: 100%;
+    }
+}
+
+@include addBroker('#ProducingOffice');
+

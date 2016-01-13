@@ -1,0 +1,45 @@
+@mixin header-box($bem-module-name){
+    // Block
+    #{$bem-module-name} {
+        // Elements
+        #{$bem-module-name}__header {
+            @include set-text-as(gamma, $margins-overrides: zero-both);
+        }
+        #{$bem-module-name}__content {
+            #{$bem-module-name}__content-first {
+                margin-top: 0;
+            }
+            #{$bem-module-name}__content-last {
+                margin-bottom: 0;
+            }
+        }
+
+        // Modifiers
+        &#{$bem-module-name}--style-1 {
+            border: 1px solid $colour-greyscale-88;
+            border-radius: $standard-curvature;
+            #{$bem-module-name}__header {
+                background-color: $colour-greyscale-98;
+            }
+            #{$bem-module-name}__content {
+                border-top: 1px solid $colour-greyscale-88;
+            }
+        }
+        &#{$bem-module-name}--size-m {
+            #{$bem-module-name}__header {
+                padding: $grid-unit 2*$grid-unit;
+                @include respond-to($lap-and-desk){
+                    padding: $grid-unit 3*$grid-unit;
+                }
+            }
+            #{$bem-module-name}__content {
+                padding: $grid-unit 2*$grid-unit;
+                @include respond-to($lap-and-desk){
+                    padding: 2*$grid-unit 3*$grid-unit;
+                }
+            }
+        }
+    }
+}
+
+@include header-box(".header-box");

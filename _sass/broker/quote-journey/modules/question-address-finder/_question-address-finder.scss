@@ -1,0 +1,31 @@
+@import "lib/_captureplus-2.30.min.scss";
+@import "post-code-anywhere-overrides";
+@include post-code-anywhere-overrides('.pca');
+
+@mixin question-address-finder($selector){
+    #{$selector}{
+		.direct-search-wrapper {
+			position: relative;
+            input {
+				width: 100%			
+			}
+            &:after {
+                @include icon-content-for-name("search");
+                position: absolute;
+                right: 1.5*$grid-unit;
+                top: 1.5*$grid-unit;
+                background: $colour-white;
+                color: $colour-greyscale-51;
+                pointer-events: none;
+            }
+		}
+        .selected-address {
+            margin-top: $grid-unit;
+            span {
+                display: block;
+            }
+        }
+    }
+}
+
+@include question-address-finder(".address-finder");

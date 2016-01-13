@@ -1,0 +1,72 @@
+﻿// https://github.com/joshfry/omega-reset-for-bourbon-neat/
+@mixin omega-reset($nth) {
+	&:nth-child(#{$nth}) { margin-right: flex-gutter($grid-columns, $gutter); }
+	&:nth-child(#{$nth}+1) { clear: none }
+}
+
+@mixin footer-navigation($selector){
+	#{$selector}{
+		background-color: $colour-greyscale-39;
+		color: $colour-white;
+        @include list-as-plain("ul");
+        
+        > div > div {
+			h5 {
+				text-transform: uppercase;
+				letter-spacing: 1px;
+			}
+			@include respond-to($lap-and-desk) {
+				@include display(flex);
+			}
+        }
+
+        > div > div > div {
+			@include span-columns($one-half);
+			@include omega(2n);
+			padding-bottom: 2*$grid-unit;
+			@include respond-to($lap-and-desk){
+				margin-right: 0;
+
+				// IE9 Only hacks that emulate grid-framework
+				display: block\9;
+				width: 23.07%\9;
+				margin-right: 2.56%\9;
+				&:nth-child(2n){
+					margin-right: 2.56%\9;
+				}
+				float: left\9;
+				&:nth-child(2n+1){
+					clear: none\9;
+				}
+				&:nth-child(4n){
+					margin-right: 0\9;
+				}
+
+
+				@include flex(1);
+				padding-right: 2*$grid-unit;
+				padding-bottom: 0;
+				&:last-of-type {
+					padding-right: 0;
+				}
+			}
+
+        }
+
+        h5{
+            font-weight:600;
+        }
+		a {
+			color: $colour-white;
+            text-decoration: none;
+			&:hover, &:focus, &:active {
+				color: $colour-greyscale-94;
+			}
+		}
+		p:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+}
+
+@include footer-navigation('.footer-navigation');

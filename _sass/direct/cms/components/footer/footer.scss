@@ -1,0 +1,10 @@
+﻿@import 'footer-components/footer-main';
+@import 'footer-components/footer-navigation';
+
+
+@mixin footer($selector){
+	#{$selector}{
+	}
+}
+
+@include footer('.footer');

@@ -1,0 +1,26 @@
+@mixin split-actions($selector, $alignment-style) {
+    #{$selector} {
+        clear: both;
+        width: 100%;
+        margin-bottom: $grid-unit;
+        margin-top: $grid-unit*3;
+        @include clearfix;
+        .first-action {
+            float: left;
+        }
+        @include respond-to($palm-only) {
+            &--no-margin {
+                margin: 0;
+            }
+        }
+        .last-action {
+            @include respond-to($lap-and-desk) {
+                float: right;
+            }
+        }
+        @include respond-to-print() {
+            display: none;
+        }
+    }
+}
+@include split-actions(".split-actions", far-edges);

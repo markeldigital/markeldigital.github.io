@@ -1,0 +1,64 @@
+@mixin logo($selector, $options){
+    #{$selector} {
+        display: map_get($options, 'block-style');
+        position: map_get($options, "mobile-position");
+        z-index: map_get($options, "z-index");
+        padding: map_get($options, "mobile-padding");
+        width: map_get($options, "mobile-width");
+        height: map_get($options, "mobile-height");
+        margin: 0 map_get($options, "mobile-clearance");
+        background-color: map_get($options, "background-color");
+        @include respond-to(map_get($options, "collapsed-menu-breakpoint-lap-and-desk")) {
+            position: relative;
+            float: left;
+            width: map_get($options, "tablet-width");
+            height: map_get($options, "tablet-height");
+            margin: 0 map_get($options, "tablet-clearance") 0 0;
+            padding: map_get($options, "tablet-padding");
+        }
+        @include respond-to($desk-only){
+            position: absolute;
+            float: none;
+            left: map_get($options, "desktop-left");
+            width: map_get($options, "desktop-width");
+            height: map_get($options, "desktop-height");
+            margin: 0;
+            padding: map_get($options, "desktop-padding");
+        }
+        img{
+            width: auto;
+            max-width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            &.black-logo{
+                display: none;
+            }
+        }
+        &:hover{
+            background-color: map_get($options, "hover-background-color");
+        }
+        @include respond-to-print(){
+            float: none;
+            img{
+                &.white-logo{
+                    display: none;
+                }
+                &.black-logo{
+                    display: block;
+                }
+            }
+        }
+
+		//Centers the logo as this is left by -72px by default
+
+		&--center{
+
+			left: 0;
+			max-width: 100% !important;
+			width: auto !important;
+
+
+		}
+    }
+}
+

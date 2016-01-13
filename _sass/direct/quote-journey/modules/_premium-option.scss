@@ -1,0 +1,25 @@
+﻿@mixin premium-option($selector){
+	#{$selector}{
+		float: left;
+		width: 100%;
+		text-align: center;
+		background: none;
+        @include respond-to($lap-and-desk) {
+			float: left;
+			margin: 0 0 0 0;
+			text-align: right;
+		}
+
+		.basis {
+			display: inline-block;
+			margin: 10px 0 0 0;
+			font-size: 1.375rem;
+			.basis-description {
+				font-size: 0.75rem;
+			}
+		}
+	}
+
+}
+
+@include premium-option(".indemnity-container");

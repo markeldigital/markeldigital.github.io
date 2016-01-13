@@ -1,0 +1,13 @@
+@mixin intro-text($selector) {
+
+    #{$selector} {
+        @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+            padding-top: $grid-unit;
+            padding-bottom: $grid-unit*3;
+            font-weight: 400;
+            font-style: italic;
+    }
+
+}
+
+@include intro-text('.intro-text');

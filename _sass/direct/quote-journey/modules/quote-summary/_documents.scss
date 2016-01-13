@@ -1,0 +1,61 @@
+@mixin documents($selector){
+    #{$selector} {
+        padding: $grid-unit*2 0 0 0;
+
+        @include respond-to($lap-and-desk){
+            padding: $grid-unit*2 0;
+            border-bottom: 1px solid $colour-greyscale-88;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li {
+                margin-bottom: $grid-unit;
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+                a {
+                    color: $colour-greyscale-24;
+                    display: block;
+                    overflow: hidden;
+                    &:hover, &:focus, &:active {
+                        background-color: $colour-greyscale-96;
+                        outline: $grid-unit solid $colour-greyscale-96;
+                    }
+                    .documents__icon {
+                        float: left;
+                        display: block;
+                        margin-right: $grid-unit;
+                        overflow: hidden;
+                        height: 100%;
+
+                        img {
+                            display: block;
+                            @include set-graphic-as(gamma, $type: image);
+                        }
+                    }
+                    p {
+                        @include set-text-as(delta, $responsive-text: false, $reduced: true, $margins-overrides: zero-bottom);
+                        overflow: hidden;
+                        margin-top: 6px;
+
+                    }
+                }
+                &.loading {
+                    background-color: $colour-greyscale-96;
+                    outline: $grid-unit solid $colour-greyscale-96;
+                    .documents__icon img {
+                        visibility: hidden;
+                    }
+                }
+            }
+        }
+    }
+    .no-smil #{$selector} ul li a .documents__icon img {
+        height: inherit; // TODO: Ideally find a better way of providing this only to IE 9-11. This causes a small icon problem in Chrome etc if included.
+    }
+}
+
+@include documents(".documents");

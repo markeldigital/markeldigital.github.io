@@ -1,0 +1,78 @@
+@mixin design-system-screen($selector) {
+    #{$selector} {
+
+        .design-system-dev-notes {
+            code {
+                font-family: monospace;
+            }
+        }
+
+        .design-system-example {
+            display: inline-block;
+            margin: 30px 0 10px 0;
+            clear: both;
+            color: $colour-brand-primary;
+        }
+
+        .graphics-hierarchy {
+            img:nth-of-type(1) {
+                @include set-graphic-as(jumbo, $type: image);
+            }
+            img:nth-of-type(2) {
+                @include set-graphic-as(alpha, $type: image);
+            }
+            img:nth-of-type(3) {
+                @include set-graphic-as(beta, $type: image);
+            }
+            img:nth-of-type(4) {
+                @include set-graphic-as(gamma, $type: image);
+            }
+            img:nth-of-type(5) {
+                @include set-graphic-as(delta, $type: image);
+            }
+            img:nth-of-type(6) {
+                @include set-graphic-as(epsilon, $type: image);
+            }
+        }
+
+        .typography-hierarchy {
+            .jumbo { @include set-text-as(jumbo); }
+            .alpha { @include set-text-as(alpha); }
+            .beta { @include set-text-as(beta); }
+            .gamma { @include set-text-as(gamma); }
+            .delta { @include set-text-as(delta); }
+            .epsilon { @include set-text-as(epsilon); }
+
+            .jumbo.reduced { @include set-text-as(jumbo, $reduced: true); }
+            .alpha.reduced { @include set-text-as(alpha, $reduced: true); }
+            .beta.reduced { @include set-text-as(beta, $reduced: true); }
+            .gamma.reduced { @include set-text-as(gamma, $reduced: true); }
+            .delta.reduced { @include set-text-as(delta, $reduced: true); }
+            .epsilon.reduced { @include set-text-as(epsilon, $reduced: true); }
+
+            .jumbo.strong { @include set-text-as(jumbo, $strength: strong); }
+            .alpha.strong { @include set-text-as(alpha, $strength: strong); }
+            .beta.strong { @include set-text-as(beta, $strength: strong); }
+            .gamma.strong { @include set-text-as(gamma, $strength: strong); }
+            .delta.strong { @include set-text-as(delta, $strength: strong); }
+            .epsilon.strong { @include set-text-as(epsilon, $strength: strong); }
+
+            .jumbo.weak { @include set-text-as(jumbo, $strength: weak); }
+            .alpha.weak { @include set-text-as(alpha, $strength: weak); }
+            .beta.weak { @include set-text-as(beta, $strength: weak); }
+            .gamma.weak { @include set-text-as(gamma, $strength: weak); }
+            .delta.weak { @include set-text-as(delta, $strength: weak); }
+            .epsilon.weak { @include set-text-as(epsilon, $strength: weak); }
+
+            .jumbo.strong-weak { @include set-text-as(jumbo, $strength: strong-weak); }
+            .alpha.strong-weak { @include set-text-as(alpha, $strength: strong-weak); }
+            .beta.strong-weak { @include set-text-as(beta, $strength: strong-weak); }
+            .gamma.strong-weak { @include set-text-as(gamma, $strength: strong-weak); }
+            .delta.strong-weak { @include set-text-as(delta, $strength: strong-weak); }
+            .epsilon.strong-weak { @include set-text-as(epsilon, $strength: strong-weak); }
+        }
+    }
+
+}
+
+@include design-system-screen(".design-system-library-screen");

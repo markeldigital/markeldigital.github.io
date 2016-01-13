@@ -1,0 +1,28 @@
+// Template for 'twins' layout (see design system)...do not add styles unrelated to the layout.
+@mixin twins-template($selector, $primary-twin, $secondary-twin){
+    #{$selector}{
+        @include row();
+
+        #{$primary-twin}, #{$secondary-twin} {
+            @include fill-parent;
+            margin-bottom: $grid-unit;
+            @include respond-to($lap-and-desk){
+                @include span-columns($one-half);
+            }
+        }
+
+        #{$primary-twin} {
+            @include respond-to($lap-and-desk){
+                @include pad(0 2*$gutter 0 0);
+            }
+        }
+
+        #{$secondary-twin} {
+            @include respond-to($lap-and-desk){
+                @include pad(0 0 0 2*$gutter);
+            }
+        }
+    }
+}
+
+@include twins-template(".twins-template", ".primary-twin", ".secondary-twin");

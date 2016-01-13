@@ -1,0 +1,24 @@
+@mixin policy-confirmation-screen($selector) {
+    #{$selector} {
+        @include grid-width();
+
+        h1 {
+            display: block;
+            *[class^='icon-'] {
+                @include set-text-as(alpha);
+                color: $success-colour-100;
+                display: inline-block;
+                width: auto;
+                margin-left: 3*$grid-unit;
+                background: transparent;
+            }
+        }
+
+        .policy-no, .minimum-retained-premium {
+            margin-left: $grid-unit;
+        }
+    }
+
+}
+
+@include policy-confirmation-screen(".policy-confirmation-screen");

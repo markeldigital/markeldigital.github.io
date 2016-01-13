@@ -1,0 +1,11 @@
+﻿@mixin underwriter-dashboard($selector){
+    #{$selector}{
+        .panel-beta {
+            padding-bottom: 0;
+            padding-top: 0;
+            border-bottom: $grid-unit/2 solid $colour-greyscale-92;
+        }
+    }
+}
+
+@include underwriter-dashboard(".dashboard-page");

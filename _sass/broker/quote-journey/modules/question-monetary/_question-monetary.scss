@@ -1,0 +1,7 @@
+@mixin question-monetary($selector){
+    #{$selector}{
+        @include input-and-unit(".input-and-unit");
+    }
+}
+
+@include question-monetary(".question-monetary");

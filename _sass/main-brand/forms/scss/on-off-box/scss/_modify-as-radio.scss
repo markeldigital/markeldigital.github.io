@@ -1,0 +1,25 @@
+@mixin modify-as-radio($selector) {
+    $size: $medium-spacer;
+    $border: $grid-unit/2 solid $colour-greyscale-88;
+
+    #{$selector} {
+        label {
+            .fake-radio-button:before {
+                width: $size;
+                height: $size;
+                background-color: $colour-greyscale-88;
+                border-radius: 50%;
+                border: $border;
+            }
+        }
+
+        input[type=radio] {
+            &:checked + label {
+                .fake-radio-button:before {
+                    background-color: $colour-black;
+                }
+            }
+        }
+    }
+}
+

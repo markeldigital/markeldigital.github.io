@@ -1,0 +1,142 @@
+@import "helpers/percentages-connector-line";
+@import "breakdown-feedback";
+
+@mixin question-percentage-breakdown($selector){
+    $label-selector-palm-size: $three-fifths;
+    $label-selector-lap-size: 7*$one-twelfth;
+    $label-selector-desk-size: $three-quarters;
+    $percentages-palm-size: $two-fifths;
+    $percentages-lap-size:  5*$one-twelfth;
+    $percentages-desk-size: $one-quarter;
+
+    #{$selector}{
+        @include clearfix;
+
+        .question-options {
+            position: relative;
+            @include percentages-connector-line();
+            @include clearfix;
+        }
+
+        &.question-error .question-options {
+            @include percentages-connector-line($error-colour-100);
+        }
+        &.question-success .question-options {
+            @include percentages-connector-line($success-colour-100);
+        }
+
+		.option {
+			position: relative;
+			z-index: 2;
+            margin: 0 0 $grid-unit 0;
+            overflow: hidden;
+            .additional-content {
+                @include set-text-as(delta, $reduced: true, $margins-overrides: zero-both);
+                @include span-columns($label-selector-palm-size);
+                @include respond-to($lap-and-desk){
+                    @include span-columns($label-selector-lap-size);
+                }
+                @include respond-to($desk-only){
+                    @include span-columns($label-selector-desk-size);
+                }
+                @include pad($grid-unit/2 4*$grid-unit 0 0);
+            }
+		}
+        legend {
+            display: block;
+        }
+
+        $text-size: body;
+		.label-selector {
+            @include span-columns($label-selector-palm-size);
+            @include respond-to($lap-and-desk){
+                @include span-columns($label-selector-lap-size);
+            }
+            @include respond-to($desk-only){
+                @include span-columns($label-selector-desk-size);
+            }
+            display: inline-block;
+            vertical-align: middle;
+			select, label {
+                display: inline-block;
+                vertical-align: middle;
+			}
+			select {
+				width: 100%;
+			}
+		}
+        label {
+            $border-size: 1px;
+            position: relative;
+            @include set-text-as($text-size, $margins-overrides: zero-bottom);
+            @include padding-for-form-element($standard-touch-size, $text-size, $border-size);
+            padding-right: $standard-touch-size;
+            border: $border-size solid $colour-greyscale-94;
+            width: 100%;
+            background-color: $colour-white;
+            .remove {
+                position: absolute;
+                right: $standard-touch-size / 4.5;
+                top: $standard-touch-size / 4.5;
+                i {
+                     @include icon-interaction($colour-white,$colour-interaction-100);
+                    &:before {
+                        position: relative;
+                    }
+                }
+            }
+        }
+
+		.input-and-unit {
+            @include span-columns($percentages-palm-size);
+            @include respond-to($lap-and-desk){
+                @include span-columns($percentages-lap-size);
+            }
+            @include respond-to($desk-only){
+                @include span-columns($percentages-desk-size);
+            }
+        }
+
+        @include input-and-unit(".input-and-unit");
+
+        .input-and-unit input {
+            //hack to fix the awkward display of percentages in mobiles
+            @include respond-to($palm-only) {
+                padding-left: $grid-unit;
+                padding-right: $grid-unit;
+            }
+        }
+
+
+        @include breakdown-feedback(".breakdown-feedback", $options: (
+                "percentages-palm-size": $percentages-palm-size,
+                "percentages-lap-size": $percentages-lap-size,
+                "percentages-desk-size": $percentages-desk-size,
+        ));
+
+        .add-another {
+			$add-another-text-size: delta;
+            position: relative;
+            display: inline-block;
+            @include set-text-as($add-another-text-size, $margins-overrides: zero-bottom);
+            @include padding-for-form-element($standard-touch-size, $add-another-text-size, 0);
+            padding-left: 0;
+            padding-bottom: 0;
+            i {
+                background-color: $colour-interaction-100;
+                color: $colour-white;
+                margin-right: $grid-unit;
+                &.hover, &:hover {
+                    background-color: darken($colour-interaction-100, 10);
+                    @include transition($standard-transition-animation);
+                }
+                &:before {
+                    position: relative;
+                }
+            }
+
+		}
+    }
+}
+
+@include question-percentage-breakdown(".question-percentage-breakdown");

@@ -1,0 +1,82 @@
+@mixin mobile-trigger($selector, $options, $collapsed-menu-breakpoints){
+
+    $transition-speed: 0.3s;
+
+    #{$selector} {
+        @include respond-to(map_get($collapsed-menu-breakpoints, "collapsed-menu-breakpoint-lap-and-desk")) {
+            display: none;
+        }
+        padding-#{map_get($options, "alignment")}: 2*$grid-unit;
+        @include transition(none);
+        .text-when-open {
+            display: none;
+        }
+        i{
+            width: $grid-unit*2;
+        }
+        $burger-line-height: 2px;
+        $burger-line-width: 20px;
+        .special-menu-icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 $burger-line-height;
+            &, &:before, &:after {
+                width: $burger-line-width !important;
+                height: $burger-line-height;
+                background: $colour-greyscale-39;
+                border-radius: $burger-line-height*2;
+                transition:  all $transition-speed;
+            }
+            &:before, &:after{
+                display: block;
+                content: '';
+                position: relative;
+            }
+            &:before{
+                @include transform(translateY(-5px) rotate(0deg));
+            }
+            &:after{
+                @include transform(translateY(3px) rotate(0deg));
+            }
+        }
+    }
+    &.open #{$selector} {
+        @include respond-to(map_get($collapsed-menu-breakpoints, "collapsed-menu-breakpoint-lap-and-desk")){
+            display: none;
+        }
+        border: none;
+        position: map_get($options, "open-position");
+        height: $menu-palm-height;
+        box-shadow: map_get($options, "open-box-shadow");
+        top:0;
+        left: 0;
+        width: 100%;
+        text-align: map_get($options, "alignment");
+        background-color: $colour-white;
+        .special-menu-icon {
+            color: $colour-greyscale-39;
+            @include transition(none);
+        }
+        .text-when-open{display: inline;}
+        .text-when-closed{display: none;}
+
+        .special-menu-icon, .special-menu-icon:before,  .special-menu-icon:after {
+            transition:  all $transition-speed;
+        }
+
+        .special-menu-icon {
+            background: transparent;
+            &:before{
+                top:0;
+                @include transform(translateY(0px) rotate(45deg));
+            }
+            &:after{
+                bottom: 0;
+                @include transform(translateY(-2px) rotate(-45deg));
+            }
+        }
+        span, i {
+            opacity: 1;
+        }
+    }
+}

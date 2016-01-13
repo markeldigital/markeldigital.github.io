@@ -1,0 +1,62 @@
+﻿@mixin related-articles-block($selector) {
+    #{$selector} {
+        margin-top: $grid-unit*5;
+        @include list-as-plain("li");
+
+        li {
+            padding: 2*$grid-unit 0;
+            &:first-of-type {
+                border-top: 1px solid $colour-greyscale-88;
+            }
+            @include respond-to($lap-and-desk){
+                &:nth-of-type(2) {
+                    border-top: 1px solid $colour-greyscale-88;
+                }
+            }
+            border-bottom: 1px solid $colour-greyscale-88;
+            @include clearfix;
+            @include respond-to($lap-and-desk){
+                @include span-columns($one-half);
+                @include omega(2n);
+            }
+            .related-article-image {
+                float: left;
+                margin-right: 2*$grid-unit;
+                @include respond-to($lap-and-desk){
+                    margin-right: 3*$grid-unit;
+                }
+                img {
+                    display: block;
+                    object-fit: cover;
+                    display: table-cell;
+                    width: 14*$grid-unit;
+                    max-height: 9*$grid-unit;
+                    min-height: 9*$grid-unit;
+                    @include respond-to($lap-and-desk){
+                        width: 17*$grid-unit;
+                        max-height: 11*$grid-unit;
+                        min-height: 11*$grid-unit;
+                    }
+                }
+            }
+            .related-article-content {
+                margin-left: 16*$grid-unit;
+                @include respond-to($lap-and-desk){
+                    margin-left: 20*$grid-unit;
+                }
+                h3 {
+                    @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+                    a {
+                        color: $colour-greyscale-24;
+                        text-decoration: none;
+                        &:hover, &:active, &:focus {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+ 
+@include related-articles-block(".related-articles-block"); 

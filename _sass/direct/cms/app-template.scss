@@ -1,0 +1,136 @@
+/*
+Design System (main-brand & sub-brand)
+*/
+@import "../../main-brand/common/scss/common-third-party-libraries";
+@import "../../main-brand/common/scss/vars/global-vars";
+@import "component-vars-overrides";
+// Overrides for component vars
+@import "../../main-brand/common/scss/vars/component-vars";
+@import "../../main-brand/common/scss/common-markel";
+/*
+    Modules
+*/
+// Not order dependent //TODO: need to work out which of these have dependencies on the others and either remove the dependencies or put them together in one module.
+@import '../../main-brand/iconography/scss/_iconography';
+@import '../../main-brand/menu/scss/_menu';
+@import '../../main-brand/forms/scss/form-element';
+@import '../../main-brand/forms/scss/search/scss/_search';
+@import '../../main-brand/chrome-and-content/scss/_chrome-and-content';
+@import '../../main-brand/panels/scss/_panels';
+@import '../../main-brand/buttons/scss/_buttons';
+@import '../../main-brand/expander-list/scss/_expander-list.scss';
+@import '../../main-brand/expander/scss/_expander.scss';
+@import '../../main-brand/card/scss/_card.scss'; 
+@import "../../main-brand/skip-navigation/scss/skip-navigation.scss";
+@import '../../main-brand/forms/scss/simple-form.scss';
+@import '../../main-brand/forms/scss/error-message/scss/error-message.scss';
+
+/*
+*   CMS specific
+*/
+// Layouts
+@import 'layout-types/content-and-sidebar-layout/content-and-sidebar-layout';
+@import 'layout-types/two-plus-one-horizontal-axis-layout/two-plus-one-horizontal-axis-layout';
+@import 'layout-types/embedded-layout/embedded-layout';
+// components
+@import 'components/global-site-search/global-site-search';
+@import 'components/sidebar-content/sidebar-content';
+@import 'components/direct-panel/direct-panel';
+@import 'components/footer/footer';
+@import 'components/header-box/header-box';
+@import 'components/sharing-tools/sharing-tools';
+@import 'components/breadcrumbs/breadcrumbs';
+@import 'components/documents/scss/documents';
+// Pages
+@import 'page-types/home-page/home-page';
+@import 'page-types/product-page/product-page';
+@import 'page-types/article-list-page/article-list-page';
+@import 'page-types/article-page/article-page';
+@import 'page-types/editorial-page/editorial-page.scss';
+@import 'page-types/product-line-page/product-line-page';
+@import 'page-types/contact-form-page/contact-form-page';
+@import 'page-types/search-results-page/search-results-page';
+@import 'page-types/ppc-page/ppc-page';
+@import 'page-types/britains-best-volunteer-page/britains-best-volunteer-page';
+// Blocks
+
+// Header hero blocked moved to design system as it's reused in Direct.
+@import "../../main-brand/block-types/header-hero-block/header-hero-block.scss";
+
+@import 'block-types/related-articles-block/related-articles-block';
+@import 'block-types/call-to-action-block/call-to-action-block';
+@import 'block-types/rating-block/rating-block';
+@import 'block-types/help-block/help-block';
+@import 'block-types/documents-block/document-block';
+@import 'block-types/bullet-list-block/bullet-list-block.scss';
+@import 'block-types/html-bullet-list-block/html-bullet-list-block.scss';
+@import 'block-types/list-item-expander-block/list-item-expander-block.scss';
+@import 'block-types/hero-block/hero-block.scss';
+@import 'block-types/trustmark-block/trustmark-block.scss';
+@import 'block-types/card-block/card-block.scss';
+@import 'block-types/horizontal-trustmark-block/horizontal-trustmark-block.scss';
+@import 'block-types/editorial-block/editorial-block.scss';
+@import 'block-types/sub-menu-block/sub-menu-block.scss';
+@import 'block-types/main-actions-block/main-actions-block.scss';
+@import 'block-types/follow-us-block/follow-us-block.scss';
+@import 'block-types/feefo-block/feefo-block.scss';
+@import 'block-types/sidebar-update-block/sidebar-update-block';
+@import 'block-types/call-to-action-side-block/call-to-action-side-block';
+@import 'block-types/call-to-action-side-bbv-block/call-to-action-side-bbv-block';
+
+/*
+* Scrap and hacky CSS until Nick reworks it into smeth sensible
+*/
+// TODO: needs moving into design system for global banner.
+.global-banner {
+
+    // TODO: move this into it's own module or into the design system.
+    .logo-and-primary-navigation-and-utility-navigation a.logo {
+        $larger-than-burger-menu-breakpoint: new-breakpoint(min-width map_get($global-banner-options, "collapsed-menu-breakpoint") $grid-columns);
+        @include respond-to($collapsed-menu-breakpoint-lap-and-desk) {
+            position: static;
+            float: left;
+        }
+        @include respond-to($desk-only) {
+            position: relative;
+        }
+        display: inline-block;
+        padding-left: 0;
+        padding-right: 0;
+        max-width: 50%; // FF fix. TODO: find root cause of this problem and fix there instead?
+        img {
+            width: auto;
+        }
+    }
+
+    // TODO: needs moving into design system...perhaps extract 'primary-and-utility-navigation-content' as a generic component called eg. '.menubar' that could then be used elsewhere too.
+    .primary-navigation-and-utility-navigation {
+        border-top: 1px solid $colour-greyscale-88;
+    }
+    .primary-navigation-and-utility-navigation-content {
+        $larger-than-burger-menu-breakpoint: new-breakpoint(min-width map_get($global-banner-options, "collapsed-menu-breakpoint") $grid-columns);
+        @include respond-to($larger-than-burger-menu-breakpoint) {
+            @include grid-width;
+        }
+    }
+}
+
+// License messes up navigation (TODO: remove this...)
+div[style^="z-index: 30000;"] {
+    display: none;
+}
+
+.content {
+    margin-bottom: 0;
+}
+
+// TODO: See if there's a better place for this
+
+h3 {
+    &.intro {
+        margin-bottom: 1.5*$grid-unit;
+        @include respond-to($lap-and-desk) {
+            margin-bottom: 3*$grid-unit;
+        }
+    }
+}

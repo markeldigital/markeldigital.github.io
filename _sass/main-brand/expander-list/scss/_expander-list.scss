@@ -1,0 +1,12 @@
+@mixin expander-list($selector){
+
+    @include list-as-plain($selector);
+
+    #{$selector}{
+        > li {
+            margin-bottom: 0;
+        }
+    }
+}
+
+@include expander-list(".ds-expander-list");

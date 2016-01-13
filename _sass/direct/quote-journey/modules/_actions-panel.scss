@@ -1,0 +1,66 @@
+@mixin actions-panel($selector){
+    #{$selector}{
+        overflow: hidden;
+        margin: 2*$grid-unit 0;
+        padding: $grid-unit;
+        @include respond-to($lap-and-desk){
+            padding: 2*$grid-unit;
+        }
+        background-color: $colour-interaction-10;
+        border: 1px solid $colour-interaction-100;
+        border-radius: $standard-curvature;
+        width: 100%;
+		
+		.actions-panel-text {
+            display: inline-block;
+            width: 100%;
+            vertical-align: middle;
+            @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+            line-height: map_get(get-base-text-properties-for(alpha), "font-size");
+            @include respond-to($lap-and-desk){
+                width: auto;
+                @include set-text-as(gamma, $margins-overrides: zero-both);
+                line-height: map_get(get-base-text-properties-for(alpha), "font-size");
+            }
+            text-align: center;
+            i {
+                margin-right: $grid-unit;
+                @include respond-to($lap-and-desk){
+                    margin-right: 2*$grid-unit;
+                }
+                @include set-graphic-as(beta, $type: icon);
+                vertical-align: middle;
+                color: $colour-interaction-100;
+            }
+		}
+
+		.actions {
+            display: block;
+            float: right;
+            width: 100%;
+			margin: 0;
+            @include respond-to($lap-and-desk){
+                margin: 0 0 0 2*$grid-unit;
+                width: auto;
+            }
+            padding: 0;
+            list-style-type: none;
+			li {
+				display: inline-block;
+                width: 100%;
+                margin: 0 0 $grid-unit 0;
+                padding: 0;
+                @include respond-to($lap-and-desk){
+                    margin: 0 $grid-unit 0 0;
+                    width: auto;
+                }
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+			}
+			
+		}
+    }
+}
+
+@include actions-panel(".actions-panel");

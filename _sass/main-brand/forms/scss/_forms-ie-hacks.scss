@@ -1,0 +1,9 @@
+@mixin forms-ie-hacks($selector){
+    #{$selector}{
+        &::-ms-clear {
+            display: none;
+        }
+    }
+}
+
+@include forms-ie-hacks("input");

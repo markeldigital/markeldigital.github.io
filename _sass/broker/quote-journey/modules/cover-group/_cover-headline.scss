@@ -1,0 +1,86 @@
+﻿@mixin cover-headline($selector){
+    #{$selector} {
+        @include clearfix;
+        overflow: hidden;
+        vertical-align: middle;
+        background-color: $colour-greyscale-94;
+        @include respond-to($lap-and-desk){
+            padding: 2*$grid-unit 3*$grid-unit;//to align the spans inside
+        }
+
+        &.cover-headline--disabled {
+			@include standard-option-disabled-style();
+			.fake-check-box:before {
+				background-color: $colour-greyscale-88!important;
+			}
+		}
+
+        .checkbox-option.checkbox-stacked input + label {
+            border: none;
+            border-radius: none;
+            box-shadow: none;
+            background-color: $colour-greyscale-94;
+            padding: 0;
+            margin: 0;
+            .fake-check-box:before {
+                background-color: $colour-white;
+                border-color: $colour-white;
+                position: relative;
+                top:-2px;
+                @include set-text-as(body, $responsive-text: false, $margins-overrides: zero-both);
+                line-height: 1;
+            }
+        }
+
+        .checkbox {
+            margin-top: 1.5*$grid-unit;
+            margin-right: 1.5*$grid-unit;
+            float: left;
+        }
+
+
+        .selected-premium-value {
+            float: right;
+            text-align: right;
+            width: auto;
+            top: 2px;
+            @include set-text-as(beta, $margins-overrides: zero-both);
+            @include span-columns($one-third);
+            @include respond-to($lap-and-desk){
+                @include span-columns($one-half);
+            }
+        }
+        .cover-name {
+            float: left;
+            top: 3px;
+            @include set-text-as(gamma, $margins-overrides: zero-both);
+            @include span-columns($two-thirds);
+            @include respond-to($lap-and-desk){
+                top: 7px;
+                position: relative;
+                @include span-columns($one-half);
+            }
+            .fake-check-box {
+                padding-right: 1.5*$grid-unit;
+            }
+        }
+
+        .cover-name, .selected-premium-value {
+            position: relative;
+            line-height: 1;
+        }
+
+        @include respond-to-print(){
+            padding: $grid-unit/2 0;
+            background: transparent;
+            .panel-inverse{
+                padding: $grid-unit/2 0;
+            }
+            & > .row:nth-child(2){
+                border-bottom: solid 1px $colour-black;
+                margin-bottom: $grid-unit;
+            }
+        }
+    }
+}
+

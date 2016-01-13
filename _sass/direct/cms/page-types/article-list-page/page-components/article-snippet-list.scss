@@ -1,0 +1,51 @@
+﻿@mixin article-snippet-list($selector){
+    @include list-as-plain($selector);
+
+    #{$selector} {
+        li {
+            @include row();
+            margin: 0;
+            padding: 2*$grid-unit 0;
+            border-bottom: 1px solid $colour-greyscale-88;
+            .article-snippet-image {
+                @include span-columns($one-third);
+                img {
+                    width: 100%;
+                    display: block;
+                    object-fit: cover;
+                    display: table-cell;
+                    max-height: 14*$grid-unit;
+                }
+            }
+            &:last-of-type {
+                border-bottom-width: 0px;
+            }
+            .article-snippet-content {
+                @include span-columns($two-thirds);
+                padding-left: 1*$grid-unit;
+                h3 {
+                    @include set-text-as(gamma, $reduced: true, $strength: strong, $margins-overrides: zero-top);
+                    a {
+                        color: $colour-greyscale-24;
+                        text-decoration: none;
+                        &:hover, &:active, &:focus {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+            &:first-of-type {
+                border-top: 1px solid $colour-greyscale-88;
+            }
+        }
+
+        .show-more {
+            @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+            text-decoration: none;
+            color: $colour-greyscale-24;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

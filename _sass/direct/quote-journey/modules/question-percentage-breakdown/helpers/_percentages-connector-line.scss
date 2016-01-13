@@ -1,0 +1,15 @@
+@mixin percentages-connector-line($line-colour: $colour-greyscale-88){
+    $palm-line-offset: 31.5%;
+    $palm-line-width: 1%;
+    @include linear-gradient(90deg, transparent 0%, transparent (100% - $palm-line-offset), $line-colour (100% - $palm-line-offset), $line-colour (100% - $palm-line-offset + $palm-line-width), transparent (100% - $palm-line-offset + $palm-line-width), transparent 100%);
+    @include respond-to($lap-and-desk){
+        $lap-line-offset: 32.5%;
+        $lap-line-width: 0.85%;
+        @include linear-gradient(90deg, transparent 0%, transparent (100% - $lap-line-offset), $line-colour (100% - $lap-line-offset), $line-colour (100% - $lap-line-offset + $lap-line-width), transparent (100% - $lap-line-offset + $lap-line-width), transparent 100%);
+    }
+    @include respond-to($desk-only){
+        $lap-line-offset: 18%;
+        $lap-line-width: 0.75%;
+        @include linear-gradient(90deg, transparent 0%, transparent (100% - $lap-line-offset), $line-colour (100% - $lap-line-offset), $line-colour (100% - $lap-line-offset + $lap-line-width), transparent (100% - $lap-line-offset + $lap-line-width), transparent 100%);
+    }
+}

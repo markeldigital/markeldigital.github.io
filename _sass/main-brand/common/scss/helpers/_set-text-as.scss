@@ -1,0 +1,178 @@
+@function px-to-rem($value-in-px){
+    $rem-size: $value-in-px / 16px;
+    @return #{$rem-size}rem;
+}
+
+/*
+* Do not use to set text size. Only use this to GET text properties in order
+* to set other values in shared mixins such as padding for form elements.
+*/
+@function get-base-text-properties-for($level, $strength: regular){
+    $global-text-scaling-factor: 1.0!global!default;
+
+    $all-text-properties: ();
+    // Note: Text size is based on two root numbers 12 and 16...these numbers are then doubled to get odd and even sequence numbers for the rest of the hierarchy eg. 24 and 32.
+    // Note: margin-bottom is always half of text size.
+    @if($level == jumbo) {
+        $all-text-properties: (
+                "line-height": 1.1,
+                "font-size": 64px,
+                "margin-top": 0,
+                "margin-bottom": 32px,
+                "font-weight": 600,
+                "color": $colour-greyscale-76
+        );
+    }
+    @if($level == alpha) {
+        $all-text-properties: (
+                "line-height": 1.2,
+                "font-size": 48px,
+                "margin-top": 0,
+                "margin-bottom": 24px,
+                "font-weight": 600,
+                "color": $colour-greyscale-76
+        );
+    }
+    @if($level == beta) {
+        $all-text-properties: (
+                "line-height": 1.3,
+                "font-size": 32px,
+                "margin-top": 1.3 * 32px,
+                "margin-bottom": 16px,
+                "font-weight": 600,
+                "color": $colour-greyscale-76
+        );
+    }
+    @if($level == gamma) {
+        $all-text-properties: (
+                "line-height": 1.4,
+                "font-size": 24px,
+                "margin-top": 1.4 * 24px,
+                "margin-bottom": 12px,
+                "font-weight": 600,
+                "color": $colour-greyscale-76
+        );
+    }
+    @if ($level == delta or $level == body) {
+        $all-text-properties: (
+                "line-height": 1.5,
+                "font-size": 16px,
+                "margin-top": 0,
+                "margin-bottom": 16px,
+                "font-weight": 700,
+                "color": $colour-greyscale-63
+        );
+    }
+    @if ($level == epsilon) {
+        $all-text-properties: (
+                "line-height": 1.6,
+                "font-size": 12px,
+                "margin-top": 0,
+                "margin-bottom": 6px,
+                "font-weight": 700,
+                "color": $colour-greyscale-39
+        );
+    }
+
+    $all-text-properties: (
+            "line-height": map_get($all-text-properties, "line-height")*$global-text-scaling-factor,
+            "font-size": map_get($all-text-properties, "font-size")*$global-text-scaling-factor,
+            "margin-top": map_get($all-text-properties, "margin-top")*$global-text-scaling-factor,
+            "margin-bottom": map_get($all-text-properties, "margin-bottom")*$global-text-scaling-factor,
+            "font-weight": map_get($all-text-properties, "font-weight"),
+            "color": map_get($all-text-properties, "color")
+    );
+
+    @return $all-text-properties;
+}
+
+// 'PRIVATE' MIXIN DON'T USE DIRECTLY.
+@mixin private-mixin-set-text-margins($margins, $margins-overrides, $scale-factor){
+    @if($margins-overrides == no) {
+        margin-top: map_get($margins, "top")*$scale-factor;
+        margin-bottom: map_get($margins, "bottom")*$scale-factor;
+    } @else if ($margins-overrides == zero-both or $margins-overrides == zero-top or $margins-overrides == zero-bottom) {
+        @if($margins-overrides == zero-top){
+            margin-top: 0;
+        }@else if($margins-overrides == zero-bottom) {
+            margin-bottom: 0;
+        } @else {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    } @else {
+        @if(map_has_key($margins-overrides, "top")){
+            margin-top: map_get($margins-overrides, "top");
+        } @else {
+            margin-top: map_get($margins, "top")*$scale-factor;
+        }
+        @if(map_has_key($margins-overrides, "bottom")){
+            margin-bottom: map_get($margins-overrides, "bottom");
+        } @else {
+            margin-bottom: map_get($margins, "bottom")*$scale-factor;
+        }
+    }
+
+}
+
+// 'PRIVATE' MIXIN DON'T USE DIRECTLY.
+@mixin private-mixin-set-scaled-text-properties($base-properties, $reduced, $responsive-text, $margins-overrides){
+    $size: map_get($base-properties, "font-size");
+    $margin-top: map_get($base-properties, "margin-top");
+    $margin-bottom: map_get($base-properties, "margin-bottom");
+    $margins: ("top": $margin-top, "bottom": $margin-bottom);
+
+    @if($reduced == true){
+        $size: $size * 0.85;
+    }
+
+    @if($responsive-text == true){
+        $palm-scale-factor: 0.85;
+        $lap-scale-factor: 0.9;
+        $desk-scale-factor: 1;
+
+        font-size: $size*$palm-scale-factor; // For better device support, 'The first media query is no media query'.
+        font-size: px-to-rem($size*$palm-scale-factor);
+        @include private-mixin-set-text-margins($margins, $margins-overrides, $palm-scale-factor);
+        @include respond-to($lap-only){ // Use exclusive breakpoint in this case (instead of overriding text size multiple times).
+            font-size: $size*$lap-scale-factor;
+            font-size: px-to-rem($size*$lap-scale-factor);
+            @include private-mixin-set-text-margins($margins, $margins-overrides, $lap-scale-factor);
+        }
+        @include respond-to($desk-only){
+            font-size: $size;
+            font-size: px-to-rem($size);
+            @include private-mixin-set-text-margins($margins, $margins-overrides, $desk-scale-factor);
+        }
+    } @else if($responsive-text == false){
+        font-size: $size;
+        font-size: px-to-rem($size);
+        @include private-mixin-set-text-margins($margins, $margins-overrides, $scale-factor: 1);
+    }
+
+    line-height: map_get($base-properties, "line-height");
+    @if(map_has_key($base-properties, "color")){
+        color: map_get($base-properties, "color");
+    }
+    @if(map_has_key($base-properties, "font-weight")){
+        font-weight: map_get($base-properties, "font-weight");
+    } @else {
+        font-weight: normal;
+    }
+}
+
+/* Always use this to set text size */
+@mixin set-text-as($level, $responsive-text: true, $reduced: false, $margins-overrides: no, $strength: regular) {
+    $base-properties: get-base-text-properties-for($level);
+
+    @if($strength == strong){
+        $base-properties: map_remove($base-properties, "color");
+    } @else if($strength == weak){
+        $base-properties: map_remove($base-properties, "font-weight");
+    } @else {
+        // Set as regular
+        $base-properties: map_remove($base-properties, "font-weight");
+        $base-properties: map_remove($base-properties, "color");
+    }
+    @include private-mixin-set-scaled-text-properties($base-properties, $reduced, $responsive-text, $margins-overrides);
+}

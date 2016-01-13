@@ -1,0 +1,33 @@
+@mixin help-block($selector){
+    #{$selector}{
+        .header-box__content {
+            .graphic-container {
+                float:left;
+                margin-right: $grid-unit;
+                @include respond-to($lap-and-desk){
+                    margin-right: 2*$grid-unit;
+                }
+            }
+            .phone-number-and-hours {
+                margin-left: 5*$grid-unit;
+            }
+        }
+
+        .phone-number {
+            @include set-text-as(gamma, $strength: strong, $margins-overrides: zero-both);
+        }
+
+        .opening-hours {
+            @include set-text-as(epsilon, $strength: weak, $margins-overrides: zero-both);
+        }
+
+        .icon-phone-circle {
+            @include set-text-as(beta, $margins-overrides: zero-both);
+            color: $colour-black;
+            line-height: 1;
+        }
+    }
+}
+
+@include help-block(".help-block");
+

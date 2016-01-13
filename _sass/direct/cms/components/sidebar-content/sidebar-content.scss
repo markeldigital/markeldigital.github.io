@@ -1,0 +1,13 @@
+@mixin sidebar-content($selector){
+    $link-colour: $colour-greyscale-24;
+    #{$selector} {
+        a {
+            color: $link-colour;
+            &:hover, &:focus, &:active {
+                color: lighten($link-colour, 30);
+            }
+        }
+    }
+}
+
+@include sidebar-content('.content-and-sidebar-layout-secondary, .two-plus-one-horizontal-axis-layout__secondary');

@@ -1,0 +1,45 @@
+// Main section header and background image
+
+
+@mixin quote-journey($selector) {
+
+    #{$selector}{
+
+        .qj-primary-content{
+            background-color: $colour-white;
+
+            @include respond-to($lap-and-desk){
+                @include span-columns($two-thirds);
+                padding: $grid-unit*3;
+                margin: 0;
+                border-radius: $standard-curvature;
+                box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.10);
+            }
+
+        }
+
+
+
+        &:first-of-type h1 {
+            font-weight: 600;
+            margin-top: $grid-unit*4;
+            @include respond-to($lap-and-desk) {
+                color: $colour-white;
+                margin-top: $grid-unit*6;
+            }
+        }
+
+        //Style below overrides header color for error view only
+        article.static-error h1{
+            color: inherit;
+        }
+    }
+
+}
+
+
+@include quote-journey('.quote-journey');
+
+
+
+

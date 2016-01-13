@@ -1,0 +1,16 @@
+@mixin britains-best-volunteer($selector){
+
+    #{$selector}{
+
+       h2, h3{
+
+           margin-top: 0;
+
+       }
+
+
+    }
+
+}
+
+@include britains-best-volunteer('.main-body-bbv');

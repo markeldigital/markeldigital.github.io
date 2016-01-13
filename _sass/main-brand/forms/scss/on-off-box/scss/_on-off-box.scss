@@ -1,0 +1,52 @@
+@import "modify-as-checkbox";
+@import "modify-as-radio";
+@import "default-and-stacked";
+@import "on-off-box-common";
+
+@mixin on-off-box($selector, $options) {
+    @if (map_get($options, "type") == "radio") {
+        @include modify-as-radio($selector);
+    }
+    @if (map_get($options, "type") == "checkbox") {
+        @include modify-as-checkbox($selector);
+    }
+
+    $display-options: (
+            "width": auto,
+            "margin": auto,
+            "label-padding": 2*$grid-unit 6*$grid-unit,
+            "label-mobile-padding": 1.5*$grid-unit 5*$grid-unit $grid-unit,
+            "label-text-align": center,
+            "fake-input-display": block,
+            "fake-input-margin": 0 auto,
+            "label-margin": 0 $grid-unit*2 0 0,
+            "label-max-width": 40*$grid-unit
+    );
+    @if (map_get($options, "display") == "stacked") {
+        $display-options: (
+                "width": 100%,
+                "margin": 0,
+                "label-padding": 1.5*$grid-unit 2*$grid-unit,
+                "label-mobile-padding": 1.5*$grid-unit 2*$grid-unit,
+                "label-text-align": left,
+                "fake-input-display": inline-block,
+                "fake-input-margin": 0 $grid-unit 0 0,
+                "label-margin": 0 0 1.5*$grid-unit 0,
+                "label-max-width": none
+        );
+    }
+
+    @include modify-as-default-or-stacked($selector, $display-options);
+}
+
+// Reduces generated CSS.
+$all-multiple-choice-selectors: ".radio-option, .radio-option.radio--stacked, .radio-option.radio--inline, .checkbox-option, .question-multiple_choice_exclusive_stacked .radio-option, .checkbox-option.checkbox-stacked";
+@include on-off-box-common($all-multiple-choice-selectors);
+
+@include on-off-box(".radio-option", $options: ("type":"radio", "display": "default"));
+@include on-off-box(".radio-option.radio--stacked", $options: ("type":"radio", "display": "stacked"));
+@include on-off-box(".checkbox-option", $options: ("type": "checkbox", "display": "default"));
+@include on-off-box(".question-multiple-choice-exclusive-stacked .radio-option", $options: ("type":"radio", "display": "stacked"));
+@include on-off-box(".question-multiple-choice-stacked .checkbox-option", $options: ("type":"checkbox", "display": "stacked"));
+@include on-off-box(".question-single-choice .checkbox-option", $options: ("type":"checkbox", "display": "stacked"));
+@include on-off-box(".checkbox-option.checkbox-stacked", $options: ("type":"checkbox", "display": "stacked"));

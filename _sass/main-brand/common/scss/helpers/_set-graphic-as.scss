@@ -1,0 +1,68 @@
+@function get-size-for($level){
+
+}
+
+@mixin set-graphic-as($level, $type:image){
+
+    $jumbo-size: map_get(get-base-text-properties-for(jumbo), "font-size");
+    $jumbo-size: map_get(get-base-text-properties-for(jumbo), "font-size");
+    $alpha-size: map_get(get-base-text-properties-for(alpha), "font-size");
+    $beta-size: map_get(get-base-text-properties-for(beta), "font-size");
+    $gamma-size: map_get(get-base-text-properties-for(gamma), "font-size");
+    $delta-size: map_get(get-base-text-properties-for(delta), "font-size");
+    $epsilon-size: map_get(get-base-text-properties-for(epsilon), "font-size");
+
+    // Icons
+    $font-size: $delta-size;
+    @if($level == jumbo and $type == icon){
+        $font-size: $jumbo-size;
+    }
+    @if($level == alpha and $type == icon){
+        $font-size: $alpha-size;
+    }
+    @if($level == beta and $type == icon){
+        $font-size: $beta-size;
+    }
+    @if($level == gamma and $type == icon){
+        $font-size: $gamma-size;
+    }
+    @if($level == delta and $type == icon){
+        $font-size: $delta-size;
+    }
+    // TODO: Responsive icons with this mixin? Always sets icons at the same size on all screen sizes (for now) to counteract 'set-text-as' mixin.
+    @if($type == icon){
+        font-size: $font-size;
+        @include respond-to($lap-and-desk){
+            font-size: $font-size;
+        }
+        @include respond-to($desk-only){
+            font-size: $font-size;
+        }
+    }
+
+    // Other graphics
+    @if($level == jumbo and $type == image){
+        width: $jumbo-size;
+        height: auto;
+    }
+    @if($level == alpha and $type == image){
+        width: $alpha-size;
+        height: auto;
+    }
+    @if($level == beta and $type == image){
+        width: $beta-size;
+        height: auto;
+    }
+    @if($level == gamma and $type == image){
+        width: $gamma-size;
+        height: auto;
+    }
+    @if($level == delta and $type == image){
+        width: $delta-size;
+        height: auto;
+    }
+    @if($level == epsilon and $type == image){
+        width: $epsilon-size;
+        height: auto;
+    }
+}

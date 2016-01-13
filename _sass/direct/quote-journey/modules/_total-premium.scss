@@ -1,0 +1,91 @@
+@mixin total-premium($selector){
+    #{$selector}{
+        @include respond-to($lap-and-desk) {
+            margin-top: 3*$grid-unit;
+            padding: 2*$grid-unit 0;
+            border-top: 1px solid $colour-greyscale-88;
+            border-bottom: 1px solid $colour-greyscale-88;
+        }
+
+        dl {
+            dt {
+                float: left;
+            }
+            dd {
+                float: right;
+            }
+        }
+        .premium {
+            dt, dd {
+                @include span-columns($one-half);
+                @include set-text-as(beta);
+                color: $colour-greyscale-24;
+                font-weight: bold;
+            }
+            dt {
+
+                @include set-text-as(gamma, $strength: strong, $margins-overrides: zero-both);
+
+                    @include respond-to($lap-only){
+
+                        @include set-text-as(beta, $reduced: true, $strength: strong, $margins-overrides: zero-both);
+
+                    }
+
+                    @include respond-to($desk-only) {
+                        @include set-text-as(beta, $strength: strong, $margins-overrides: zero-both);
+                    }
+            }
+            dd {
+                float: right;
+
+                @include set-text-as(beta, $margins-overrides: zero-both);
+                font-weight: 600;
+
+                   @include respond-to($lap-and-desk){
+                       @include set-text-as(alpha, $reduced: true, $margins-overrides: zero-both);
+                       font-weight: 600;
+                       line-height: 1.5;
+
+                   }
+                line-height: 1.1;
+                text-align: right;
+
+            }
+        }
+        .retained-premium {
+            color: $colour-greyscale-63;
+            dt, dd {
+                display: inline;
+            }
+            dd {
+                margin-left: $grid-unit/2;
+                float: left;
+            }
+        }
+        @include respond-to-print(){
+            border-bottom: none;
+            padding: $grid-unit*2 0;
+            .retained-premium dd {
+                margin-left: $grid-unit/4;
+                font-weight: bold;
+            }
+        }
+
+        .insurance-premium-tax
+        {
+            @include set-text-as(delta, $reduced: true, $margins-overrides: zero-both);
+            font-weight: 400;
+            font-style: italic;
+            clear: both;
+
+
+            @include respond-to($lap-and-desk){
+
+                clear: none;
+            }
+        }
+    }
+}
+
+@include total-premium(".total-premium");

@@ -1,0 +1,18 @@
+@mixin article-page($selector){
+    #{$selector}{
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        .main-body {
+            img{
+                max-width: 100%;
+                width: auto;
+                height: auto !important;
+            }
+        }
+    }
+}
+
+@include article-page(".article-page");

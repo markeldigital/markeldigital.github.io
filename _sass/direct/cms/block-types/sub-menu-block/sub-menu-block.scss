@@ -1,0 +1,52 @@
+@mixin sub-menu-block($selector){
+    #{$selector}{
+        margin-left: 0;
+        padding: 1.5*$grid-unit 0 $grid-unit 0;
+        $greater-than-collapsed-menu-breakpoint: new-breakpoint(min-width map_get($global-banner-options, "collapsed-menu-breakpoint") $grid-columns);
+        $less-than-collapsed-menu-breakpoint: new-breakpoint(max-width map_get($global-banner-options, "collapsed-menu-breakpoint") $grid-columns);
+        @include respond-to($greater-than-collapsed-menu-breakpoint){
+            padding: 2*$grid-unit 0 1.5*$grid-unit 0;
+        }
+        .sub-menu-block__title {
+            @include set-text-as(epsilon, $responsive-text: false, $margins-overrides: zero-both);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: $colour-greyscale-39;
+            margin-bottom: $grid-unit/2;
+            padding: 0 2*$grid-unit 0 4*$grid-unit;
+            @include respond-to($greater-than-collapsed-menu-breakpoint){
+                padding-left: 2*$grid-unit;
+            }
+        }
+        .sub-menu-block__list {
+            li {
+                padding: 0;
+                margin-bottom: 0;
+                border-bottom: none;
+                > a {
+                    &:before {
+                        content: '\2013';
+                        margin-right: $grid-unit;
+                    }
+                    &:hover, &:active {
+                        background-color: $colour-greyscale-97;
+                        @include animation($standard-transition-animation);
+                    }
+                    padding: $grid-unit/2 3*$grid-unit $grid-unit/2 4*$grid-unit;
+                    @include respond-to($less-than-collapsed-menu-breakpoint){ // Needed to override palm-only breakpoint from design system
+                        display: inline-block;
+                        text-transform: none;
+                        letter-spacing: 0;
+                    }
+                    @include respond-to($greater-than-collapsed-menu-breakpoint){
+                        padding: $grid-unit/2 3*$grid-unit $grid-unit/2 2*$grid-unit;
+                        width: 100%;
+                    }
+                    color: $colour-greyscale-39;
+                }
+            }
+        }
+    }
+}
+
+@include sub-menu-block('.global-banner .primary-navigation-and-utility-navigation-content .ds-menu .sub-menu-block');

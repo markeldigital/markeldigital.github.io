@@ -1,0 +1,12 @@
+﻿.horizontal-trustmark-block{
+    text-align: center;
+    border: 0;
+    img{
+        width: 100%;
+        object-fit: cover;
+        margin: 3*$grid-unit 0;
+        @include respond-to(800px) {
+            width: auto;
+        }
+    }
+}

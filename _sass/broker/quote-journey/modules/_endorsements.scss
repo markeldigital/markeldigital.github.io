@@ -1,0 +1,17 @@
+﻿@mixin endorsements($selector){
+    #{$selector} {
+        border-top: solid 1px $colour-greyscale-63;
+        margin-top: $grid-unit * 2;
+
+        h3 {
+            margin-top: $grid-unit/2;
+            @include respond-to($lap-and-desk) {
+                margin-top: $grid-unit;
+            }
+            margin-bottom: $grid-unit;
+            color: $colour-greyscale-63;
+        }
+    }
+}
+
+@include endorsements(".endorsements.make-specific");

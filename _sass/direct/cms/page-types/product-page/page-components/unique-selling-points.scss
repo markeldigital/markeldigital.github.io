@@ -1,0 +1,71 @@
+﻿@mixin flex-no-ms {
+    // 2009
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+
+    // 2012
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: flex;
+}
+
+@mixin unique-selling-points($selector){
+    #{$selector}{
+        position: relative;
+        bottom: 0;
+        z-index: 1;
+        width: 100%;
+        background-color: rgba($colour-black, 0.5);
+        padding: 2*$grid-unit 0;
+        @include respond-to($lap-and-desk){
+            padding: 3*$grid-unit 0;
+        }
+        @include list-as-plain("ul");
+
+        ul {
+            @include respond-to($lap-and-desk){
+                @include display(flex);
+            }
+            li {
+                margin-bottom: $grid-unit;
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+                @include respond-to($lap-and-desk){
+                    margin-bottom: 0;
+                }
+                @include fill-parent();
+                @include clearfix();
+                @include flex-no-ms();
+                @include align-items(center);
+                @include respond-to($lap-and-desk){
+                    @include span-columns($one-third);
+                    @include flex-no-ms();
+                    @include align-items(center);
+                }
+                img {
+                    vertical-align: middle;
+                    display: block;
+                    @include flex(none);
+                    width: 4*$grid-unit;
+                    margin-right: 2*$grid-unit;
+                    float: left;
+                    @include respond-to($lap-and-desk){
+                        width: 5*$grid-unit;
+                    }
+                }
+                p {
+                    @include set-text-as(gamma, $reduced: true, $margins-overrides: zero-both);
+                    margin-right: 4*$grid-unit;
+                    text-align: left;
+                    vertical-align: middle;
+                    color: $colour-white;
+                }
+            }
+        }
+    }
+}
+
+
+@include unique-selling-points(".product-page-unique-selling-points");

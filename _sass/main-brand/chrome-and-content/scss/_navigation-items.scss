@@ -1,0 +1,22 @@
+@import "navigation-items-mobile";
+@import "navigation-items-lap-and-desk";
+
+@mixin navigation-items($selector, $options) {
+    #{$selector}{
+        @include respond-to(map_get($options, "collapsed-menu-breakpoint-lap-and-desk")){
+            position: relative; // For search
+            float: map_get($options, "desk-alignment");
+            #{map_get($options, "desk-alignment")}: -1.5*$grid-unit;
+            &.keep-inside-grid {
+                #{map_get($options, "desk-alignment")}: 0;
+            }
+            font-size: 0; // Removes the spacing on display-inline children
+        }
+        @include navigation-items-lap-and-desk($options);
+    }
+
+    // Mobile menu specifics
+    &.open #{$selector} {
+        @include navigation-items-mobile($options);
+    }
+}

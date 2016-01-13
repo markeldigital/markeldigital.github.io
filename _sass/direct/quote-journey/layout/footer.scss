@@ -1,0 +1,21 @@
+﻿.footer {
+    box-shadow: inset 0 4px 0 0 $colour-brand-primary;
+    background-color: white;
+    padding-top: 4*$grid-unit;
+    padding-bottom: 4*$grid-unit;
+
+    a {
+        color: $colour-greyscale-24;
+        &:hover, &:focus, &:active {
+            color: lighten($colour-greyscale-24, 25);
+        }
+    }
+
+    p {
+        @include set-text-as(delta, $reduced: true);
+    }
+
+    p:last-of-type {
+        margin-bottom: 0;
+    }
+}

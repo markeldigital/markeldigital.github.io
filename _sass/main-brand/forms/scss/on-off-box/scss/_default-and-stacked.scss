@@ -1,0 +1,44 @@
+@mixin modify-as-default-or-stacked($selector, $options) {
+    $label-width: map_get($options, "width");
+    $label-padding: map_get($options, "label-padding");
+    $label-mobile-padding: map_get($options, "label-mobile-padding");
+    $fake-input-display: map_get($options, "fake-input-display");
+    $fake-input-margin: map_get($options, "fake-input-margin");
+    $label-max-width: map_get($options, "label-max-width");
+
+    #{$selector} {
+        width: $label-width;
+        margin: map_get($options, "margin");
+        max-width: $label-max-width;
+        label {
+            width: $label-width;
+            max-width: $label-max-width;
+            margin: map_get($options, "label-margin");
+            padding: $label-mobile-padding;
+            @include respond-to($lap-and-desk) {
+                padding: $label-padding;
+            }
+            text-align: map_get($options, "label-text-align");
+            .fake-radio-button:before, .fake-check-box:before {
+                display: $fake-input-display;
+                margin: $fake-input-margin;
+                @include respond-to($lap-and-desk) {
+                    margin: $fake-input-margin;
+                }
+            }
+        }
+        input[type=radio], input[type=checkbox] {
+            &:checked + label {
+                .fake-radio-button:before, .fake-check-box:before {
+                    display: $fake-input-display;
+                }
+            }
+        }
+        &:last-child {
+            label{
+                margin-bottom: 0;
+            }
+        }
+
+    }
+}

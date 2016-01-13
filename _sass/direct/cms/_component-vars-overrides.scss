@@ -1,0 +1,87 @@
+/*--=============================================================
+=================================================================
+
+Sub-brand-2 = Direct portal and CMS header / navigation
+
+This file overrides the styles from main
+
+=================================================================
+=============================================================--*/
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Link colour's
+
+$links-options: (
+        "colour": $colour-brand-primary
+);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Header components
+
+$global-banner-z-index: 9;
+$menu-palm-height: $grid-unit *7 !default; // Used in global banner, main-content (margin), mobile-trigger-container, mobile-trigger, site-section.
+$menu-lap-height: $grid-unit *8 !default;
+$menu-desk-height: $grid-unit *7.5 !default;
+$block-style: inline-block;
+$global-banner-options: (
+        "mobile-height": $menu-palm-height,
+        "tablet-height": $menu-lap-height,
+        "desktop-height": $menu-desk-height,
+        "z-index": $global-banner-z-index,
+        "first-box-shadow": 0 0 0 0 transparent,
+        "second-box-shadow": inset 0 4px 0 0 $colour-brand-primary,
+        "border-bottom": 1px solid $colour-greyscale-88,
+        "needs-clearance-from-red-bar": false,
+        "collapsed-menu-breakpoint": 900px
+);
+$logo-options: (
+        "mobile-width": 50%,
+        "mobile-height": $menu-palm-height,
+        "mobile-padding": $grid-unit + 4px 0,
+        "tablet-width": auto,
+        "tablet-height": 11*$grid-unit,
+        "tablet-padding": 2.5*$grid-unit,
+        "desktop-width": auto,
+        "desktop-height": 14*$grid-unit,
+        "desktop-padding": $grid-unit*3 + 3px,
+        "mobile-clearance": 2*$grid-unit,
+        "tablet-clearance": 3*$grid-unit,
+        "desktop-clearance": $grid-unit,
+        "desktop-left": -9*$grid-unit,
+        "z-index": $global-banner-z-index+2,
+        "mobile-position": relative,
+        "background-color": transparent,
+        "hover-background-color": transparent,
+        'block-style' : $block-style
+);
+$primary-navigation-and-utility-navigation-options: (
+        "height": auto,
+        "open-mobile-menu-position": relative,
+        "clear": both,
+        "mobile-border-top": 1px solid $colour-greyscale-88
+);
+$mobile-menu-trigger-options: (
+        "z-index": $global-banner-z-index+1,
+        "open-position": relative,
+        "open-box-shadow": none,
+        "alignment": left
+);
+$navigation-items-options: (
+        "lap-and-desk-hover-box-shadow": "inset 1px 0 0 #e0e0e0, inset -1px 0 0 #e0e0e0"
+);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Quote journey questions overrides
+
+
+$colour-interaction-10: none;
+
+//
+
+

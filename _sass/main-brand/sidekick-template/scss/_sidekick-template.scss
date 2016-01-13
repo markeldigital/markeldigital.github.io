@@ -1,0 +1,33 @@
+// Template for 'sidekick' layout (see design system)...do not add styles unrelated to the layout.
+@mixin sidekick-template($selector, $primary-content, $sidekick){
+    #{$selector}{
+        @include row();
+
+        #{$primary-content}, #{$sidekick} {
+            @include fill-parent;
+        }
+
+        #{$primary-content} {
+            @include respond-to($lap-and-desk){
+                @include span-columns($two-thirds);
+            }
+        }
+
+        #{$sidekick} {
+            border: none;
+            margin-top: $grid-unit;
+            padding-top: 2*$grid-unit;
+            overflow: auto;
+            @include respond-to($lap-and-desk){
+                @include span-columns($one-third);
+                margin-top: 0;
+                padding-top: 0;
+            }
+            @include respond-to-print(){
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+@include sidekick-template(".sidekick-template", ".primary-content", ".sidekick");

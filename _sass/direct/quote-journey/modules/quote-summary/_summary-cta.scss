@@ -1,0 +1,14 @@
+@mixin summary-cta($selector){
+
+    #{$selector}{
+        padding: $grid-unit*3 0;
+        border-bottom: 1px solid $colour-greyscale-88;
+
+        button:last-of-type {
+            margin-top: $grid-unit*1.5;
+        }
+
+    }
+}
+
+@include summary-cta('.summary-cta');

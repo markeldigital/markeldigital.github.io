@@ -1,0 +1,116 @@
+@mixin welcome-page($selector) {
+    #{$selector} {
+        .panel-delta {
+            position: relative;
+            padding: 0;
+            margin-bottom: 3*$grid-unit;
+            .hero-container {
+                @include outer-container();
+                .headline {
+                    h1 {
+                        margin-bottom: 0;
+                    }
+                    p {
+                        @include set-text-as(gamma,$margins-overrides:( "top": $grid-unit));
+                    }
+                }
+
+                .intro .presentation, .image-box {
+                    text-align: center;
+                    
+                    @include respond-to($lap-and-desk) {
+                        @include span-columns($one-half);
+                        text-align: left;
+                    }
+                }
+                .intro .presentation {
+                    display: none;
+                    padding-right: 4.5*$grid-unit;
+                    padding-left: 3*$grid-unit;
+                    margin-top: 4*$grid-unit;
+                    @include respond-to($lap-and-desk){
+                        display: block;
+                    }
+                    h2 {
+                        width: 85%;
+                        @include set-text-as(beta,$margins-overrides:zero-top);
+                    }
+                    p {
+                        @include set-text-as(gamma,$reduced:true,$margins-overrides:zero-top);
+                    }
+                }
+
+                .intro .image-box {
+                    position: relative;
+                    text-align: center;
+                    overflow: hidden;
+                    margin-top: $grid-unit*2;
+                    height: $grid-unit*21;
+                    @include respond-to($lap-and-desk) {
+                        height: $grid-unit*42;
+                    }
+
+                    img {
+                        width:75%;
+                        @include respond-to($lap-and-desk){
+                            position: absolute;
+                            width: 100%;
+                            left: 0;
+                        }
+                    }
+                }
+
+            }
+            .hero-action {
+                @include respond-to($lap-and-desk){
+                    position:absolute;
+                }
+                bottom: 0;
+                width:100%;
+            }
+        }
+        .panel-inverse {
+            padding:2*$grid-unit;
+            .how-to {
+                @include row();
+                h2 {
+                    @include set-text-as(beta,$strength: strong, $margins-overrides:("top": $grid-unit));
+                    @include respond-to($lap-and-desk){
+                        text-align: left;
+                    }
+                    text-align: center;
+
+                }
+                .steps {
+                    counter-reset: step;
+                    .step {
+                        overflow: hidden;
+                        @include fill-parent();
+                        margin-bottom: 3*$grid-unit;
+                        @include respond-to($lap-and-desk) {
+                            @include span-columns($one-third);
+                            margin-bottom: 0;
+                        }
+                        .instructions h3 {
+                            @include set-text-as(body);
+                            padding: 0 $grid-unit;
+                        }
+                        .screenshot {
+                            width: 100%;
+                            height: auto;
+                            border: 1px solid $colour-greyscale-88;
+                        }
+                        &.step--single {
+                            @include respond-to($lap-and-desk) {
+                                float: left;
+                                margin: 0 auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include welcome-page(".welcome-screen");

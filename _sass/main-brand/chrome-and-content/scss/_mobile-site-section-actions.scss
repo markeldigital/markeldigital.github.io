@@ -1,0 +1,46 @@
+@mixin mobile-site-section-actions($selector, $options){
+  #{$selector}{
+      @include respond-to(map_get($options, "collapsed-menu-breakpoint-lap-and-desk")) {
+          display: none;
+      }
+      padding: 2*$grid-unit;
+      border-bottom: 1px solid $colour-greyscale-88;
+
+      > ul > li {
+          margin-bottom: 0;
+      }
+      .ds-menu-items {
+          background-color: transparent;
+          border: none;
+          @include respond-to(map_get($options, "collapsed-menu-breakpoint-palm-only")) {
+              position: relative;
+              border-top: 1px solid $colour-greyscale-88;
+          }
+          .ds-menu-item{
+              border-bottom: 1px solid $colour-greyscale-88;
+              border-left: 1px solid $colour-greyscale-88;
+              border-right: 1px solid $colour-greyscale-88;
+              background-color: transparentize($colour-white, 0.9);
+              form {
+                  button{
+                      text-align: left;
+                      &:hover, &:focus, &:active{
+                          background-color: transparentize($colour-white, 0.9);
+                      }
+                  }
+              }
+              margin: 0;
+          }
+      }
+
+      .ds-menu-trigger {
+        display: table;
+        span, [class^='icon-']{
+          display: table-cell;
+        }
+
+        text-transform: uppercase;
+        text-align: left;
+      }
+  }
+}

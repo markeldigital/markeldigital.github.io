@@ -1,0 +1,36 @@
+/*
+    Banner & banner components (eg. navigation)
+*/
+$collapsed-menu-breakpoint-size: map_get($global-banner-options, "collapsed-menu-breakpoint");
+$collapsed-menu-breakpoint-palm-max-size: $collapsed-menu-breakpoint-size - 1px;
+$collapsed-menu-breakpoint-lap-and-desk: new-breakpoint(min-width $collapsed-menu-breakpoint-size $grid-columns);
+$collapsed-menu-breakpoint-palm-only: new-breakpoint(max-width $collapsed-menu-breakpoint-palm-max-size $grid-columns);
+$collapsed-menu-breakpoints: ("collapsed-menu-breakpoint-lap-and-desk": $collapsed-menu-breakpoint-lap-and-desk, "collapsed-menu-breakpoint-palm-only": $collapsed-menu-breakpoint-palm-only);
+
+@import "global-banner";
+@include global-banner(".global-banner", $options: map_merge($global-banner-options, $collapsed-menu-breakpoints));
+
+@import "logo"; // Depends on it's container for position & z-index to work (these change based on sub-brand)
+@include logo("a.logo", $options: map_merge($logo-options, $collapsed-menu-breakpoints));
+@import "primary-navigation-and-utility-navigation"; // Depends on 'open' class from javascript.
+@include primary-navigation-and-utility-navigation('.primary-navigation-and-utility-navigation', $options: map_merge($primary-navigation-and-utility-navigation-options, $collapsed-menu-breakpoints));
+@import "primary-navigation-utility-navigation-content"; // Depends on 'open' class from javascript.
+@include primary-navigation-and-utility-navigation-content('.primary-navigation-and-utility-navigation-content', $collapsed-menu-breakpoints);
+@import 'account-menu'; // No dependencies...could move into 'menu' component as a generic option, then remove from here.
+@include account-menu('.account-menu', $options: $collapsed-menu-breakpoints);
+
+/*
+    Site section
+*/
+@import "mobile-site-section-actions";
+@include mobile-site-section-actions('.mobile-section-actions', $options: $collapsed-menu-breakpoints);
+@import "site-section";
+@include site-section(".ds-site-section", $options: $collapsed-menu-breakpoints);
+
+/*
+    Main content area
+*/
+@import "main-content";
+@include main-content(".content");
+
+

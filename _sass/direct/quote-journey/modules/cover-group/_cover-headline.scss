@@ -1,0 +1,150 @@
+﻿
+@mixin cover-headline($selector) {
+    #{$selector} {
+        line-height: 0;
+        @include clearfix;
+        .checkbox-option.checkbox-stacked input[type="checkbox"]:not(:checked) + label {
+            &:hover, &:focus {
+                .fake-check-box:before {
+                    @include icon-content-for-name("tick");
+                    color: $colour-greyscale-94;
+                    background-color: $colour-white;
+                }
+            }
+        }
+        .checkbox-option.checkbox-stacked input + label {
+            &:hover, &:focus {
+                box-shadow: inset 0 0 0 1px $colour-greyscale-88;
+                @include transition(all 150ms ease-in);
+            }
+        }
+
+        .cover-headline--cannot-offer {
+            border-radius: 0;
+            width: 100%;
+            display: table;
+            padding: $grid-unit 2*$grid-unit;;
+            @include respond-to($lap-and-desk) {
+                padding: 2*$grid-unit 3*$grid-unit;
+            }
+            background-color: $colour-greyscale-94;
+
+            dl {
+                display: table-cell;
+                vertical-align: top;
+                opacity: 0.5;
+                dt {
+                    @include set-text-as(gamma, $strength: strong, $margins-overrides: zero-both);
+                }
+                dd {
+                    @include set-text-as(delta, $reduced: true, $margins-overrides: zero-both);
+                }
+            }
+
+            i {
+                @include set-text-as(beta, $reduced: true, $margins-overrides: zero-both);
+                line-height: 1.2;
+                color: $colour-greyscale-24;
+                opacity: 0.5;
+                display: table-cell;
+                vertical-align: top;
+                width: $grid-unit*3;
+                height: $grid-unit*3;
+                padding-right: $grid-unit*1.5;
+            }
+        }
+
+        .checkbox-option.checkbox-stacked input + label, .cover-headline--simple {
+            border-radius: 0;
+            width: 100%;
+            display: table;
+            padding: $grid-unit 2*$grid-unit;;
+            @include respond-to($lap-and-desk) {
+                padding: 2*$grid-unit 3*$grid-unit;
+            }
+            border: none;
+            box-shadow: none;
+            background-color: $colour-greyscale-94;
+
+            .fake-check-box {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                position: relative;
+                top: $grid-unit/2;
+                display: table-cell;
+                width: 4.5*$grid-unit;
+                vertical-align: top;
+                height: auto;
+                @include respond-to($lap-and-desk) {
+                    padding-right: $grid-unit;
+                }
+
+            }
+
+            .fake-check-box:before {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                background-color: $colour-white;
+                border: 1px solid $colour-greyscale-63;
+
+                line-height: 1.5;
+                width: 3*$grid-unit;
+                height: 3*$grid-unit;
+                box-shadow: none;
+                @include set-text-as(body, $responsive-text: false, $margins-overrides: zero-both);
+            }
+
+            dl {
+                display: table-cell;
+                vertical-align: top;
+                padding-right: $grid-unit;
+                    @include respond-to($lap-and-desk){
+                        padding-right: $grid-unit*2;
+                    }
+                dt {
+                    @include set-text-as(gamma, $strength: strong, $margins-overrides: zero-both);
+                }
+                dd {
+                    @include set-text-as(delta, $reduced: true, $margins-overrides: zero-both);
+                }
+            }
+
+            .selected-premium-value {
+                text-align: right;
+                display: table-cell;
+                vertical-align: top;
+                @include set-text-as(gamma, $strength: strong, $margins-overrides: zero-both);
+                @include transition(color 250ms ease-in-out);
+
+                &.active {
+                    opacity: 0;
+                    color: $colour-interaction-100;
+
+                }
+            }
+
+        }
+
+        @include respond-to-print() {
+            .selected-premium-value {
+                text-decoration: line-through;
+            }
+        }
+
+        .checkbox-option.checkbox-stacked input[type="checkbox"]:not(:checked) + label .selected-premium-value {
+            @include set-text-as(gamma, $margins-overrides: zero-both);
+
+        }
+
+
+    }
+
+}

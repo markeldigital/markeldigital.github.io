@@ -1,0 +1,40 @@
+@mixin sharing-tools($selector){
+    #{$selector}{
+        display: table;
+        width: 100%;
+        padding: $grid-unit 0;
+        border-top: 1px solid $colour-greyscale-88;
+        border-bottom: 1px solid $colour-greyscale-88;
+        #{$selector}__title {
+            @include set-text-as(epsilon, $margins-overrides: zero-both);
+            display: table-cell;
+            vertical-align: middle;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        #{$selector}__add-this-wrapper {
+            display: table-cell;
+            text-align: right;
+            vertical-align: middle;
+            line-height: 1;
+            > div {
+                display: inline-block;
+                line-height: 1;
+            }
+        }
+    }
+    img + #{$selector} {
+        margin: 3*$grid-unit 0 0 0;
+        @include respond-to($lap-and-desk){
+            margin: 4*$grid-unit 0 0 0;
+        }
+    }
+    .main-body + #{$selector}{
+        margin: 3*$grid-unit 0 3*$grid-unit 0;
+        @include respond-to($lap-and-desk){
+            margin: 4*$grid-unit 0 0 0;
+        }
+    }
+}
+
+@include sharing-tools(".sharing-tools");

@@ -1,0 +1,27 @@
+@import "navigation-items";
+@mixin primary-navigation-and-utility-navigation-content($selector, $options) {
+    #{$selector} {
+        @include visually-hidden();
+        &.open {
+            @include visually-shown();
+        }
+        width: 100%;
+        border-top: 1px solid $colour-greyscale-88;
+        @include respond-to(map_get($options, "collapsed-menu-breakpoint-lap-and-desk")) {
+            border-top: none;
+            @include visually-shown();
+        }
+        @include navigation-items('.primary-navigation', $options: map_merge(("desk-alignment": left, "typography-level": delta, "typography-reduced": true, "typography-weight": 600), $options));
+        @include navigation-items('.utility-navigation', $options: map_merge(("desk-alignment": right, "typography-level": epsilon, "typography-reduced": false, "typography-weight": regular), $options));
+        $item-padding: $grid-unit;
+        &:not(.open) .primary-navigation {
+            margin-left: 0;
+            @include respond-to(map_get($options, "collapsed-menu-breakpoint-lap-and-desk")) {
+                margin-left: 0;
+            }
+            @include respond-to($desk-only) {
+                margin-left: 0;
+            }
+        }
+    }
+}

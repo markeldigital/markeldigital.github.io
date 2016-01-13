@@ -1,0 +1,18 @@
+﻿@mixin html-bullet-list-block($selector) {
+    @include bullet-list-block($selector);
+
+    #{$selector} {
+        ul li {
+            img {
+                width: auto;
+                height: inherit;
+            }
+
+            p {
+                @include set-text-as(body, $margins-overrides: zero-both);
+            }
+        }
+    }
+}
+
+@include html-bullet-list-block(".html-bullet-list");

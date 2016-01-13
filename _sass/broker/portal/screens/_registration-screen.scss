@@ -1,0 +1,30 @@
+@mixin registration-screen($selector){
+    #{$selector}{
+        @include grid-width();
+        .registration {
+            h2 {
+                margin-bottom: $grid-unit;
+                margin-top: $grid-unit;
+            }
+            h3 {
+                @include set-text-as(gamma, $margins-overrides: zero-top, $strength: weak);
+                word-break: break-all;
+            }
+
+            label {
+                width: 100%;
+            }
+            .inline-information-message {
+                margin: 2*$grid-unit 0;
+            }
+            .hidden{
+                display: none;
+            }
+        }
+      .marketing-info h2 {
+        margin-top: $grid-unit;
+      }
+    }
+}
+
+@include registration-screen(".registration-screen");

@@ -1,0 +1,79 @@
+﻿.promotions-list {
+    $content-color: $colour-greyscale-24;
+    $borders-color: $colour-greyscale-88;
+    $background-color: $colour-white;
+    $hover-color: $colour-greyscale-98;
+
+    @include clearfix;
+    margin: 3*$grid-unit 0px;
+
+    li {
+        background-color: $colour-white;
+        border: 1px solid $borders-color;
+        text-align: left;
+        margin: 0px;
+        border-radius: $grid-unit/2;
+        margin-bottom: 2*$grid-unit;
+        display: block;
+        width: 100%;
+        list-style-type: none;
+
+        @include respond-to($palm-only) {
+            @include span-columns($one-half);
+            @include omega(2n);
+        }
+
+        @include respond-to($lap-and-desk) {
+            @include span-columns($one-third);
+            @include omega(3n);
+        }
+
+        & > a {
+            @include set-text-as(gamma, $margins-overrides: zero-both, $reduced: true);
+            display: block;
+            color: $content-color;
+
+            &:hover, &:focus, &:active {
+                background-color: $hover-color;
+                span {
+                    text-decoration: underline;
+                }
+            }
+
+            border-radius: $grid-unit/2;
+
+            div {
+                height: 8*$grid-unit;
+
+                @include respond-to($lap-and-desk) {
+                    height: 11*$grid-unit;    
+                }
+
+                display: table;
+                text-align: center;
+                width: 100%;
+            }
+
+            span {
+                display: table-cell;
+                vertical-align: middle;
+                padding-left: $grid-unit;
+                padding-right: $grid-unit;
+            }
+
+            img {
+                border-top-left-radius: $grid-unit/2;
+                border-top-right-radius: $grid-unit/2;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                display: table-cell;
+                max-height: 8*$grid-unit;
+
+                @include respond-to($lap-and-desk) {
+                    max-height: 11*$grid-unit;
+                }
+            }
+        }
+    }
+}

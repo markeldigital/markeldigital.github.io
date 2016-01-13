@@ -1,0 +1,5 @@
+@mixin hero-content($selector){
+    #{$selector}{
+        color: $colour-white;
+    }
+}

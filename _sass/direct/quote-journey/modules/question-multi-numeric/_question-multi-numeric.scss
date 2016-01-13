@@ -1,0 +1,13 @@
+@mixin question-multi-numeric($selector){
+    #{$selector}{
+        .input-and-unit{
+            width:100%;
+            @include respond-to($lap-and-desk){
+                width: $medium-spacer*9;
+            }
+        }
+        @include input-and-unit(".input-and-unit");
+    }
+}
+
+@include question-multi-numeric(".question-multi-numeric");

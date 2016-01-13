@@ -1,0 +1,6 @@
+@mixin links($selector, $options){
+    #{$selector} {
+        color: map_get($options, "colour");
+        text-decoration: underline;
+    }
+}

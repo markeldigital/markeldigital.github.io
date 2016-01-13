@@ -1,0 +1,54 @@
+﻿@import "nested-cover";
+@import "cover-headline";
+@import "cover-contents";
+@import "modify-cover-as-not-taken-up";
+
+@mixin cover($selector){
+    #{$selector} {
+        @include clearfix;
+
+        @include respond-to-print(){
+            padding: $grid-unit/2 0;
+            background: transparent;
+            .panel-inverse{
+                padding: $grid-unit/2 0;
+            }
+            & > .row:nth-child(2){
+                border-bottom: solid 1px $colour-black;
+                margin-bottom: $grid-unit;
+            }
+
+            .checkbox-option{
+                input[type=checkbox] {
+                    display: none;
+                }
+            }
+        }
+
+        .referral-reasons p, .referred-message p {
+            overflow: hidden;
+            margin-bottom: 0;
+            margin-right: 0;
+        }
+
+        .referral-reasons {
+            background-color: $warning-colour-10;
+            ul {
+                margin: 8px 0 0;
+                li:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        &.quote--terms-issued .referral-reasons {
+            background-color: $success-colour-10;
+        }
+        .terms-issued-flag {
+            background-color: $success-colour-100;
+            color: $colour-white;
+        }
+    }
+    @include cover-contents('.cover-contents');
+    @include cover-headline('.cover .cover-headline');
+    @include modify-cover-as-not-taken-up($selector, '.cover--not-taken-up');
+}

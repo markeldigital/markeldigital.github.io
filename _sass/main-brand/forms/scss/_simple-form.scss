@@ -1,0 +1,44 @@
+@mixin simple-form($selector){
+    #{$selector}{
+        .question, .simple-form__container {
+            .option {
+                margin-top: 2*$grid-unit;
+            }
+            input {
+                width: 100%;
+            }
+			textarea {
+                width: 100%; 
+            }
+        }
+
+        .simple-form__container{
+
+            label{
+
+                font-weight: 600;
+            }
+
+            margin-bottom: $grid-unit*2;
+
+            @include respond-to($lap-and-desk){
+
+                margin-bottom: $grid-unit*3;
+            }
+
+        }
+
+        .simple-form__intro{
+
+            font-weight: 400;
+            font-style: italic;
+
+        }
+
+        button.button-style-secondary {
+            margin-top: 2*$grid-unit;
+        }
+    }
+}
+
+@include simple-form('.simple-form');

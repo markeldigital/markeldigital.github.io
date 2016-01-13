@@ -1,0 +1,14 @@
+@mixin follow-us-block($selector){
+    #{$selector} {
+        margin-top: 2*$grid-unit;
+        @include respond-to($lap-and-desk){
+            margin-top: 3*$grid-unit;
+        }
+        .addthis_horizontal_follow_toolbox{
+            p{
+                display:none;
+            }
+        }
+    }
+}
+@include follow-us-block('.follow-us-block');

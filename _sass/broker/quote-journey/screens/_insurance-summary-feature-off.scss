@@ -1,0 +1,22 @@
+// TODO: quote_info feature related...remove this when quote_info aka 'insurance summary' is on permanently and the toggle is removed.
+
+@mixin insurance-summary-feature-off(){
+    .quote-screen, .bind-screen, .policy-confirmation-screen {
+        .temporary-docs {
+            order:4;
+            .documents {
+                border: 1px solid $colour-greyscale-88;
+                padding: 2*$grid-unit;
+                h2 {
+                    @include set-text-as(gamma,$margins-overrides:zero-top);
+                }
+                ul {
+                    margin-top: 2*$grid-unit;
+                    margin-bottom: $grid-unit;
+                }
+            }
+        }
+    }
+}
+
+@include insurance-summary-feature-off;

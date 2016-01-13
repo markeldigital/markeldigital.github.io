@@ -1,0 +1,9 @@
+@mixin visually-hidden(){
+    position: absolute;
+    left: -9999px;
+}
+
+@mixin visually-shown(){
+    position: static;
+    left: 0;
+}

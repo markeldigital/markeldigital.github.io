@@ -1,0 +1,31 @@
+@import "form-element";
+@import "forms-ie-hacks";
+@import "simple-form";
+
+@mixin form($selector){
+    #{$selector}{
+        legend, label {
+            @include set-text-as(body, $margins-overrides: ("bottom": $grid-unit/3));
+            @include respond-to($lap-and-desk){
+                @include set-text-as(body, $margins-overrides: ("bottom": $grid-unit));
+            }
+            display: inline-block;
+            .legend-content {
+                display: inline-block;
+            }
+        }
+
+        legend{
+            width:100%;
+        }
+
+        fieldset {
+            clear: both;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+    }
+}
+
+@include form("form");

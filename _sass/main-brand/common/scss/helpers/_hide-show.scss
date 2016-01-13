@@ -1,0 +1,19 @@
+@mixin hide-mobile($selector){
+
+    #{$selector}{
+
+        display: none;
+
+        @include respond-to($lap-and-desk){
+
+            display: block;
+
+        }
+
+    }
+
+}
+
+@include hide-mobile('.hide-mobile');
+
+

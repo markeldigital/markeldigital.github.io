@@ -1,0 +1,47 @@
+@import '../modules/help-topics';
+
+@mixin help-screen($selector){
+    #{$selector}{
+        @include help-topics('.help-topics');
+
+        h1 {
+            @include order(1);
+            margin-bottom: 0;
+        }
+
+        .intro {
+            @include order(2);
+            @include set-text-as(gamma, $reduced: true);
+            text-align: center;
+            margin: 0 $grid-unit*2 $grid-unit*2 $grid-unit*2;
+            @include respond-to($lap-and-desk){
+                margin: $grid-unit 2*$grid-unit 2*$grid-unit $grid-unit*2;
+            }
+        }
+
+		.panel-help-topics {
+			border-bottom: solid 1px $colour-greyscale-88;
+		}
+
+		.ds-expander-style-b_trigger {
+		
+		}
+
+		.ds-expander-style-b__content{
+			max-width: 80%;
+			li {
+				list-style-type: disc;
+			}
+		}
+
+		.contact-us {
+			margin-top: 5*$grid-unit;
+		}
+
+		.document-type {
+			font-weight: 600;
+		}
+    }
+}
+
+@include help-screen(".help-screen");

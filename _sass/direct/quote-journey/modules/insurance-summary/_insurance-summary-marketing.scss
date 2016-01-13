@@ -1,0 +1,29 @@
+@mixin marketing-info($selector){
+    #{$selector}{
+
+        padding: $grid-unit*3 0 0 0;
+
+        ul {
+
+            li {
+                margin-bottom: $grid-unit;
+                overflow: hidden; // prevents text wrapping under icons.
+                padding-left: 4*$grid-unit;
+                position: relative;
+                //                line-height: 1.4;
+                @include set-text-as(delta, $reduced: true, $responsive-text: false, $margins-overrides: zero-top);
+                i {
+                    @include set-text-as(gamma, $margins-overrides: zero-both);
+                    float: left; // prevents text wrapping under icons.
+                    top: -6px;// until we find a better way of aligning icons.
+                    margin-right: $grid-unit/2;
+                    background-color: transparent;
+                    color: $colour-greyscale-24;
+
+                }
+            }
+        }
+    }
+}
+
+@include marketing-info(".marketing-info");

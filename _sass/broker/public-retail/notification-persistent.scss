@@ -1,0 +1,74 @@
+@mixin notification-persistent($selector) {
+    @include panel($selector, beta);
+    #{$selector}{
+        border: 1px solid $colour-greyscale-88;
+        border-radius: 5px;
+        @include page-top-padding();
+
+        .close-message-form{
+            float: right;
+            
+            .close-message-button {
+                border:none;
+                background:transparent;
+
+                .icon-cross{
+                    color: $colour-greyscale-24;
+                }
+            }
+        }
+
+       
+
+        ul{
+            padding:0;
+            margin: $medium-spacer 0 0 0;
+            li{
+                display:inline-block;
+                padding-right:$small-spacer;
+                width: 100%;
+                ul li button{
+                   text-align: left;
+                }
+                a {
+                    display: table;
+                    text-align: left;
+                    i {
+                        display: table-cell;
+                        font-size:inherit;
+                        padding-right:0;
+                    }
+                }
+                @include respond-to($lap-and-desk){
+                    width: auto;
+                    ul li button{
+                        text-align:center;
+                    }
+                    a {
+                        display:inline-block;
+                        text-align: center;
+                        i{
+                            display:inline-block;
+                            font-size:inherit;
+                            padding-right:0;
+                        }
+                    }
+                }
+            }
+        }
+                
+        .notification-content {
+
+            h3 {
+                margin-top: 0;
+            }
+            p {
+                display:inline-block;
+                margin-bottom:  $small-spacer;
+            }
+        }
+    }
+}
+
+
+@include notification-persistent(".notification-persistent");

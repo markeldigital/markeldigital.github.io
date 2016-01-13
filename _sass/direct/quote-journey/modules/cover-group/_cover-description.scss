@@ -1,0 +1,17 @@
+@mixin cover-description($selector){
+
+    #{$selector} {
+
+        padding: $grid-unit*2 0 0 0;
+
+        @include respond-to($lap-and-desk){
+            padding: $grid-unit*3 0 0 0;
+        }
+
+        p {
+            @include set-text-as(body, $margins-overrides: zero-both )
+
+        }
+
+   }
+    }

@@ -1,0 +1,56 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Markel.REMUS.DesignSystem.Contracts.IProvideNavigation>
+<header class="global-banner">
+    <div class="logo-and-primary-navigation-and-utility-navigation">
+        <a class="logo" href='@Model.LogoClickThrough'>
+            <img src='@Model.ContentPath/Images/markel-logo-white.svg' alt="Markel" class="white-logo" />
+            <!-- Black logo Image is used for print style, as there is no other way to print white image as black, and filter:invert(100%) doesn't work in IE-->
+            <img src='@Model.ContentPath/Images/markel-logo-black.svg' alt="Markel" class="black-logo" />
+        </a>
+        <div class="primary-navigation-and-utility-navigation">
+            <div class="primary-navigation-and-utility-navigation-trigger-container">
+                <a href="">
+                    <span class="text-when-closed">Menu</span>
+                    <span class="text-when-open">Close</span>
+                    <i class="special-menu-icon"></i>
+                </a>
+            </div>
+
+
+            <div class="primary-navigation-and-utility-navigation-content">
+                @if (Model.SectionActions.Count > 0)
+                {
+                    <nav class="mobile-section-actions">
+                        <ul>
+                            @foreach (var action in Model.SectionActions)
+                            {
+                                @Html.Partial(action.PartialPath, action)
+                            }
+                        </ul>
+                    </nav>
+                }
+
+               @if (Model.PrimaryNavigation.Count > 0)
+                {
+                    <nav class="primary-navigation">
+                        <ul>
+                            @foreach (var navItem in Model.PrimaryNavigation)
+                            {
+                                @Html.Partial(navItem.PartialPath, navItem)
+                            }
+                        </ul>
+                    </nav>
+
+                }
+                <nav class="utility-navigation">
+                    <ul>
+                        @foreach (var item in Model.UtilityNavigation)
+                        {
+                            @Html.Partial(item.PartialPath, item)
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+

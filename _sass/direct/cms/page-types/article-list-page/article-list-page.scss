@@ -1,0 +1,16 @@
+@import "page-components/headline-article-list";
+@import "page-components/article-snippet-list";
+
+@mixin article-list-page($selector){
+    #{$selector}{
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        @include headline-article-list(".headline-article-list");
+        @include article-snippet-list(".article-snippet-list");
+    }
+}
+
+@include article-list-page(".article-list-page");

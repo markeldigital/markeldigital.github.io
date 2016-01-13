@@ -1,0 +1,13 @@
+@mixin padding-for-form-element($form-element-height: $standard-touch-size, $text-size: gamma, $border-size: 0, $adjust-right: 0, $adjust-left: 0){
+    $ratio-for-extra-content-box-size-for-font-height: 5;
+    $base-text-size-for-level: map_get(get-base-text-properties-for($text-size), "font-size");
+    $base-line-height-for-level: map_get(get-base-text-properties-for($text-size), "line-height");
+    $content-box-height: $base-text-size-for-level*$base-line-height-for-level;
+    $borders-for-box: 2 * $border-size;
+    $appropriate-padding: ($form-element-height - $content-box-height - $border-size) / 2;
+    padding: $appropriate-padding 2*$grid-unit;
+    padding-right: 2*$grid-unit + $adjust-right;
+    padding-left: 2*$grid-unit + $adjust-left;
+    min-height: $form-element-height;
+    line-height: $base-line-height-for-level;
+}

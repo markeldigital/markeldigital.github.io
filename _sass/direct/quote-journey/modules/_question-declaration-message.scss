@@ -1,0 +1,14 @@
+@mixin question-declaration-message($selector) {
+    #{$selector} {
+        .question-main {
+            border-left: none;
+            padding: 0;
+        }
+        .message-content {
+            padding: 3*$grid-unit;
+            background-color: $colour-greyscale-97;
+        }
+    }
+}
+
+@include question-declaration-message(".question.question-declaration-message");

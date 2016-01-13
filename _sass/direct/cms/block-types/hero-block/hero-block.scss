@@ -1,0 +1,94 @@
+﻿@mixin hero-block($selector) {
+    #{$selector} {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        background-color: $colour-greyscale-24;
+        @include radial-gradient(circle at 50% 35%, $colour-greyscale-24 10%, darken($colour-greyscale-24, 5%) 50%, darken($colour-greyscale-24, 10%));
+        background-size: cover; // We use inline style=background-url(/CMS-edited-image.png) object-fit can be used instead when better browser support is available.
+        background-position: 80% 50%;
+
+        @include respond-to($lap-and-desk) {
+            background-position: 50% 50%;
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba($colour-black, 0.6);
+            @include respond-to($lap-and-desk) {
+                display: none;
+            }
+        }
+
+        #{$selector}-content-container {
+            position: relative;
+            top: 0;
+            z-index: 2;
+
+            #{$selector}-content {
+                text-align: left;
+                position: relative;
+                z-index: 1;
+                top: 0;
+                color: $colour-white;
+                margin-bottom: 3*$grid-unit;
+                @include respond-to($lap-and-desk) {
+                    margin-bottom: 4*$grid-unit;
+                }
+
+                #{$selector}-content-text {
+                    @include respond-to($lap-and-desk) {
+                        width: 75%;
+                    }
+                }
+
+                h1 {
+                    @include set-text-as(alpha, $strength: strong, $responsive-text: true);
+                    @include pad(3*$grid-unit 0 0 0);
+                    margin-bottom: 2*$grid-unit;
+
+                    @include respond-to($lap-and-desk) {
+                        @include pad(6*$grid-unit 0 0 0);
+                        margin-bottom: 2*$grid-unit;
+                    }
+                }
+
+                #{$selector}-intro {
+                    @include set-text-as(gamma, $margins-overrides: zero-top);
+                    margin-bottom: 3*$grid-unit;
+                }
+
+                .button--size-jumbo {
+                    @include set-text-as(delta, $strength: strong, $responsive-text: false, $margins-overrides: zero-both);
+                }
+
+                .main-actions-drop-zone {
+                    @include respond-to($lap-and-desk) {
+                        display: inline-block;
+                    }
+                    div {
+                        @include respond-to($lap-and-desk) {
+                            display: inline-block;
+                        }
+                    }
+
+                    .main-actions-block__action {
+                        margin-bottom: 0;
+                    }
+                }
+
+                .secondary-button {
+                    margin-top: 2*$grid-unit;
+
+                    @include respond-to($lap-and-desk) {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include hero-block('.product-page-hero');

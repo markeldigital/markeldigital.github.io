@@ -1,0 +1,8 @@
+blockquote {
+    margin-left: 0;
+    margin-right: 0;
+    @include set-text-as(delta);
+    border-left: 4px solid $colour-greyscale-88;
+    padding-left: $large-spacer;
+    font-style: italic;
+}

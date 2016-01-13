@@ -1,0 +1,110 @@
+@mixin navigation-items-lap-and-desk($options){
+
+    // BOTH LAP AND DESK
+    @include respond-to(map_get($options, "collapsed-menu-breakpoint-lap-and-desk")){
+        // Common to both levels
+        li {
+            @include set-text-as(delta, $reduced: true, $responsive-text: false, $margins-overrides: zero-both);
+            width: auto;
+            margin: 0;
+            border-bottom: none;
+            letter-spacing: normal;
+            a, button {
+                display: inline-block;
+                margin: 0;
+                padding: 0 1.5*$grid-unit;
+                text-decoration: none;
+                span {
+                    display: inline-block;
+                    height:100%;
+                }
+            }
+        }
+
+        // First level only.
+        > ul > li {
+            @include set-text-as(map_get($options, "typography-level"), $responsive-text: false, $reduced: map_get($options, "typography-reduced"), $margins-overrides: zero-both);
+            display: inline-block;
+            & > a, & > button {
+                width: auto;
+                @if (map_get($global-banner-options, "needs-clearance-from-red-bar") == true) {
+                    line-height: $menu-lap-height - 4px;
+                    margin-top: 4px;
+                } @else {
+                    line-height: $menu-lap-height;
+                }
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-weight: map_get($options, "typography-weight");
+                color: $colour-greyscale-39;
+                &:hover, &:focus, &:active {
+                    box-shadow: #{map_get($navigation-items-options, "lap-and-desk-hover-box-shadow")}; // TODO: try to remove this by using border-bottom on broker for global-banner
+                    color: $colour-black;
+                    i[class^='icon-'] {
+                        &:before {
+                            color: $colour-black;
+                        }
+                    }
+                }
+                &:hover, &:active, &:focus {
+                    background-color: $colour-greyscale-97;
+                }
+            }
+            &.ds-open:hover, &.ds-open:focus, &.ds-open:active {
+                color: $colour-black;
+                i[class^='icon-'] {
+                    &:before {
+                        color: $colour-black;
+                    }
+                }
+            }
+
+            &.current {
+                font-weight: bold;
+                & > a, & > button {
+                    color: $colour-black;
+                    span {
+                        position: relative;
+                        &:after {
+                            content: '';
+                            bottom: 0;
+                            left: 0;
+                            position: absolute;
+                            height: 2px;
+                            width: 100%;
+                            background-color: $colour-black;
+                        }
+                    }
+                }
+            }
+        }
+
+        .ds-menu {
+            i[class^='icon-'], &.ds-open i[class^='icon-'] {
+                width: 1.5*$grid-unit;
+                &:before {
+                    color: $colour-greyscale-39;
+                }
+            }
+            .ds-menu-items {
+                .ds-menu-item {
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+
+    // DESK ONLY
+    @include respond-to($desk-only){
+        // First level
+        & > ul > li {
+            & > a, & > button {
+                @if (map_get($global-banner-options, "needs-clearance-from-red-bar") == true) {
+                    line-height: $menu-desk-height - 4px;
+                } @else {
+                    line-height: $menu-desk-height;
+                }
+            }
+        }
+    }
+}

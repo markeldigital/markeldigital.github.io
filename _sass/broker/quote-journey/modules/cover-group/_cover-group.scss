@@ -1,0 +1,23 @@
+@import "cover";
+@import "nested-cover";
+@import "cover-attachments";
+
+@mixin cover-group($selector){
+    // TODO: try to encapsulate these in cover-group?...are covers ever used outside of cover-group? Should we allow them to be? Is it best to keep them independent?
+    @include cover(".cover");
+//    @include cover(".nested-cover");
+    @include nested-cover(".nested-cover");
+    @include cover-attachments(".cover-attachments");
+
+    #{$selector}{
+        margin-bottom: 3*$grid-unit;
+        @include clearfix;
+        .cover {
+            margin-bottom: $grid-unit/4;
+        }
+        &:last-child {
+            margin-bottom:0;
+        }
+    }
+}
+@include cover-group('.cover-group');

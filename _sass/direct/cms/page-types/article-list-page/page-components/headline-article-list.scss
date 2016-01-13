@@ -1,0 +1,34 @@
+@mixin headline-article-list($selector){
+    @include list-as-plain($selector);
+
+    #{$selector}{
+        li {
+            padding: 0 0 3*$grid-unit;
+        }
+        .article-snippet-image {
+            display: block;
+        }
+        h2 {
+            @include set-text-as(beta);
+        }
+        h3 {
+            @include set-text-as(gamma, $strength: strong);
+        }
+        h2, h3 {
+            margin-top: $grid-unit;
+            @include respond-to($lap-and-desk){
+                margin-top: 2*$grid-unit;
+            }
+            @include respond-to($desk-only){
+                margin-top: 2*$grid-unit;
+            }
+            a {
+                text-decoration: none;
+                color: $colour-greyscale-24;
+                &:hover, &:active, &:focus {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

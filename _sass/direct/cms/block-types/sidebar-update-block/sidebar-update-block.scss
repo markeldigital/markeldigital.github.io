@@ -1,0 +1,26 @@
+@mixin sidebar-update-block($selector){
+
+    #{$selector}{
+
+        a {
+            color: $colour-brand-primary;
+
+            &:hover, &:active, &:focus {
+                color: lighten($colour-brand-primary, 10%);
+                text-decoration: none;
+                @include transition($standard-transition-animation);
+            }
+        }
+
+        img {
+            margin-bottom: $grid-unit*2;
+        }
+
+
+
+    }
+
+
+}
+
+@include sidebar-update-block('.sidebar-update-block');

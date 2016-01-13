@@ -1,0 +1,22 @@
+﻿@mixin modify-cover-as-not-taken-up($selector, $modifying-selector){
+    #{$selector} {
+		&#{$modifying-selector} {
+            .cover-headline .checkbox-option.checkbox-stacked input + label, {
+                background-color: $colour-white;
+                outline: 1px dashed $colour-greyscale-76;
+                box-shadow: 0 0 0px 0 rgba(0, 0, 0, .12);
+
+                &:hover, &:focus {
+                    outline: 1px solid $colour-greyscale-88;
+                    box-shadow: 0 0 12px 0 rgba(0, 0, 0, .12);
+                  @include transition(all 200ms ease-in);
+                }
+            }
+            .selected-premium-value {
+                color: $colour-greyscale-76;
+
+            }
+
+		}
+	}
+}

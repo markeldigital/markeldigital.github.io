@@ -1,0 +1,44 @@
+﻿@mixin ppc-page($selector) {
+    #{$selector} {
+        h1 {
+            @include set-text-as(alpha, $strength: strong);
+        }
+
+        #{$selector}__first-dropzone {
+            .call-to-action-block {
+                border: none;
+                .grid-width {
+                    padding-left: 0;
+                    padding-right: 0;
+//                    @include respond-to($lap-and-desk){
+//                        padding: auto 0;
+//                    }
+                }
+            }
+        }
+
+        .html-bullet-list {
+            @include respond-to($desk-only){
+                margin-left: -4*$grid-unit;
+            }
+        }
+
+        .main-right-dropzone {
+            margin: 2 * $grid-unit 0;
+            img {
+                width: 100%;
+            }
+
+            > div > div {
+                margin-bottom: 5 * $grid-unit;
+            }
+        }
+
+        .bottom-dropzone {
+            margin-bottom: 8 * $grid-unit;
+            border-top: 1px solid $colour-greyscale-88;
+        }
+    }
+}
+
+@include ppc-page('.ppc-page');

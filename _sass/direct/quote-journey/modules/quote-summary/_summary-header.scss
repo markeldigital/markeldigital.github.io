@@ -1,0 +1,83 @@
+@mixin summary-header($selector, $trigger){
+
+     #{$selector}{
+
+         display: table;
+         width: 100%;
+         border: 1px solid $colour-greyscale-88;
+         padding: $grid-unit*1.5 $grid-unit $grid-unit*1.5 $grid-unit*2;
+
+         @include respond-to($lap-and-desk){
+             border: none;
+             padding: 0 0 $grid-unit*2 0;
+         }
+
+        &__container{
+           display: table-cell;
+        }
+
+        &__title{
+
+            @include set-text-as(gamma, $margins-overrides: zero-both, $strength: strong);
+
+            @include respond-to($lap-and-desk) {
+                @include set-text-as(beta, $margins-overrides: zero-both, $strength: strong);
+            }
+
+        }
+
+        &__reference{
+            @include set-text-as(delta, $responsive-text: false, $reduced: true, $margins-overrides: zero-both);
+        }
+
+    }
+
+    //Expander trigger
+    #{$trigger} {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: right;
+
+            &__trigger {
+
+                @include set-text-as(epsilon, $responsive-text: false, $margins-overrides: zero-both);
+                font-weight: 600;
+                color: $colour-greyscale-24;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                padding: $grid-unit;
+                cursor: pointer;
+
+                &:hover, &:focus, &:active {
+
+                }
+                @include respond-to($lap-and-desk) {
+                    display: none;
+                }
+            }
+    }
+
+}
+
+@include summary-header('.summary-header', '.summary-expander');
+
+
+//Expander content
+.summary-expander__content {
+    border-left: 1px solid $colour-greyscale-88;
+    border-right: 1px solid $colour-greyscale-88;
+    border-bottom: 1px solid $colour-greyscale-88;
+    padding: 0 $grid-unit*2 $grid-unit*2 $grid-unit*2;
+    @include respond-to($lap-and-desk) {
+        border: none;
+        padding: 0;
+    }
+//Hide content on mobile only
+    @include respond-to($palm-only) {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+}

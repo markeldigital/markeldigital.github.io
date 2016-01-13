@@ -1,0 +1,61 @@
+@mixin product-line-hero($selector, $hero-colour){
+    $fallback-product-texture-image: '../Images/product-line-2.png';
+
+    #{$selector}{
+//        background: url($fallback-product-texture-image) no-repeat top center $hero-colour;
+//        background-size: cover;
+        background-color: $colour-greyscale-97;
+        padding: 0;
+        @include display(flex);
+        @include flex-direction(column);
+        @include respond-to($lap-and-desk){
+            display: block;
+        }
+
+        .hero-container {
+            color: $colour-greyscale-24;
+
+            i[class^='icon-product'] {
+                @include set-text-as(jumbo, $margins-overrides: zero-bottom);
+				line-height: 1;
+				margin-top: $grid-unit*3;
+				
+				@include respond-to($lap-and-desk){
+					margin-top: $grid-unit*4;
+				}
+
+                color: $colour-greyscale-24;
+                width: auto;
+                height: auto;
+                //@include page-top-padding();
+            }
+
+
+            h1 {
+                @include set-text-as(alpha, $strength: strong, $margins-overrides: zero-top);
+                padding-top: $grid-unit;
+                @include order(1);
+                margin-bottom: 0;
+            }
+
+
+			.intro {
+                @include order(2);
+                @include set-text-as(gamma, $reduced: true);
+                text-align: center;
+				margin: $grid-unit*1.5 0 $grid-unit*3 0;
+				
+				@include respond-to($lap-and-desk){
+					margin: $grid-unit*1.5 $grid-unit*2 $grid-unit*5 $grid-unit*2;
+				}
+   
+            }
+        }
+        .hero-action {
+            border-top: 1px solid $colour-greyscale-88;
+            border-bottom: 1px solid $colour-greyscale-88;
+            background-color: $colour-white;
+            @include order(3);
+        }
+    }
+}

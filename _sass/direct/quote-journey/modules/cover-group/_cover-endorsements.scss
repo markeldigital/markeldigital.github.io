@@ -1,0 +1,44 @@
+@mixin cover-endorsements($selector){
+
+    #{$selector}{
+        margin: $grid-unit*2 0 $grid-unit 0;
+        border-top: 1px solid $colour-greyscale-88;
+        box-shadow: inset 0 1px 0 0 $colour-white;
+        padding: $grid-unit*2 0 0 0;
+        @include respond-to($lap-and-desk){
+            padding: $grid-unit*3 0 0 0;
+            margin: $grid-unit*3 0 $grid-unit 0;
+        }
+
+
+
+            &__title{
+
+                @include set-text-as(gamma, $margins-overrides: zero-top);
+            }
+
+           &__content{
+
+               padding: $grid-unit*2 $grid-unit*3;
+
+           }
+
+            &__list{
+
+                list-style: upper-roman;
+                padding: 0 0 0 $grid-unit*2;
+                margin: 0 0 0 $grid-unit*3;
+
+            }
+
+            &__trigger{
+
+                margin-bottom: $grid-unit;
+
+            }
+
+
+    }
+
+}
+

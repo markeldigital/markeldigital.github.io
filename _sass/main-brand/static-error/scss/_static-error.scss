@@ -1,0 +1,37 @@
+@mixin static-error($selector){
+    #{$selector}{
+        @include grid-width();
+
+        overflow: hidden;
+        h1 {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding: 3*$grid-unit 0 0 0;
+            @include respond-to($lap-and-desk) {
+                padding: $grid-unit 0;
+            }
+        }
+
+        .panel {
+            padding: 2*$grid-unit;
+            @include respond-to($lap-and-desk){
+                margin-top: 4*$grid-unit;
+                padding: 4*$grid-unit;
+            }
+        }
+
+        *[class^='icon-'] {
+            display: inline-block;
+            width: 100%;
+            height: auto;
+            line-height: 1;
+            margin: $grid-unit 0;
+            background-color: $colour-greyscale-97;
+            color: $error-colour-100;
+            @include set-graphic-as(beta, icon);
+        }
+    }
+}
+
+
+@include static-error(".static-error");

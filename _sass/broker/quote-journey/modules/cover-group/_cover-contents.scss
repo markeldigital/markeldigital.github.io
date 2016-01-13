@@ -1,0 +1,31 @@
+@mixin cover-contents($selector) {
+    #{$selector} {
+        margin-top: $grid-unit/4;
+        .cover-level-label {
+            @include set-text-as(body, $margins-overrides: zero-bottom);
+            margin: 0;
+            clear: both;
+            @include respond-to($lap-and-desk){
+                @include span-columns($one-half);
+                clear: none;
+            }
+        }
+        .limit-header-container {
+            margin-bottom: $grid-unit;
+        }
+        .flag {
+            float: right;
+        }
+        .expander {
+            margin-top: $grid-unit;
+
+            @include respond-to($lap-and-desk){
+                margin-top: 2*$grid-unit;
+                margin-bottom:0;
+            }
+            .expander-content {
+                margin-top: 2*$grid-unit;
+            }
+        }
+    }
+}

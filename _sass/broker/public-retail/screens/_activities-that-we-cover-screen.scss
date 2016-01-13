@@ -1,0 +1,27 @@
+@mixin activities-that-we-cover-screen($selector){
+    #{$selector}{
+        .list {
+            li {
+                padding-left: 2*$grid-unit;
+                padding-right: 2*$grid-unit;
+            }
+            .category-header {
+                margin-top: 2*$grid-unit;
+                padding-top: $grid-unit;
+                padding-bottom: $grid-unit;
+                h3 {
+                    margin: 0;
+                    font-weight: bold;
+                }
+                background-color: $colour-greyscale-96;
+            }
+        }
+        .activity-list-footer {
+            @include set-text-as(gamma);
+
+        }
+
+    }
+}
+
+@include activities-that-we-cover-screen(".activities-that-we-cover-screen");

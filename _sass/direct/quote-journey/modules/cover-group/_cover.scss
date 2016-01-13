@@ -1,0 +1,67 @@
+﻿@import "nested-cover";
+@import "cover-headline";
+@import "cover-contents";
+@import "modify-cover-as-not-taken-up";
+@import "cover-details-trigger";
+@import "cover-endorsements";
+@import "cover-description";
+@import "cover-cannot-offer";
+
+@mixin cover($selector){
+    #{$selector} {
+        @include clearfix;
+
+        @include respond-to-print(){
+            padding: $grid-unit/2 0;
+            background: transparent;
+            .panel-inverse{
+                padding: $grid-unit/2 0;
+            }
+            & > .row:nth-child(2){
+                border-bottom: solid 1px $colour-black;
+                margin-bottom: $grid-unit;
+            }
+
+            .checkbox-option{
+                input[type=checkbox] {
+                    display: none;
+                }
+            }
+        }
+
+        .referral-reasons p, .referred-message p {
+            overflow: hidden;
+            margin-bottom: 0;
+            margin-right: 0;
+        }
+
+        .referral-reasons {
+            background-color: $colour-greyscale-97;
+            background-image: linear-gradient(-45deg, black 25%, transparent 25%, transparent 10%, black 50%, black 75%, transparent 75%, transparent);
+            background-size: $grid-unit/2 $grid-unit/2;
+            ul {
+                margin: 8px 0 0;
+                li:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        &.quote--terms-issued .referral-reasons {
+            background-color: $success-colour-10;
+        }
+        .terms-issued-flag {
+            background-color: $success-colour-100;
+            color: $colour-white;
+        }
+    }
+
+
+    @include cover-contents('.cover-contents');
+    @include cover-headline('.cover .cover-headline');
+    @include modify-cover-as-not-taken-up($selector, '.cover--not-taken-up');
+    @include cover-details-trigger('.cover-details-trigger');
+    @include cover-details-trigger('.cover-details-endorsements__trigger');
+    @include cover-endorsements('.cover-details-endorsements');
+    @include cover-description(".cover-details-description");
+    @include cover-cannot-offer(".cover-cannot-offer");
+}

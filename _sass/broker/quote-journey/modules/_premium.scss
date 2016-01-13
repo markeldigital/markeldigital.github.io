@@ -1,0 +1,36 @@
+﻿@mixin premium($selector) {
+	#{$selector} {
+		float: left;
+		width: 100%;
+		margin: 15px 0 15px 0;
+		text-align: center;
+        @include respond-to($lap-and-desk) {
+			float: left;
+			margin: 0 0 0 0;
+			text-align: right;
+			width: auto;
+			width: 230px;
+		}
+		.premium-value {
+			font-size: rem-calc(28px);
+            @include respond-to($lap-and-desk) {
+				font-size: rem-calc(38px);
+			}
+		}
+		.premium-label {
+			text-align: center;
+			width: 100%;
+			margin: 2px 0 0 0;
+			font-size: rem-calc(12px);
+            @include respond-to($lap-and-desk) {
+				text-align: right;
+				padding: 0 3px 0 0;
+			}
+            @include respond-to($lap-and-desk) {
+				margin: 14px 0 0 0;
+			}
+		}
+	}
+}
+
+@include premium(".premium-container");

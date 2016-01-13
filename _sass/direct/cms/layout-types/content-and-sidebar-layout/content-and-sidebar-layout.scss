@@ -1,0 +1,39 @@
+﻿@mixin two-plus-one-layout($selector) {
+    #{$selector} {
+        #{$selector}-primary {
+            order:2;
+            @include respond-to($lap-and-desk){
+                order:1;
+                @include span-columns($two-thirds);
+                @include pad(0 3*$grid-unit 0 0);
+            }
+        }
+
+        #{$selector}-secondary {
+            overflow: auto;
+            @include respond-to($lap-and-desk){
+                @include span-columns($one-third);
+                float: right;
+            }
+            @include respond-to-print(){
+                overflow: hidden;
+            }
+        }
+
+        #{$selector}-secondary, #{$selector}-primary {
+            @include respond-to($lap-and-desk){
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+
+		#{$selector}-secondary .card {
+			margin-bottom: $grid-unit * 2;
+			@include respond-to($lap-and-desk){
+				margin-bottom: $grid-unit * 3;
+			}
+        }
+    }
+}
+
+@include two-plus-one-layout(".content-and-sidebar-layout");

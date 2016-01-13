@@ -1,0 +1,37 @@
+@mixin marketing-info($selector){
+    #{$selector}{
+
+        h2{
+            @include set-text-as(gamma, $margins-overrides: zero-both);
+        }
+
+        ul {
+            list-style: none;
+            margin: $grid-unit 0;
+            padding: 0;
+            li {
+                margin-bottom: $grid-unit;
+                overflow: hidden; // prevents text wrapping under icons.
+                padding-left: 4.5*$grid-unit;
+                position: relative;
+//                line-height: 1.4;
+                @include set-text-as(delta, $margins-overrides: zero-top);
+                i {
+                    @include set-text-as(gamma, $margins-overrides: zero-both);
+                    float: left; // prevents text wrapping under icons.
+                    top: -4px;// until we find a better way of aligning icons.
+                    margin-right: $grid-unit;
+                    background-color: transparent;
+                    color: $colour-greyscale-63;
+                    position: absolute;
+                    left: 0;
+                }
+                em {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+@include marketing-info(".marketing-info");

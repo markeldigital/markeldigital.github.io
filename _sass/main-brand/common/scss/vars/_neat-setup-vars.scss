@@ -1,0 +1,8 @@
+/* 'Neat' grid system setup
+*/
+$column: 56px;
+$gutter: 24px;
+$grid-columns: 12;
+$clearance: $gutter;
+$grid-maximum: ($grid-columns * $column) + (($grid-columns - 1) * $gutter) + 2*$clearance;
+$max-width: $grid-maximum;

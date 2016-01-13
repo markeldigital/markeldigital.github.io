@@ -1,0 +1,28 @@
+﻿@mixin help-message($selector){
+    $arrow-width: 1.5*$grid-unit;
+    $arrow-height: 1.5*$grid-unit;
+
+    #{$selector} {
+        display: none;
+        position: absolute;
+        top:0;
+        left:0;
+        padding: 2*$grid-unit;
+        background-color: $colour-interaction-100;
+        color: $colour-white;
+        border-radius: $standard-curvature;
+        &:before {
+			@include icon-content-for-name('arrow-left');
+			@include set-graphic-as(gamma, $type: icon);
+            position: absolute;
+            top: 2*$grid-unit;
+            left: -1.75*$grid-unit;
+            line-height: 1;
+            height: $arrow-height;
+            width: $arrow-width;
+            background-color: transparent;
+            color: $colour-interaction-100;
+        }
+    }
+}
+

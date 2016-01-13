@@ -1,0 +1,19 @@
+﻿@mixin call-to-action-side-bbv-block($selector) {
+    #{$selector} {
+		a.button-style-success {
+			color: $colour-white;
+
+			&:hover, &:focus, &:active {
+				color: $colour-white;
+			}
+
+			margin-bottom: $grid-unit;
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+    }
+}
+ 
+@include call-to-action-side-bbv-block(".call-to-action-side-bbv-block");

@@ -1,0 +1,322 @@
+////////////////////////////////////////////////////////////////////////////////////////////
+@function get-responsive-sizes-for($size-for-desk-in-grid-units, $flex: null){
+    $all-flex-properties: ();
+
+    $palm-scale-factor: 1;
+    $lap-scale-factor: 1;
+    $desk-scale-factor: 1;
+
+    @if($flex == s){
+        $palm-scale-factor: 0.9;
+        $lap-scale-factor: 0.95;
+        $desk-scale-factor: 1;
+    } @else if($flex == m){
+        $palm-scale-factor: 0.85;
+        $lap-scale-factor: 0.9;
+        $desk-scale-factor: 1;
+    } @else if($flex == l){
+        $palm-scale-factor: 0.5;
+        $lap-scale-factor: 0.75;
+        $desk-scale-factor: 1;
+    } @else if($flex == xl){
+        $palm-scale-factor: 0.25;
+        $lap-scale-factor: 0.5;
+        $desk-scale-factor: 1;
+    } @else {
+        @warn "get-responsive-sizes() function has incorrect flex value.";
+        @return null;
+    }
+
+    $all-flex-properties: (
+            "palm": $size-for-desk-in-grid-units * $palm-scale-factor,
+            "lap-and-desk": $size-for-desk-in-grid-units * $lap-scale-factor,
+            "desk": $size-for-desk-in-grid-units * $desk-scale-factor,
+    );
+
+    @return $all-flex-properties;
+}
+////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+@mixin responsive-padding-bottom($size, $flex){
+    $sizes: get-responsive-sizes-for($size, $flex);
+    padding-bottom: map_get($sizes, "palm");
+    @include respond-to($lap-and-desk){
+        padding-bottom: map_get($sizes, "lap-and-desk");
+    }
+    @include respond-to($desk-only){
+        padding-bottom: map_get($sizes, "desk");
+    }
+}
+
+@mixin responsive-padding-top-and-bottom($size, $flex){
+    $sizes: get-responsive-sizes-for($size, $flex);
+    padding: map_get($sizes, "palm") 0;
+    @include respond-to($lap-and-desk){
+        padding: map_get($sizes, "lap-and-desk") 0;
+    }
+    @include respond-to($desk-only){
+        padding: map_get($sizes, "desk") 0;
+    }
+}
+
+@mixin responsive-padding($size, $flex){
+    $sizes: get-responsive-sizes-for($size, $flex);
+    padding: map_get($sizes, "palm");
+    @include respond-to($lap-and-desk){
+        padding: map_get($sizes, "lap-and-desk");
+    }
+    @include respond-to($desk-only){
+        padding: map_get($sizes, "desk");
+    }
+}
+
+@mixin home-panel($bem-module-name){
+    [class*='#{$bem-module-name}'] {
+        &[class*='--style-1'] {
+            background-color: $colour-white;
+        }
+        &[class*='--style-2'] {
+            background-color: $colour-greyscale-97;
+            border-bottom: 1px solid $colour-greyscale-88;
+            border-top: 1px solid $colour-greyscale-88;
+        }
+        &[class*='--size-s'] {
+            @include responsive-padding-top-and-bottom(3*$grid-unit, $flex: l);
+        }
+        &[class*='--size-m'] {
+            @include responsive-padding-top-and-bottom(8*$grid-unit, $flex: xl);
+        }
+
+        [class*='#{$bem-module-name}__first'] {
+            margin-top: 0;
+        }
+        [class*='#{$bem-module-name}__last'] {
+            margin-bottom: 0;
+        }
+        [class*='#{$bem-module-name}__grid-width'] {
+            @include outer-container();
+            @include respond-to($lap-and-desk){
+                padding-right: $grid-unit;
+                padding-left: $grid-unit;
+            }
+            @include respond-to($desk-only){
+                padding-right: 0;
+                padding-left: 0;
+            }
+        }
+    }
+}
+
+@mixin ribbon($bem-module-name){
+    [class*='#{$bem-module-name}'] {
+        position: relative;
+        .#{$bem-module-name}__content-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            overflow: hidden;
+            width: 10*$grid-unit;
+            height: 10*$grid-unit;
+        }
+        .#{$bem-module-name}__content {
+            position: absolute;
+            top: 1.5*$grid-unit;
+            right: -4*$grid-unit;
+            @include transform(rotate(45deg));
+            padding: 0 5*$grid-unit;
+            background-color: $colour-interaction-100;
+            color: $colour-white;
+            @include set-text-as(delta, $reduced: true);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+@mixin home-call-to-action-panel($bem-module-name){
+    // block
+    [class*='#{$bem-module-name}'] {
+        @include respond-to($lap-and-desk){
+            @include display(flex);
+        }
+        // elements
+        [class*='#{$bem-module-name}__primary'] {
+            margin-bottom: 2*$grid-unit;
+            @include respond-to($lap-and-desk){
+                margin-bottom: 0;
+                @include span-columns($two-thirds);
+            }
+        }
+        [class*='#{$bem-module-name}__sidekick'] {
+            @include respond-to($lap-and-desk){
+                @include span-columns($one-third);
+            }
+        }
+        // modifiers
+        &[class*='--equal-height']{
+            @include respond-to($lap-and-desk){
+                @include flex(1);
+                @include align-items(center);
+            }
+        }
+    }
+}
+
+@mixin home-screen($selector){
+    #{$selector}{
+        @include home-panel('home-panel');
+        @include card('.home-card');
+        @include ribbon('ribbon');
+        @include home-call-to-action-panel('home-sidekick-template');
+
+        a:not([class*='button']) {
+            color: $colour-brand-primary;
+            &:hover {
+                color: lighten($colour-brand-primary, 5);
+            }
+            &:focus, &:active {
+                color: darken($colour-brand-primary, 5);
+            }
+        }
+
+        .home-hero {
+            @include responsive-padding-bottom(8*$grid-unit, $flex: l);
+            text-align: center;
+            background: $colour-greyscale-24 url("../Images/home-hero.jpg") bottom center no-repeat;
+            background-size: cover;
+            .home-hero-content {
+                h1 {
+                    font-weight: 600;
+                }
+                color: $colour-white;
+                .home-hero-intro {
+                    @include set-text-as(gamma, $margins-overrides: zero-top);
+                }
+            }
+            .home-hero-actions {
+                @include display(flex);
+                @include flex-direction(column-reverse);
+                margin: 3*$grid-unit auto 0 auto;
+                @include respond-to($lap-and-desk){
+                    display: block;
+                }
+                .button-style-subtle {
+                    margin-top: 2*$grid-unit;
+                    @include respond-to($lap-and-desk){
+                        margin-top: 0;
+                        margin-right: 2*$grid-unit;
+                    }
+                }
+            }
+        }
+
+
+        .platform-benefits {
+            ul {
+                text-align: center;
+                li {
+                    margin-bottom: 3*$grid-unit;
+                    padding: 0 2*$grid-unit;
+                    @include respond-to($lap-and-desk){
+                        margin-bottom: 0;
+                    }
+                    @include respond-to($desk-only){
+                        padding: 0 3*$grid-unit;
+                    }
+                    img {
+                        @include respond-to($lap-and-desk){
+                            margin-bottom: $grid-unit;
+                        }
+                    }
+                    h3 {
+                        @include set-text-as(gamma, $strength: strong, $margins-overrides: zero-top);
+                    }
+                    @include respond-to($lap-and-desk){
+                        @include span-columns($one-third);
+                    }
+                }
+            }
+        }
+
+        .products {
+            @include respond-to($lap-and-desk){
+                @include display(flex);
+            }
+            .product {
+             
+                    margin-bottom: 2*$grid-unit;
+                    @include respond-to($lap-and-desk){
+                        margin-bottom: 0;
+                    }
+               
+                @include respond-to($lap-and-desk){
+                    @include flex(1);
+                    @include span-columns($one-half);
+                }
+                h3 {
+                    @include set-text-as(gamma, $strength: strong, $margins-overrides: zero-top);
+                }
+            }
+        }
+
+        .more-platform-benefits {
+            ul {
+                li {
+                    @include fill-parent;
+                    margin-top: 2*$grid-unit;
+                    margin-bottom: 4*$grid-unit;
+                    @include respond-to($lap-and-desk){
+                        @include span-columns($one-half);
+                        @include span-columns($one-third);
+                        @include omega(3n);
+                        margin-top: 0;
+                    }
+                    @include respond-to($desk-only){
+                        @include pad(0 5*$grid-unit 0 0);
+                        margin-bottom: 8*$grid-unit;
+                    }
+                    [class^='icon-'] {
+                        @include set-graphic-as(beta, $type: icon);
+                        color: $colour-greyscale-24;
+                        margin-bottom: 1.5*$grid-unit;
+                    }
+                    h3 {
+                        @include set-text-as(gamma, $reduced: true, $strength: strong, $margins-overrides: zero-top);
+                    }
+                    p {
+                        max-width: 85%;
+                    }
+                }
+            }
+        }
+
+        .about-markel-and-ratings {
+            .about-markel {
+                @include respond-to($lap-and-desk){
+                    padding-right: 10*$grid-unit;
+                }
+            }
+            .ratings {
+                h3 {
+                    @include set-text-as(delta, $strength: strong);
+                }
+                ul {
+                    list-style-type: none;
+                    padding-left: 0;
+                    margin-bottom: 3*$grid-unit;
+                }
+                .rating-by {
+                    display: inline-block;
+                    width: 10*$grid-unit;
+                }
+                .rating-value {
+
+                }
+            }
+        }
+    }
+}
+
+@include home-screen(".home-screen");

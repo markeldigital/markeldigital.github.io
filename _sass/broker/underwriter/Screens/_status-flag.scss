@@ -1,0 +1,12 @@
+@mixin status-flag($selector, $background-color){
+    @include flag($selector);
+    #{$selector} {
+        background-color: $background-color;
+        padding: $grid-unit/2 $grid-unit;
+    }
+}
+
+@include status-flag(".flag-quoted", $colour-greyscale-94);
+@include status-flag(".flag-referred", $warning-colour-10);
+@include status-flag(".flag-bound", $success-colour-10);
+@include status-flag(".flag-declined", $error-colour-10);

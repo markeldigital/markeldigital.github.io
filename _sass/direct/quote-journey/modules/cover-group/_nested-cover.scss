@@ -1,0 +1,28 @@
+
+@mixin nested-cover($selector) {
+    #{$selector} {
+        .cover-headline {
+            // TODO: remove this when we use 'basic-checkbox' in cover headline.
+            .checkbox-option.checkbox-stacked input[type=checkbox][disabled]:hover + label {
+                background-color: transparent;
+                border: none;
+            }
+        }
+
+        &.cover--locked {
+            color: $colour-greyscale-76;
+            .cover-headline {
+                background-color: $colour-greyscale-97;
+                .checkbox-option.checkbox-stacked {
+                    .fake-check-box:before {
+                        background-color: transparent;
+                    }
+                    label {
+                        background-color: transparent;
+                        border: none;
+                    }
+                }
+            }
+        }
+    }
+}

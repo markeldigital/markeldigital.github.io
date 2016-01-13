@@ -1,0 +1,25 @@
+@mixin two-plus-one-horizontal-axis-layout($bem-module-name){
+    // block
+    #{$bem-module-name} {
+        @include respond-to($lap-and-desk){
+            @include display(flex);
+            @include flex(1);
+            @include align-items(center);
+        }
+        // elements
+        #{$bem-module-name}__primary {
+            margin-bottom: 2*$grid-unit;
+            @include respond-to($lap-and-desk){
+                margin-bottom: 0;
+                @include span-columns($two-thirds);
+            }
+        }
+        #{$bem-module-name}__secondary {
+            @include respond-to($lap-and-desk){
+                @include span-columns($one-third);
+                @include pad(0 3*$grid-unit 0 0);
+            }
+        }
+    }}
+
+@include two-plus-one-horizontal-axis-layout(".two-plus-one-horizontal-axis-layout");

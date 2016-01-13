@@ -1,0 +1,24 @@
+// Body background image for desktop
+
+body {
+
+    @include respond-to($lap-and-desk) {
+        background-color: $colour-greyscale-97;
+    }
+}
+
+.content-img {
+
+    padding-bottom: $grid-unit*4;
+    @include respond-to($lap-and-desk){
+        padding-bottom: $grid-unit*10;
+    }
+
+    @include respond-to($lap-and-desk) {
+        background: url('../../Content/images/direct-qj-bg-2.jpg') 0 0 no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        padding-bottom: $grid-unit*10;
+
+    }
+}

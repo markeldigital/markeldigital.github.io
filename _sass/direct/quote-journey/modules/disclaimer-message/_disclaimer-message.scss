@@ -1,0 +1,22 @@
+@mixin disclaimer-message($selector){
+    #{$selector} {
+        overflow: hidden;
+        @include respond-to($lap-and-desk){
+            margin-bottom: 2*$grid-unit;
+            border-bottom: 1px solid $colour-greyscale-88;
+        }
+        i {
+            display: block;
+            float: left;
+            margin-right: $grid-unit;
+            @include set-graphic-as(gamma, $type: icon);
+            color: $warning-colour-100;
+        }
+        p {
+            overflow: hidden;
+            display: block;
+        }
+    }
+}
+
+@include disclaimer-message(".disclaimer-message");

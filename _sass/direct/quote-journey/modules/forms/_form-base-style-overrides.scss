@@ -1,0 +1,12 @@
+.legend-content, .label-selector label {
+        font-weight: 600;
+}
+
+.cover-options-select__select-list{
+    @include respond-to($palm-only) {
+        @include set-text-as(body, $responsive-text: false, $margins-overrides: zero-both); 
+    }
+}
+
+
+

@@ -1,0 +1,40 @@
+@mixin cover-attachments($selector) {
+    #{$selector} {
+        h3 {
+            @include set-text-as(body, $margins-overrides: zero-both);
+            font-weight: bold;
+        }
+
+        .panel-inverse {
+            min-height: $grid-unit*10;
+            ul {
+                list-style: none;
+                padding: 0;
+            }
+        }
+
+        .cover-attachments-left, .cover-attachments-right {
+            @include respond-to($lap-and-desk) {
+                @include span-columns($one-half);
+            }
+        }
+
+		.additional-detail {
+			margin-bottom: 2*$grid-unit;
+		}
+
+		.additional-detail p {
+			margin-bottom: 0;
+		}
+
+		.excess-comment {
+			color: $colour-greyscale-63;
+		}
+
+        @include respond-to-print(){
+            .cover-attachments-left, .cover-attachments-right {
+                @include span-columns($one-half);
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+@mixin call-to-action-sticky($selector){
+
+    @include respond-to($palm-only) {
+
+        #{$selector} {
+
+
+
+            padding: $grid-unit*2 0;
+
+
+            &.active {
+                padding: $grid-unit*2;
+                background-color: $colour-white;
+                z-index: 9;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                margin: 0;
+                box-shadow: 0 -4px 4px 0 rgba(0, 0, 0, 0.15);
+                position: fixed;
+
+                .total-premium{
+                    margin-top: 0;
+                }
+            }
+            .split-actions {
+                margin-top: $grid-unit*1.5;
+            }
+        }
+    }
+
+    #{$selector}{
+        .split-actions{
+            margin-bottom: 0;
+        }
+    }
+}
+
+@include call-to-action-sticky('.call-to-action-sticky');

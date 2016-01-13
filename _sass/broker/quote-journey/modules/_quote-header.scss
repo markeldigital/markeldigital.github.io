@@ -1,0 +1,43 @@
+@mixin product-header($selector) {
+    #{$selector} {
+        @include clearfix;
+        padding: 0 0 2*$grid-unit 0;
+        @include respond-to($lap-and-desk) {
+            padding: 0 0 2*$grid-unit 0;
+        }
+
+        h2 {
+            margin-bottom: 0;
+        }
+        .name-and-quote-number, .selected-premium {
+            @include span-columns($one-half);
+        }
+        .name-and-quote-number h2 {
+            @include set-text-as(gamma, $margins-overrides: zero-both);
+        }
+
+        .unemphasised {
+            color: $colour-greyscale-63;
+        }
+
+        .selected-premium {
+            text-align: right;
+            h2 {
+                @include set-text-as(alpha);
+                color: $colour-greyscale-24;
+            }
+        }
+
+        dl {
+            dt, dd {
+                display: inline;
+            }
+            .quote-number {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+@include product-header(".quote-header");
+@include product-header(".product-header");
