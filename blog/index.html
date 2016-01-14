@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Events
-hero: Event Archive
+title: Archive
+hero: Blog Archive
 ---
 {% assign year = '1900' -%}
 <ul class="archive">
-  {% assign event_posts = (site.posts | where:"layout", "event") %}
-  {% for post in event_posts %}
+  {% assign blog_posts = (site.posts | where:"layout", "post") %}
+  {% for post in blog_posts %}
   {% capture current_year %}{{ post.date | date: "%Y" }}{% endcapture %}
   {% if current_year != year %}
   <h3>{{ current_year }}</h3>
