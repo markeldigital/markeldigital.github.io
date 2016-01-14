@@ -115,6 +115,22 @@
           </div>
 
           <div class="l-components__aside">
+            <h3>Events</h3>
+            <ul>
+            {% assign blog_posts = (site.posts | where:"layout", "event") %}
+            {% for post in blog_posts %}
+            <li><span>{{ post.date | date: "%b, %d" }}</span> - <a href="{{post.url}}">{{post.title}}</a>
+            {% endfor %}
+            </ul>
+
+            <h3>Blog</h3>
+            <ul>
+            {% assign blog_posts = (site.posts | where:"layout", "post") %}
+            {% for post in blog_posts %}
+            <li><a href="{{post.url}}">{{post.title}}</a>
+            {% endfor %}
+            </ul>
+
             <h3>Social</h3> 
             <ul>
               <li><a href="https://twitter.com/markeldigital">@markeldigital</a></li>

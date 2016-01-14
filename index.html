@@ -6,6 +6,7 @@ hero: Blog
 {% for post in site.posts limit:5 %}
   <div class="post">
     <h2><a href="{{post.url}}">{{post.title}}</a></h2>
+    <p>{{ post.author }}, {{ post.date | | date_to_long_string }}, {{ post.tags | array_to_sentence_string }}</p>
     {{ post.excerpt }}
     <p><a href="{{post.url}}">Read More</a></p>
   </div>
