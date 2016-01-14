@@ -2,6 +2,7 @@
 layout: default
 title: Micro service launcher
 hero: Micro service launcher
+tags: microservices, development
 ---
 
 # Micro service launcher - NoCI
