@@ -2,3 +2,5 @@
 .DS_Store
 /.bundle
 /bin
+/vendor
+/_site

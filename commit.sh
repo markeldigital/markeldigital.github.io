@@ -1,3 +1,3 @@
 #!/bin/sh -eu
 
-bundle install --binstubs
+bundle install --binstubs --path vendor
