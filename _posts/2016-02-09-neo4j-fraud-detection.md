@@ -1,7 +1,7 @@
 ---
 layout: event
 title: Neo4J - Fraud Detection
-hero: 09 Feb 2016 18h30 - Neo4J - Fraud Detection
+hero: 09 Feb 2016
 tags: [neo4j, fraud]
 author: Marketing
 ---
@@ -16,8 +16,4 @@ This provides an enhanced degree of insight, compared to fraud detection algorit
 
 Neo4j is allowing users to develop the next generation of fraud detection systems based on connected intelligence.
 
-If you arrive after 6.30 the main door will be closed so you'll have to give us a call to let you in. Will send out phone number by email to attendees and have it posted on the entrance. 
-
-Please note you want the Europoint building and NOT the CBS one.  
-
-[Register](http://www.meetup.com/graphdb-london/events/228041973/) for the next meet-up.
+For more details see the event at [meetup.com](http://www.meetup.com/graphdb-london/events/228041973/).
