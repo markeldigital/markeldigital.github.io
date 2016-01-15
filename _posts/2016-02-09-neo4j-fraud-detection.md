@@ -1,8 +1,9 @@
 ---
 layout: event
 title: Neo4J - Fraud Detection
-tags: event, neo4j, fraud
-published: false
+hero: 09 Feb 2016 18h30 - Neo4J - Fraud Detection
+tags: [neo4j, fraud]
+author: Marketing
 ---
 
 Banks and insurance companies lose billions of dollars each year to fraud, and investigating fraud often involves identifying suspicious patterns among mountains of uninteresting transactional data. 

@@ -84,7 +84,7 @@
         <nav class="utility-navigation">
           <ul>
             <li class="ds-menu">
-            <a href="/jobs/"><span>Jobs</span></a>
+            <a href="/jobs/"><span>Careers</span></a>
             </li>
             <!--
             <li class="ds-menu account-menu">
@@ -121,7 +121,7 @@
             <ul>
             {% assign blog_posts = (site.posts | where:"layout", "event") %}
             {% for post in blog_posts %}
-            <li><span>{{ post.date | date: "%b, %d" }}</span> - <a href="{{post.url}}">{{post.title}}</a>
+            <li><span>{{ post.date | date: "%b, %d" }}</span><br/><a href="{{post.url}}">{{post.title}}</a>
             {% endfor %}
             </ul>
 
