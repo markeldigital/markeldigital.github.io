@@ -63,3 +63,17 @@ screens
 /*
 Theme
 */
+
+.social {
+  line-height:24px;
+  list-style:none;
+}
+.social img {
+  vertical-align:middle;
+}
+a {
+  text-decoration:none;
+}
+a:hover {
+  text-decoration:underline;
+}
