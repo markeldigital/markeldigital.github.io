@@ -4,6 +4,7 @@ hero: Senior Developer
 title: Senior Developer
 author: Markel HR
 ---
+Markel International is seeking a talented and passionate senior developer to work within its retail transformation team(s).  
 
 Markel International (MINT) underwrites a diverse portfolio of property, casualty and marine insurance and reinsurance business on a world-wide basis. We are a division of the Markel Corporation, which markets and underwrites speciality insurance products and programmes to a variety of niche markets. In each of these markets we seek to provide quality products and excellent customer service so that we can be a market leader. Our financial goals are to earn consistent underwriting profits and superior investment returns to build shareholder value. 
 
