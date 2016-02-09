@@ -5,7 +5,6 @@ hero: 09 Feb 2016
 tags: [neo4j, fraud]
 author: Marketing
 ---
-
 Banks and insurance companies lose billions of dollars each year to fraud, and investigating fraud often involves identifying suspicious patterns among mountains of uninteresting transactional data. 
 
 Increasingly sophisticated fraudsters have developed a variety of ways to elude discovery, both by working together, and by leveraging various other means of constructing false identities.
